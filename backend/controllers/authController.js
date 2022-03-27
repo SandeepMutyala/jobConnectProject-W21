@@ -1,6 +1,7 @@
 const User = require("../models/user");
 
 const jwt = require("jsonwebtoken");
+
 exports.registerUser = async (req, res, next) => {
   const { name, email, password, role } = req.body;
   const existingUser = await User.findOne({ email });
@@ -12,14 +13,32 @@ exports.registerUser = async (req, res, next) => {
     });
   }
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-    role,
-  });
+  if (role === "admin" || role === "employee") {
+    const verified = true;
+    const user = await User.create({
+      name,
+      email,
+      password,
+      role,
+      verified,
+    });
 
-  sendToken(user, 200, res);
+    sendToken(user, 200, res);
+  } else {
+    const verified = false;
+    const user = await User.create({
+      name,
+      email,
+      password,
+      role,
+      verified,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: `Registration successful, verification pending`,
+    });
+  }
 };
 
 exports.loginUser = async (req, res, next) => {
@@ -40,6 +59,13 @@ exports.loginUser = async (req, res, next) => {
     return res.status(401).json({
       success: false,
       message: "Invalid Email or Password",
+    });
+  }
+
+  if (!user.verified) {
+    return res.status(401).json({
+      success: false,
+      message: "Account not verified",
     });
   }
 

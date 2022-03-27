@@ -12,6 +12,7 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  REGISTER_EMPLOYER_SUCCESS,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -53,11 +54,17 @@ export const register = (name, email, password, role) => async (dispatch) => {
       password,
       role,
     });
-
-    dispatch({
-      type: REGISTER_USER_SUCCESS,
-      payload: data.user,
-    });
+    if (data.message) {
+      dispatch({
+        type: REGISTER_EMPLOYER_SUCCESS,
+        payload: data.message,
+      });
+    } else {
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: data.user ? data.user : data.message,
+      });
+    }
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,

@@ -11,6 +11,7 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  REGISTER_EMPLOYER_SUCCESS,
 } from "../constants/userConstants";
 
 export const authReducer = (state = { user: {} }, action) => {
@@ -81,6 +82,13 @@ export const authReducer = (state = { user: {} }, action) => {
         loading: false,
         isAuthenticated: true,
         user: action.payload,
+      };
+    case REGISTER_EMPLOYER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        message: action.payload,
       };
     case REGISTER_USER_FAIL:
       return {
