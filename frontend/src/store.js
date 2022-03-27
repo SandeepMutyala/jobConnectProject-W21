@@ -1,3 +1,5 @@
+/* author bijitashya*/
+
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { authReducer } from "./reducers/userReducer";
 import thunk from "redux-thunk";
