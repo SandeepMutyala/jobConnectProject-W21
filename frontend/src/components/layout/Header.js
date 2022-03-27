@@ -50,6 +50,16 @@ function Header() {
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/dashboard">
+                    Dashboard
+                  </Link>
+                )}
+                {user && user.role === "employer" && (
+                  <Link className="dropdown-item" to="/jobposting">
+                    Post Job
+                  </Link>
+                )}
                 <Link className="dropdown-item" to="/profile">
                   Profile
                 </Link>

@@ -4,27 +4,32 @@ import { register, clearErrors } from "../../actions/userActions";
 import { useAlert } from "react-alert";
 
 const Register = ({ history }) => {
-  const [name, setName] = useState("NPPM");
-  const [email, setEmail] = useState("mybox12@mail.com");
-  const [password, setPassword] = useState("123456789");
-  const [role, setRole] = useState("employee");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
   const dispatch = useDispatch();
 
-  const { isAuthenticated, error, loading } = useSelector(
+  const { isAuthenticated, error, loading, message } = useSelector(
     (state) => state.auth
   );
   const alert = useAlert();
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/");
+      history.replace("/");
+    }
+
+    if (message) {
+      alert.success(message);
+      history.replace("/");
     }
 
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, isAuthenticated, alert, error, history]);
+  }, [dispatch, isAuthenticated, alert, error, message, history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
