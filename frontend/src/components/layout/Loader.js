@@ -1,3 +1,5 @@
+/* author bijitashya*/
+
 import React from "react";
 
 const Loader = () => {
