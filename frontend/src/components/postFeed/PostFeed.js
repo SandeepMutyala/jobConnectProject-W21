@@ -11,6 +11,7 @@ const PostFeed = () => {
     const [commentState,setCommentState] = useState(false);
     const [postList, setPostList] = useState("")
     const [commentList, setCommentList] = useState("")
+    const [currentCommentPostID, setCurrentCommentPostID] = useState("")
 
     useEffect(() => {
       fetchPosts();
@@ -31,9 +32,9 @@ const PostFeed = () => {
         console.log(postID)
         let commentlist = await fetchPostComments(postID);
         var commentData = commentlist.data; 
+        setCurrentCommentPostID(postID);
         setCommentList(commentData);
         // get data and check at the post if _id of post and comment is equal add comment.
-
       } 
   }
 
@@ -69,7 +70,7 @@ const PostFeed = () => {
     const uploadComment = async (e,postID) => {
       e.preventDefault();
       // code to comment on post
-
+      setComment("")
       let commentObject = {
         postID : postID,
         respondedUserID : "akshit123", // add current user id
@@ -83,6 +84,10 @@ const PostFeed = () => {
         setError("missingcomment");
       } else {
         var commentData = await addComment(commentObject);
+        let commentlist = await fetchPostComments(postID);
+        var commentData = commentlist.data; 
+        setCurrentCommentPostID(postID);
+        setCommentList(commentData);
       }
     } 
 
@@ -229,7 +234,8 @@ const PostFeed = () => {
                     </div>
                     </div>
                     {
-                      commentState ?
+                    
+                    commentState && currentCommentPostID === post._id ?
                       
                     <div className="modal-footer" style={{marginRight:17,paddingLeft:0}}>
                          <input type="text" 
@@ -242,8 +248,8 @@ const PostFeed = () => {
                         />
                           <input type="button" className="btn btn-primary" value="Post" data-dismiss="modal" style={{display:"inline-block",width:100}} onClick={(e) => uploadComment(e,post._id)} />
                           {
-                          commentList && commentList.map((comment,i) => 
-                            <div style={{textAlign:'left',width:500,height:60,border:'0.5px solid #b3b3b3',padding:5,borderRadius:5}}>{comment.commentMessage}</div>
+                            commentList && commentList.map((comment,i) => 
+                            <div style={{textAlign:'left',width:500,height:60,border:'0.5px solid #b3b3b3',padding:5,borderRadius:5}}>{comment.commentMessage}</div>     
                           )
                           } 
                     </div>
