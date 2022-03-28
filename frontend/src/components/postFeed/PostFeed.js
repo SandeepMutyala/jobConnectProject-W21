@@ -222,8 +222,11 @@ const PostFeed = () => {
                     <div key={i}>
                     <div className="container" style={{marginTop:10,paddingLeft:15}}> 
                     <div className="modal-body" style={{border:"1 solid black"}}>
-                        <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50}}/>
-                        <span style={{marginLeft:20}}>{post.userName}</span>
+                        <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50,marginTop:5,verticalAlign:"top"}}/>
+                        <table style={{display:"inline-block"}}>
+                          <tr><span style={{marginLeft:20}}>{post.userName}</span></tr>
+                          <tr><span style={{marginLeft:20}}>{post.date.substring(0,10)}</span></tr>
+                        </table>
                     </div>
                     <p style={{paddingLeft:15}}>{post.postMessage}</p>
                     <div className="modal-body">
@@ -249,7 +252,16 @@ const PostFeed = () => {
                           <input type="button" className="btn btn-primary" value="Post" data-dismiss="modal" style={{display:"inline-block",width:100}} onClick={(e) => uploadComment(e,post._id)} />
                           {
                             commentList && commentList.map((comment,i) => 
-                            <div style={{textAlign:'left',width:500,height:60,border:'0.5px solid #b3b3b3',padding:5,borderRadius:5}}>{comment.commentMessage}</div>     
+                            <div className="card" style={{borderRadius:7,marginTop:5,marginLeft:15,width:980}}>
+                            <div className="modal-body" style={{border:"1 solid black"}}>
+                              <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50,marginTop:5,verticalAlign:"top"}}/>
+                              <table style={{display:"inline-block"}}>
+                                <tr><span style={{marginLeft:20}}>{comment.respondedUserName}</span></tr>
+                                <tr><span style={{marginLeft:20}}>{comment.date.substring(0,10)}</span></tr>
+                              </table>
+                            </div>
+                            <p style={{marginLeft:78}}>{comment.commentMessage}</p>
+                            </div> 
                           )
                           } 
                     </div>
