@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userActions";
 import Loader from "../layout/Loader";
+
 import { useAlert } from "react-alert";
 
 const Login = ({ history, location }) => {
@@ -13,11 +14,11 @@ const Login = ({ history, location }) => {
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
   );
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  //const redirect = location.search ? location.search.split("=")[1] : "/";
   const alert = useAlert();
   useEffect(() => {
     if (isAuthenticated) {
-      history.push(redirect);
+      history.push("/homepage");
     }
 
     if (error) {

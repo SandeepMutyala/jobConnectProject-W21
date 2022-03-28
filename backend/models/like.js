@@ -1,3 +1,6 @@
+// Author: Akshit Jariwala, B00866255
+
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

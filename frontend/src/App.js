@@ -10,6 +10,7 @@ import PostFeed from "./components/postFeed/PostFeed";
 import MyPosts from "./components/postFeed/MyPosts";
 import store from "./store";
 
+
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());

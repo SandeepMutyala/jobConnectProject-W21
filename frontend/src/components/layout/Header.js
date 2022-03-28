@@ -60,6 +60,16 @@ function Header() {
                     Post Job
                   </Link>
                 )}
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/homepage">
+                    Post Feed
+                  </Link>
+                )}
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/myposts">
+                    My Posts
+                  </Link>
+                )}
                 <Link className="dropdown-item" to="/profile">
                   Profile
                 </Link>

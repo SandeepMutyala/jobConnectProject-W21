@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import { fetchUserPosts , userPostDelete ,  fetchPostComments } from "../../actions/service"
+// Author: Akshit Jariwala, B00866255
 
-// import './App.css';
+import { useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
+import { fetchUserPosts , userPostDelete ,  fetchPostComments } from "../../actions/service"
 
 const MyPosts = () => {
 
@@ -16,10 +16,14 @@ const MyPosts = () => {
         fetchCurrentUserPost();
     },[])
 
+    const { user } = useSelector(
+      (state) => state.auth
+    );
+
     // fetch posts list from mongoDB database.
     async function fetchCurrentUserPost() {
         // take userID from session
-      let userID = "akshit123"  
+      let userID = user.email  // add user id from session
       let postlist = await fetchUserPosts(userID);
       let posts = postlist.data;
       setPostList(posts);
@@ -30,12 +34,11 @@ const MyPosts = () => {
         setCommentState(false)
       } else {
         setCommentState(true)
-        console.log(postID)
         let commentlist = await fetchPostComments(postID);
         var commentData = commentlist.data;
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
-        // get data and check at the post if _id of post and comment is equal add comment.
+        
       } 
     }
 
@@ -45,7 +48,6 @@ const MyPosts = () => {
 
     const postDelete = async (e) => {
       e.preventDefault();
-      console.log(deletePostID);
       let userPost = await userPostDelete(deletePostID);
       if(userPost.status === 200){
         fetchCurrentUserPost();
@@ -56,6 +58,13 @@ const MyPosts = () => {
   return (
     <>
       <div className="row" style={{marginTop:80}}>
+      <div className="col-3"></div>
+      <div className="col-5 fixed" >
+      <h4 className="display-4" style={{marginLeft:35}}>My Posts</h4>
+      </div>
+      </div>
+      <div className="row" style={{marginTop:10}}>
+      
       <div className="col-3"></div>  
       <div className="col-5" style={{marginTop:10,padding:0,marginLeft:50}}>
             {

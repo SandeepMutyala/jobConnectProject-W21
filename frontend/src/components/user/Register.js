@@ -17,7 +17,7 @@ const Register = ({ history }) => {
   const alert = useAlert();
   useEffect(() => {
     if (isAuthenticated) {
-      history.replace("/");
+      history.replace("/homepage");
     }
 
     if (message) {

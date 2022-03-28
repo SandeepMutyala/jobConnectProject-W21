@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+// Author: Akshit Jariwala, B00866255
 
+import { useEffect, useState} from 'react';
+import { useSelector } from "react-redux";
 import { fetchAllPosts , uploadPosts , addComment , fetchPostComments , likePost , fetchUserLikes } from "../../actions/service"
-
-// import './App.css';
 
 const PostFeed = () => {
     const [postContent,setPostContent] = useState("");
@@ -15,6 +15,10 @@ const PostFeed = () => {
     const [currentPostID, setCurrentPostID] = useState("")
     const [userLikeList, setUserLikeList] = useState("")
 
+    const { user } = useSelector(
+      (state) => state.auth
+    );
+
     useEffect(() => {
       fetchPosts();
     },[])
@@ -24,6 +28,7 @@ const PostFeed = () => {
       let postlist = await fetchAllPosts();
       let posts = postlist.data;
       setPostList(posts);
+      console.log(user.email);
       fetchUserLike();
     }
 
@@ -36,7 +41,6 @@ const PostFeed = () => {
         var commentData = commentlist.data; 
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
-        // get data and check at the post if _id of post and comment is equal add comment.
       } 
   }
 
@@ -51,7 +55,7 @@ const PostFeed = () => {
     }
 
     const fetchUserLike = async (e) => {
-      let userID = "akshit123"
+      let userID = user.email
       let userLikes = await fetchUserLikes(userID)
       let likePostArray = [];
 
@@ -65,11 +69,11 @@ const PostFeed = () => {
         e.preventDefault();
         if(validateInput(e)){
             setError("success");
+            
             // Store to mongoDB
-
             const postObject = {
-              userId : "akshit123", // add current user id
-              userName : "Akshit Jariwala", // add current user name
+              userId : user.email, // add current user id
+              userName : user.name, // add current user name
               postMessage : postContent
             }
             let post = await uploadPosts(postObject);
@@ -87,8 +91,8 @@ const PostFeed = () => {
       setComment("")
       let commentObject = {
         postID : postID,
-        respondedUserID : "akshit123", // add current user id
-        respondedUserName : "Akshit Jariwala", // add current user name
+        respondedUserID : user.email, // add current user id
+        respondedUserName : user.name, // add current user name
         commentMessage : comment
       }
 
@@ -107,7 +111,7 @@ const PostFeed = () => {
       
       let likeObject = {
         postID : postID,
-        respondedUserID : "akshit123" // add user id from the session
+        respondedUserID : user.email // add user id from the session
       }
       
       let likeResponse = await likePost(likeObject)

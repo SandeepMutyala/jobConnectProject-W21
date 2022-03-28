@@ -1,9 +1,12 @@
+// Author: Akshit Jariwala, B00866255
+
+
 import axios from 'axios';
 
 export const fetchAllPosts = (payload) => {
     console.log("In fetchPosts");
      
-    return axios.get('http://localhost:4000/FetchAllPosts', payload)
+    return axios.get('http://localhost:4000/fetchAllPosts', payload)
         .then((res) => {
             return res;
         })
@@ -12,7 +15,7 @@ export const fetchAllPosts = (payload) => {
 
 export const uploadPosts = (payload) => {
     console.log(payload);
-    return axios.post('http://localhost:4000/UploadPost', payload)
+    return axios.post('http://localhost:4000/uploadPost', payload)
         .then((res) => {
             return res;
         })
@@ -21,7 +24,7 @@ export const uploadPosts = (payload) => {
 
 export const addComment = (payload) => {
     console.log(payload);
-    return axios.post('http://localhost:4000/AddComment', payload)
+    return axios.post('http://localhost:4000/addComment', payload)
         .then((res) => {
             return res;
         })
@@ -30,7 +33,7 @@ export const addComment = (payload) => {
 
 export const fetchPostComments = (postID) => {
     console.log(postID);
-    return axios.post('http://localhost:4000/FetchPostComment', {postID})
+    return axios.post('http://localhost:4000/fetchPostComment', {postID})
         .then((res) => {
             return res;
         })
@@ -39,7 +42,7 @@ export const fetchPostComments = (postID) => {
 
 export const fetchUserPosts = (userID) => {
     console.log(userID);
-    return axios.post('http://localhost:4000/FetchUserPosts', {userID})
+    return axios.post('http://localhost:4000/fetchUserPosts', {userID})
         .then((res) => {
             return res;
         })
@@ -48,7 +51,7 @@ export const fetchUserPosts = (userID) => {
 
 export const userPostDelete = (postID) => {
     console.log(postID);
-    return axios.put('http://localhost:4000/DeleteUserPost', {postID})
+    return axios.put('http://localhost:4000/deleteUserPost', {postID})
         .then((res) => {
             return res;
         })
@@ -57,7 +60,7 @@ export const userPostDelete = (postID) => {
 
 export const likePost = (payload) => {
     console.log(payload);
-    return axios.post('http://localhost:4000/LikePost', {payload})
+    return axios.post('http://localhost:4000/likePost', {payload})
         .then((res) => {
             return res;
         })
@@ -67,7 +70,7 @@ export const likePost = (payload) => {
 
 export const fetchUserLikes = (userID) => {
     console.log(userID);
-    return axios.post('http://localhost:4000/FetchUserLikes', {userID})
+    return axios.post('http://localhost:4000/fetchUserLikes', {userID})
         .then((res) => {
             return res;
         })
