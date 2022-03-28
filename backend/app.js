@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const Post = require("./models/post");
 const Comment = require("./models/comment");
+const Like = require("./models/like");
 
 app.use(cors());
 if (process.env.NODE_ENV !== "PRODUCTION")
@@ -23,9 +24,11 @@ app.use("/api/v1", auth);
 
 app.get("/FetchAllPosts", async (req,res) => {
   
-  const allPosts = await Post.find({})
+  let allPosts = await Post.find({})
+  allPosts = allPosts.sort(function(a, b) {
+    return (b.date) - (a.date);
+  });
   return res.status(200).send(allPosts);
-
 })
 
 app.post("/UploadPost", async (req,res) => {
@@ -67,10 +70,64 @@ app.post("/AddComment", async (req,res) => {
 app.post("/FetchPostComment", async (req,res) => {
   
   let commentPostID = req.body.postID;
-  console.log(commentPostID);
-  const postComments = await Comment.find({postID: commentPostID})
-  console.log(postComments);
+  let postComments = await Comment.find({postID: commentPostID})
+  postComments = postComments.sort(function(a, b) {
+    return (b.date) - (a.date);
+  });
   return res.status(200).send(postComments);
+})
+
+app.post("/FetchUserPosts", async (req,res) => {
+  
+  let userID = req.body.userID;
+  let userPosts = await Post.find({userId: userID})
+  userPosts = userPosts.sort(function(a, b) {
+    return (b.date) - (a.date);
+  });
+  return res.status(200).send(userPosts);
+})
+
+app.put("/DeleteUserPost", async (req,res) => {
+  
+  let postID = req.body.postID;
+  console.log(postID)
+  let data = await Post.deleteOne({_id : postID});
+  return res.status(200).send();
+})
+
+app.post("/FetchUserLikes", async (req,res) => {
+  
+  let userID = req.body.userID;
+  const userLikes = await Like.find({respondedUserID: userID})
+  return res.status(200).send(userLikes);
+})
+
+app.post("/LikePost", async (req,res) => {
+  
+  let postID = req.body.payload.postID;
+  let respondedUserID = req.body.payload.respondedUserID;
+
+  let userLike = await Like.find({
+    postID : postID,
+    respondedUserID : respondedUserID
+  })
+
+  if(userLike.length > 0){
+    let data = await Like.deleteOne(
+      { 
+        postID: postID,
+        respondedUserID: respondedUserID
+      }
+    )
+    return res.status(200).send(data);
+  } else {
+    const postLike = await Like.create(
+      { 
+        postID: postID,
+        respondedUserID: respondedUserID
+      })
+    return res.status(200).send(postLike);
+  }
 })
 
 module.exports = app;

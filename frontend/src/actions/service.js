@@ -36,3 +36,40 @@ export const fetchPostComments = (postID) => {
         })
         .catch(err => { return err.response })
 };
+
+export const fetchUserPosts = (userID) => {
+    console.log(userID);
+    return axios.post('http://localhost:4000/FetchUserPosts', {userID})
+        .then((res) => {
+            return res;
+        })
+        .catch(err => { return err.response })
+};
+
+export const userPostDelete = (postID) => {
+    console.log(postID);
+    return axios.put('http://localhost:4000/DeleteUserPost', {postID})
+        .then((res) => {
+            return res;
+        })
+        .catch(err => { return err.response })
+};
+
+export const likePost = (payload) => {
+    console.log(payload);
+    return axios.post('http://localhost:4000/LikePost', {payload})
+        .then((res) => {
+            return res;
+        })
+        .catch(err => { return err.response })
+};
+
+
+export const fetchUserLikes = (userID) => {
+    console.log(userID);
+    return axios.post('http://localhost:4000/FetchUserLikes', {userID})
+        .then((res) => {
+            return res;
+        })
+        .catch(err => { return err.response })
+};

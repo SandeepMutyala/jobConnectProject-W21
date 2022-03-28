@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { fetchAllPosts , uploadPosts , addComment , fetchPostComments } from "../../actions/service"
+import { fetchAllPosts , uploadPosts , addComment , fetchPostComments , likePost , fetchUserLikes } from "../../actions/service"
 
 // import './App.css';
 
@@ -12,6 +12,8 @@ const PostFeed = () => {
     const [postList, setPostList] = useState("")
     const [commentList, setCommentList] = useState("")
     const [currentCommentPostID, setCurrentCommentPostID] = useState("")
+    const [currentPostID, setCurrentPostID] = useState("")
+    const [userLikeList, setUserLikeList] = useState("")
 
     useEffect(() => {
       fetchPosts();
@@ -22,6 +24,7 @@ const PostFeed = () => {
       let postlist = await fetchAllPosts();
       let posts = postlist.data;
       setPostList(posts);
+      fetchUserLike();
     }
 
     const triggerCommentState = async (e,postID) => {
@@ -29,7 +32,6 @@ const PostFeed = () => {
         setCommentState(false)
       } else {
         setCommentState(true)
-        console.log(postID)
         let commentlist = await fetchPostComments(postID);
         var commentData = commentlist.data; 
         setCurrentCommentPostID(postID);
@@ -48,6 +50,17 @@ const PostFeed = () => {
         }
     }
 
+    const fetchUserLike = async (e) => {
+      let userID = "akshit123"
+      let userLikes = await fetchUserLikes(userID)
+      let likePostArray = [];
+
+      for(let i =0 ;i<userLikes.data.length;i++){
+        likePostArray[i] = userLikes.data[i].postID
+      }
+      setUserLikeList(likePostArray);
+    }
+
     const postUpload = async (e) => {
         e.preventDefault();
         if(validateInput(e)){
@@ -62,6 +75,7 @@ const PostFeed = () => {
             let post = await uploadPosts(postObject);
 
             if(post.status === 200){
+              setPostContent("");
               fetchPosts();
             }
         }
@@ -78,8 +92,6 @@ const PostFeed = () => {
         commentMessage : comment
       }
 
-      console.log(commentObject)
-
       if(comment === ""){
         setError("missingcomment");
       } else {
@@ -91,10 +103,17 @@ const PostFeed = () => {
       }
     } 
 
-    const postLike = (e) => {
-      e.preventDefault();
-      if(validateInput(e)){
-         // code to like the post
+    const postLike = async (e,postID) => {
+      
+      let likeObject = {
+        postID : postID,
+        respondedUserID : "akshit123" // add user id from the session
+      }
+      
+      let likeResponse = await likePost(likeObject)
+      if(likeResponse.status === 200)
+      {
+        fetchUserLike();
       }
     }
 
@@ -170,7 +189,7 @@ const PostFeed = () => {
           <button type="button" className="button-hover btn btn-outline-info btn-block" 
               style={{borderRadius:20,width:450,border:"0.5px solid #b3b3b3",color:'#595959',marginLeft:20, display:"inline-block",height:45}}
               data-toggle="modal" data-target="#addPostToggle"><span style={{fontWeight:510}}>Create Post</span>
-            </button>
+          </button>
         </div>
         </div>
 
@@ -203,7 +222,7 @@ const PostFeed = () => {
             </div>
 
             <div className="modal-footer" style={{height:56.91}}>
-              <input type="button" className="btn btn-success" value="Submit" data-dismiss="modal" style={{margin:-2}} onClick={(e) => postUpload(e)} />
+              <input type="button" className="btn btn-primary" value="Post" data-dismiss="modal" style={{margin:-2}} onClick={(e) => postUpload(e)} />
             </div>
             </form>
             </div>
@@ -233,7 +252,12 @@ const PostFeed = () => {
                    
                     <div className="button-group">
                       <input type="button" className="btn btn-default" value="Comment" data-dismiss="modal" style={{display:"inline-block",width:250,border:'0.5px solid #b3b3b3'}} onClick={(e) => triggerCommentState(e,post._id)} />
-                      <input type="button" className="btn btn-default" value="Like" data-dismiss="modal" style={{display:"inline-block",width:250,border:'0.5px solid #b3b3b3'}} onClick={(e) => postLike(e)} />
+                      {
+                        userLikeList.includes(post._id) ?
+                      <input type="button" className="btn btn-primary" value="Like" data-dismiss="modal" style={{display:"inline-block",width:250,border:'0.5px solid #b3b3b3'}} onClick={(e) => postLike(e,post._id)} />
+                         : 
+                      <input type="button" className="btn btn-default" value="Like" data-dismiss="modal" style={{display:"inline-block",width:250,border:'0.5px solid #b3b3b3'}} onClick={(e) => postLike(e,post._id)} />
+                        }
                     </div>
                     </div>
                     {
