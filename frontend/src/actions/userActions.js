@@ -15,6 +15,7 @@ import {
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
   REGISTER_EMPLOYER_SUCCESS,
+  REGISTER_PROFILE_ID
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -56,12 +57,37 @@ export const register = (name, email, password, role) => async (dispatch) => {
       password,
       role,
     });
+    var id;
+    console.log("Employee profile created here-----")
+      axios
+      .post("http://localhost:4000/profile/userheader/update")
+      .then((res) => {
+        var string = JSON.stringify(res.data.id);
+        var objectValue = JSON.parse(string);
+        id = objectValue
+        console.log(objectValue);
+        dispatch({
+          type:REGISTER_PROFILE_ID,
+          payload:id,
+        })
+        // this.props.history.push("/profile", this.objectValue._id);
+      })
+      .catch((error) => {
+        console.log("Error:" + error);
+      });
+
+    // dispatch({
+    //   type:REGISTER_PROFILE_ID,
+    //   payload:id,
+    // })
     if (data.message) {
       dispatch({
         type: REGISTER_EMPLOYER_SUCCESS,
         payload: data.message,
       });
     } else {
+      
+
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: data.user ? data.user : data.message,
