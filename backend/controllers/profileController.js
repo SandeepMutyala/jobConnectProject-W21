@@ -1,3 +1,4 @@
+/**Author: Geetanjali Bommera */
 const UserModel = require("../models/profile.model");
 const DIR = "./public/";
 const fs = require("fs");
