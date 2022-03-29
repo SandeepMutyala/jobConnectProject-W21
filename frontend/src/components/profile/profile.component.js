@@ -1,3 +1,4 @@
+/**Author: Geetanjali Bommera */
 import React, { Component } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
@@ -6,8 +7,6 @@ import { Link } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import moment from "moment";
 import { connect } from "react-redux";
-import Image from "react-bootstrap/Image";
-import SearchUser from "./searchUser.component";
 const Education = (props) => (
   <Card border="primary">
     <Card.Body>
@@ -268,8 +267,8 @@ class Profile extends Component {
               <div style={{ display: "flex" }}>
                 <div style={{ marginRight: "auto" }}>Summary</div>
                 <div>
-                  {(() => {
-                    if (!this.state.id) {
+                  {/* {(() => {
+                    if (!this.state.id) { */}
                       <Link
                         to={{
                           pathname: "editSummary/",
@@ -279,11 +278,11 @@ class Profile extends Component {
                         <Button variant="outline-dark" size="sm">
                           <MdModeEditOutline></MdModeEditOutline>
                         </Button>
-                      </Link>;
-                    } else {
+                      </Link>
+                    {/* } else {
                       <div>not logged in</div>;
                     }
-                  })()}
+                  })()} */}
                 </div>
               </div>
             </Card.Title>

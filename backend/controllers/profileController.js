@@ -108,7 +108,7 @@ exports.getProfileImage = (req, res, next) => {
 };
 
 exports.profileDetails = (req, res) => {
-  console.log(req.query.email)
+  // console.log(req.query.email)
   UserModel.User.findOne({email:req.query.email}, function (err, docs) {
     if (err) {
       return res.status(400).json({
@@ -165,7 +165,7 @@ exports.defaultProfile = (req, res) => {
     name: req.body.user.name,
     email: req.body.user.email,
   });
-  console.log("new header",newheader)
+  // console.log("new header",newheader)
   newheader.save(function (err, docs) {
     if (err) {
       return res.status(400).json({
@@ -225,7 +225,7 @@ exports.updateEducation = (req, res) => {
   const todate = req.body.todate;
   const description = req.body.description;
   const eduid = req.params.educationid;
-  console.log(req.params);
+  // console.log(req.params);
   UserModel.User.findOneAndUpdate(
     { UserEducation: { $elemMatch: { _id: eduid } } },
     {
@@ -273,7 +273,7 @@ exports.deleteEducation = (req, res) => {
 };
 
 exports.addEducation = (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   const educationname = req.body.educationname;
   const universityname = req.body.universityname;
   const fromdate = Date.parse(req.body.fromdate);
@@ -329,7 +329,7 @@ exports.updateExperience = (req, res) => {
   const todate = req.body.todate;
   const description = req.body.description;
   const eduid = req.params.experienceid;
-  console.log(req.params);
+  // console.log(req.params);
   UserModel.User.findOneAndUpdate(
     { UserExperience: { $elemMatch: { _id: eduid } } },
     {
@@ -393,7 +393,7 @@ exports.updateExperience = (req, res) => {
   const todate = req.body.todate;
   const description = req.body.description;
   const eduid = req.params.experienceid;
-  console.log(req.params);
+  // console.log(req.params);
   UserModel.User.findOneAndUpdate(
     { UserExperience: { $elemMatch: { _id: eduid } } },
     {

@@ -1,7 +1,7 @@
+/**Author: Geetanjali Bommera */
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import dateFormat from "dateformat";
 import { confirmAlert } from "react-confirm-alert"; // Import
