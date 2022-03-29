@@ -1,5 +1,6 @@
 const UserModel = require("../models/profile.model");
 const DIR = "./public/";
+const fs = require("fs");
 let multer = require("multer"),
   uuidv4 = require("uuid/v4");
 const storage = multer.diskStorage({
@@ -20,10 +21,8 @@ exports.upload = multer({
       file.mimetype == "image/jpg" ||
       file.mimetype == "image/jpeg"
     ) {
-      console.log("I am in upload function");
       cb(null, true);
     } else {
-      console.log("I am in non upload function");
       cb(null, false);
       return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
     }
@@ -31,19 +30,26 @@ exports.upload = multer({
 });
 let mongoose = require("mongoose");
 exports.updateProfileImage = (req, res, next) => {
-  // console.log();
-  // const url = req.protocol + "://" + req.get("host");
-  
+  const url = req.protocol + "://" + req.get("host");
+
   // const user = new UserModel.User({
   //   _id: new mongoose.Types.ObjectId(),
   //   name: req.body.name,
-  //   profileImg:
-  //     // url + "/profile/profileimage/" + req.params.id + "/" + 
-  //     req.file.filename,
+  // profileImgf:
+  //   url + "/profile/profileimage/" + req.params.id + "/" +
+  //   req.file.filename,
   // });
-
-  UserModel.User.findByIdAndUpdate(req.params.id,
-    { profileImg: req.file.filename }, function (err, docs) {
+  // console.log(req.file.path);
+  var new_Img = {
+    data: { data: Buffer, contentType: String },
+  };
+  // console.log(new_Img);
+  new_Img.data = fs.readFileSync(req.file.path);
+  new_Img.contentType = "image/jpeg";
+  UserModel.User.findByIdAndUpdate(
+    req.params.id,
+    { profileImg: new_Img },
+    function (err, docs) {
       if (err) {
         return res.status(400).json({
           error: "You are not authorized to update this action",
@@ -53,38 +59,43 @@ exports.updateProfileImage = (req, res, next) => {
           Message: "Image Updated",
         });
       }
-    })
-    // .then((result) => {
-    //   res.status(200).json({
-    //     message: "User registered successfully!",
-    //     userCreated: {
-    //       _id: result._id,
-    //       profileImg: result.profileImg,
-    //     },
-    //   });
-    // })
-    // .catch((err) => {
-    //   console.log(err),
-    //     res.status(401).json({
-    //       error: err,
-    //     });
-    // });
+    }
+  );
+  // .then((result) => {
+  //   res.status(200).json({
+  //     message: "User registered successfully!",
+  //     userCreated: {
+  //       _id: result._id,
+  //       profileImg: result.profileImg,
+  //     },
+  //   });
+  // })
+  // .catch((err) => {
+  //   console.log(err),
+  //     res.status(401).json({
+  //       error: err,
+  //     });
+  // });
 };
 
 exports.getProfileImage = (req, res, next) => {
-  UserModel.User.findById(req.params.id, function (err, docs) {
+  // console.log(req)
+  UserModel.User.findOne({email:req.params.id}, function (err, docs) {
     if (err) {
       return res.status(400).json({
         error: err,
       });
     } else {
-      var string = JSON.stringify(docs);
-      var objectValue = JSON.parse(string);
-      const profileImg = objectValue["profileImg"];
-      return res.status(200).json({
-          // message: "Image successfully!",
-          profileImg,
-      });
+      // var string = JSON.stringify(docs);
+      // var objectValue = JSON.parse(string);
+      // const profileImg = objectValue["profileImg"];
+      // return res.status(200).json({
+      //   // message: "Image successfully!",
+      //   docs,
+      // });
+      // console.log(docs);
+      res.contentType("json");
+      res.send(docs.profileImg);
     }
   });
   // .then(data => {
@@ -93,10 +104,11 @@ exports.getProfileImage = (req, res, next) => {
   //         profileImg: profileImg
   //     });
   // });
-}
+};
 
 exports.profileDetails = (req, res) => {
-  UserModel.User.findById(req.params.id, function (err, docs) {
+  console.log(req.query.email)
+  UserModel.User.findOne({email:req.query.email}, function (err, docs) {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -108,6 +120,21 @@ exports.profileDetails = (req, res) => {
     }
   });
 };
+
+exports.getAllUsers = (req,res)=>{
+  UserModel.User.find({},function (err, docs) {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    } else {
+      // console.log(docs)
+      return res.status(200).json({
+        docs,
+      });
+    }
+  });
+}
 
 exports.updateSummary = (req, res) => {
   const id = req.params.id;
@@ -130,7 +157,14 @@ exports.updateSummary = (req, res) => {
 };
 
 exports.defaultProfile = (req, res) => {
-  const newheader = new UserModel.User({ summary: " " ,profileImg:""});
+  // console.log("request received when user created", req.body.user);
+  const newheader = new UserModel.User({
+    summary: " ",
+    profileImg: "",
+    name: req.body.user.name,
+    email: req.body.user.email,
+  });
+  console.log("new header",newheader)
   newheader.save(function (err, docs) {
     if (err) {
       return res.status(400).json({

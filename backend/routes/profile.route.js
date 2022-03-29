@@ -17,13 +17,15 @@ const {
     profileDetails,
     updateProfileImage,
     upload,
-    getProfileImage
+    getProfileImage,
+    getAllUsers
   } = require("../controllers/profileController");
 
   
   
  
-router.route("/:id").get(profileDetails);
+router.route("/").get(profileDetails);
+router.route("/users").get(getAllUsers);
 router.route("/profileimage/:id").post(upload.single("profileImg"),updateProfileImage);
 router.route("/getprofileimage/:id").get(getProfileImage);
 router.route("/userheader/update/:id").post(updateSummary);

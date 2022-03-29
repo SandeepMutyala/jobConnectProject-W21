@@ -23,9 +23,14 @@ const educationschema = new Schema(
 );
 
 const userSchema = new Schema(
-  {
+  { 
+    name:{type:String},
+    email:{type: String},
     summary: { type: String },
-    profileImg: {data: Buffer, contentType: String },
+    profileImg: {
+      data: Buffer,
+        contentType: String
+    },
     UserEducation: [educationschema],
     UserExperience: [experienceschema],
   },
@@ -36,4 +41,4 @@ const Education = mongoose.model("Education", educationschema);
 const Experience = mongoose.model("Experience", experienceschema);
 const User = mongoose.model("ProfileUser", userSchema);
 
-module.exports = { User, Education, Experience };
+module.exports = { User, Education, Experience, };

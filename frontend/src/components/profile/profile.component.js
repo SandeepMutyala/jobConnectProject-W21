@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import moment from "moment";
 import { connect } from "react-redux";
-import Image from 'react-bootstrap/Image'
+import Image from "react-bootstrap/Image";
+import SearchUser from "./searchUser.component";
 const Education = (props) => (
   <Card border="primary">
     <Card.Body>
@@ -66,7 +67,6 @@ const Experience = (props) => (
         {props.experience.company}
       </Card.Subtitle>
       <Card.Text>
-        {console.log(props.experience.fromdate, props.experience.todate)}
         {moment.utc(props.experience.fromdate).format("MMMM YYYY")} {" - "}
         {moment.utc(props.experience.todate).format("MMMM YYYY")}
       </Card.Text>
@@ -75,33 +75,64 @@ const Experience = (props) => (
     {/* <Card.Text>{props.experience.todate}</Card.Text> */}
   </Card>
 );
-
 class Profile extends Component {
   state = {
-    id: this.props.state_Data.auth.profile_id,
+    id: "",
+    name: this.props.state_Data.auth.user.name,
+    email: this.props.state_Data.auth.user.email,
     summary: "",
     educations: [],
     experiences: [],
     user: {},
-    profileImg:"",
-
+    profileImg: "",
+    uploadImg: "",
+    
   };
-
+  
+  arrayBufferToBase64(buffer) {
+    var binary = "";
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  }
   componentDidMount() {
+    
+    var mailid = this.state.email;
+    console.log(mailid);
+    // if(mailid){
+    //   loggedin = true
+
+    // }else{
+    //   loggedin = false
+      
+    // }
     axios
-      .get("/profile/" + this.state.id)
+      .get("/profile/", { params: { email: mailid } })
       .then((res) => {
+        console.log(res);
         var string = JSON.stringify(res.data.docs);
         var objectValue = JSON.parse(string);
-        console.log(objectValue);
+
         this.setState({ educations: objectValue["UserEducation"] });
         this.setState({ experiences: objectValue["UserExperience"] });
         this.setState({ summary: objectValue["summary"] });
         this.setState({ id: objectValue["_id"] });
-        this.setState({profileImg:objectValue["profileImg"]})
+
+        // this.setState({profileImg:objectValue["profileImg"]})
       })
       .catch((error) => {
         console.log("Error:" + error);
+      });
+
+    // console.log("id",this.state.id)
+
+    fetch("/profile/getprofileimage/" + this.state.email)
+      .then((res) => res.json())
+      .then((data) => {
+        var base64Flag = "data:image/jpeg;base64,";
+        var imageStr = this.arrayBufferToBase64(data.data.data);
+
+        this.setState({ profileImg: base64Flag + imageStr });
       });
   }
 
@@ -147,43 +178,117 @@ class Profile extends Component {
     this.props.history.push("/addExperience", this.state);
     e.preventDefault();
   };
-  onFileChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-    // this.setState({ profileImg: e.target.files[0] })
-}
-onImgSubmit(e) {
-  console.log(this.state)
-  e.preventDefault()
-  const formData = new FormData()
-  formData.append('profileImg', this.state.profileImg)
-  axios.post("profile/profileimage/"+this.state.id, formData, {
-  }).then(res => {
-      console.log(res)
-  })
-}
+  onFileChange = (e) => {
+    console.log(e.target.files[0]);
+    this.setState({ uploadImg: e.target.files[0] });
+  };
+  onImgSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("profileImg", this.state.uploadImg);
+    axios
+      .post("profile/profileimage/" + this.state.id, formData, {})
+      .then((res) => {
+        console.log("Image uploaded", res);
+      });
+
+    alert("Profile picture is updated");
+    fetch("/profile/getprofileimage/" + this.state.email)
+      .then((res) => res.json())
+      .then((data) => {
+        var base64Flag = "data:image/jpeg;base64,";
+        var imageStr = this.arrayBufferToBase64(data.data.data);
+
+        this.setState({ profileImg: base64Flag + imageStr });
+      });
+  };
   render() {
     // console.log("PROPS:",this.props)
-    console.log("STATE:",this.props.state_Data)
+    // console.log("STATE:",this.props.state_Data)
+    // console.log("profileid:", this.props.state_Data.auth.auth.profile_id)
+    // console.log("username",this.props.state_Data.auth.user.name)
+    // console.log("email",this.props.state_Data.auth.user.email)
+    
     return (
       <div className="container" style={{ width: "60%" }}>
         <h3 style={{ margin: "0.2cm", textAlign: "center" }}>
           My Profile Details
         </h3>
-        <Image src={this.state.profileImg} style={{maxWidth:"100%"}}></Image>
-        {/* <form onSubmit={this.onImgSubmit}>
-        <div className="form-group">
-          <input type="file"onChange={this.onFileChange.bind(this)} />
-        </div>
-        <div className="form-group">
-          <button className="btn btn-primary" type="submit">
-            Upload
-          </button>
-        </div>
+        {/* <SearchUser></SearchUser> */}
+        <Card border="primary" style={{ display: "flex" }}>
+          <div style={{ display: "flex" }}>
+            <div style={{ marginRight: "auto" }}>
+              <Card.Img
+                src={this.state.profileImg}
+                style={{ height: "4cm", width: "4cm" }}
+              ></Card.Img>
+            </div>
+            <div>
+              <form onSubmit={this.onImgSubmit.bind(this)}>
+                <div className="form-group">
+                  <input
+                    type="file"
+                    name="pimg"
+                    onChange={this.onFileChange.bind(this)}
+                  />
+                </div>
+                <div className="form-group">
+                  <button className="btn btn-primary" type="submit">
+                    Upload
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </Card>
+        <br></br>
+        {/* <div style={{textAlign:"center"}}>
+        <Image src={this.state.profileImg} style={{ height: "4cm",width:"4cm" }}roundedCircle></Image>
+        </div> */}
+        {/* <form onSubmit={this.onImgSubmit.bind(this)}>
+          <div className="form-group">
+            <input
+              type="file"
+              name="pimg"
+              onChange={this.onFileChange.bind(this)}
+            />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary" type="submit">
+              Upload
+            </button>
+          </div>
         </form> */}
 
         <Card border="primary" className="bg">
+          <div></div>
           <Card.Header>
+            <Card.Title>
+              <div style={{ display: "flex" }}>
+                <div style={{ marginRight: "auto" }}>Summary</div>
+                <div>
+                  {(() => {
+                    if (!this.state.id) {
+                      <Link
+                        to={{
+                          pathname: "editSummary/",
+                          state: { id: this.state.id },
+                        }}
+                      >
+                        <Button variant="outline-dark" size="sm">
+                          <MdModeEditOutline></MdModeEditOutline>
+                        </Button>
+                      </Link>;
+                    } else {
+                      <div>not logged in</div>;
+                    }
+                  })()}
+                </div>
+              </div>
+            </Card.Title>
+          </Card.Header>
+          {/* <Card.Header>
             <Card.Title>
               <div style={{ display: "flex" }}>
                 <div style={{ marginRight: "auto" }}>Summary</div>
@@ -201,7 +306,7 @@ onImgSubmit(e) {
                 </div>
               </div>
             </Card.Title>
-          </Card.Header>
+          </Card.Header> */}
           <Card.Body>
             <Card.Text>{this.state.summary}</Card.Text>
           </Card.Body>
