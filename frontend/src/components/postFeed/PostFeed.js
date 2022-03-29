@@ -25,14 +25,20 @@ const PostFeed = () => {
 
     // fetch posts list from mongoDB database.
     async function fetchPosts() {
+      try{
       let postlist = await fetchAllPosts();
       let posts = postlist.data;
       setPostList(posts);
       console.log(user.email);
       fetchUserLike();
+      } catch(error){
+          console.log(error)
+      }
     }
 
+    // alternate comment state to show the comment model below the post
     const triggerCommentState = async (e,postID) => {
+      try{
       if (commentState){
         setCommentState(false)
       } else {
@@ -42,8 +48,12 @@ const PostFeed = () => {
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
       } 
+    } catch(error){
+      console.log(error)
+    }
   }
 
+    // Validating user inputs 
     const validateInput = (e) => {
         if(postContent === ""){
             setError("missing");
@@ -54,26 +64,37 @@ const PostFeed = () => {
         }
     }
 
+    // Conneting with backend api to getch user likes 
     const fetchUserLike = async (e) => {
-      let userID = user.email
-      let userLikes = await fetchUserLikes(userID)
-      let likePostArray = [];
 
-      for(let i =0 ;i<userLikes.data.length;i++){
-        likePostArray[i] = userLikes.data[i].postID
+      try{
+        let userID = user.email
+        let userLikes = await fetchUserLikes(userID)
+        let likePostArray = [];
+
+        for(let i =0 ;i<userLikes.data.length;i++){
+          likePostArray[i] = userLikes.data[i].postID
+        }
+        setUserLikeList(likePostArray);
+      } catch(error){
+        console.log(error)
       }
-      setUserLikeList(likePostArray);
+      
     }
 
+    // Conneting with backend api to upload post
     const postUpload = async (e) => {
         e.preventDefault();
+        
+        try{
+        
         if(validateInput(e)){
             setError("success");
-            
+
             // Store to mongoDB
             const postObject = {
-              userId : user.email, // add current user id
-              userName : user.name, // add current user name
+              userId : user.email, //current user id
+              userName : user.name, //current user name
               postMessage : postContent
             }
             let post = await uploadPosts(postObject);
@@ -83,16 +104,21 @@ const PostFeed = () => {
               fetchPosts();
             }
         }
+      } catch(error){
+        console.log(error)
+      }
     }
 
+    // Conneting with backend api to upload usercomments
     const uploadComment = async (e,postID) => {
       e.preventDefault();
       // code to comment on post
+      try{
       setComment("")
       let commentObject = {
         postID : postID,
-        respondedUserID : user.email, // add current user id
-        respondedUserName : user.name, // add current user name
+        respondedUserID : user.email, // current user id
+        respondedUserName : user.name, // current user name
         commentMessage : comment
       }
 
@@ -105,13 +131,18 @@ const PostFeed = () => {
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
       }
+      } catch(error) {
+        console.log(error)
+      } 
     } 
 
+    // Conneting with backend api to upload user likes
     const postLike = async (e,postID) => {
       
+      try{
       let likeObject = {
         postID : postID,
-        respondedUserID : user.email // add user id from the session
+        respondedUserID : user.email //user id from the session
       }
       
       let likeResponse = await likePost(likeObject)
@@ -119,11 +150,21 @@ const PostFeed = () => {
       {
         fetchUserLike();
       }
+    } catch(error){
+      console.log(error)
+    }
     }
 
+    // Conneting with backend api to fetch post comments
     const fetchComments = async (postID) => {
-      var postComment = await fetchPostComments(postID);
-      return postComment.data;
+
+      try{
+
+        var postComment = await fetchPostComments(postID);
+        return postComment.data;
+      } catch(error){
+        console.log(error)
+      }
     }
 
     function Message(){
@@ -239,7 +280,7 @@ const PostFeed = () => {
       <div className="row">
       <div className="col-3"></div>  
       <div className="col-5" style={{marginTop:10,padding:0,marginLeft:50}}>
-            {
+            {   //iterating over post list to display individual post
                 postList && postList.map((post,i) => 
                 <div className="card" style={{borderRadius:7,marginTop:5}}>
                     <div key={i}>
@@ -256,7 +297,7 @@ const PostFeed = () => {
                    
                     <div className="button-group">
                       <input type="button" className="btn btn-default" value="Comment" data-dismiss="modal" style={{display:"inline-block",width:250,border:'0.5px solid #b3b3b3'}} onClick={(e) => triggerCommentState(e,post._id)} />
-                      {
+                      { // checking if user has liked the post by checking post id exists in the user's list of liked posts
                         userLikeList.includes(post._id) ?
                       <input type="button" className="btn btn-primary" value="Like" data-dismiss="modal" style={{display:"inline-block",width:250,border:'0.5px solid #b3b3b3'}} onClick={(e) => postLike(e,post._id)} />
                          : 
@@ -266,6 +307,7 @@ const PostFeed = () => {
                     </div>
                     {
                     
+                    // Adding comment to its post if post id matches with the comment's post id
                     commentState && currentCommentPostID === post._id ?
                       
                     <div className="modal-footer" style={{marginRight:17,paddingLeft:0}}>

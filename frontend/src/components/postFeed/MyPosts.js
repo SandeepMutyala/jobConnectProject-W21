@@ -22,14 +22,20 @@ const MyPosts = () => {
 
     // fetch posts list from mongoDB database.
     async function fetchCurrentUserPost() {
-        // take userID from session
-      let userID = user.email  // add user id from session
+
+      try{
+      let userID = user.email  // user id from session
       let postlist = await fetchUserPosts(userID);
       let posts = postlist.data;
       setPostList(posts);
+      } catch (error){
+        console.log(error)
+      }
     }
 
+    // alternate comment state to show the comment model below the post
     const triggerCommentState = async (e,postID) => {
+      try{
       if (commentState){
         setCommentState(false)
       } else {
@@ -39,19 +45,28 @@ const MyPosts = () => {
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
         
-      } 
+      }
+    } catch(error){
+      console.log(error)
+    }
     }
 
+    // setting 'Delete' button clicked post as post to be deleted
     const setPostToBeDeleted = (e,postID) => {
       setDeletePostID(postID)
     }
 
+    // Connecting with backend api to delete post from the database
     const postDelete = async (e) => {
       e.preventDefault();
+      try{
       let userPost = await userPostDelete(deletePostID);
       if(userPost.status === 200){
         fetchCurrentUserPost();
         setDeletePostID("");
+      }
+      } catch(error){
+        console.log(error)
       }
     }
 
@@ -67,7 +82,7 @@ const MyPosts = () => {
       
       <div className="col-3"></div>  
       <div className="col-5" style={{marginTop:10,padding:0,marginLeft:50}}>
-            {
+            {   //iterating over post list to display individual post
                 postList && postList.map((post,i) => 
                 <div className="card" style={{borderRadius:7,marginTop:5}}>
                     <div key={i}>
@@ -114,6 +129,7 @@ const MyPosts = () => {
                     </div>
                     {
                     
+                    // Adding comment to its post if post id matches with the comment's post id
                     commentState && currentCommentPostID === post._id ?
                       
                     <div className="modal-footer" style={{marginRight:17,paddingLeft:0}}>
