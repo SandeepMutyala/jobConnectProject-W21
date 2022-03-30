@@ -13,6 +13,7 @@ import {
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
   REGISTER_EMPLOYER_SUCCESS,
+  REGISTER_PROFILE_ID
 } from "../constants/userConstants";
 
 export const authReducer = (state = { user: {} }, action) => {
@@ -105,6 +106,12 @@ export const authReducer = (state = { user: {} }, action) => {
         ...state,
         error: null,
       };
+
+      case REGISTER_PROFILE_ID:
+        return{
+          ...state,
+          profile_id:action.payload
+        }
 
     default:
       return state;
