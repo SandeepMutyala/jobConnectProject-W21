@@ -3,6 +3,9 @@
 const User = require("../models/user");
 
 const jwt = require("jsonwebtoken");
+const sendEmail = require("../utils/sendMail");
+
+const crypto = require("crypto");
 
 exports.registerUser = async (req, res, next) => {
   const { name, email, password, role } = req.body;
@@ -100,6 +103,92 @@ exports.isAuthenticatedUser = async (req, res, next) => {
   req.user = await User.findById(decoded.id);
 
   next();
+};
+
+// Forgot Password   =>  /api/v1/password/forgot
+exports.forgotPassword = async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return res.status(400).json({
+      success: false,
+      message: "No user found with this mail",
+    });
+  }
+
+  // Get reset token
+  const resetToken = user.getResetPasswordToken();
+
+  await user.save({ validateBeforeSave: false });
+
+  const resetUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/password/reset/${resetToken}`;
+
+  // const resetUrl = `${process.env.FRONT_END_URL}/password/reset/${resetToken}`;
+
+  const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "JobConnect Password Recovery",
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to: ${user.email}`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Reset Password   =>  /api/v1/password/reset/:token
+exports.resetPassword = async (req, res, next) => {
+  // Hash URL token
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    return res.status(400).json({
+      success: false,
+      message: "No user found with this mail",
+    });
+  }
+
+  if (req.body.password !== req.body.confirmPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "Password does not match",
+    });
+  }
+
+  // Setup new password
+  user.password = req.body.password;
+
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+
+  await user.save();
+
+  sendToken(user, 200, res);
 };
 
 exports.getUserProfile = async (req, res, next) => {
