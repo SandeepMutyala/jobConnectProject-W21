@@ -19,6 +19,7 @@ import {
   NEW_PASSWORD_REQUEST,
   NEW_PASSWORD_SUCCESS,
   NEW_PASSWORD_FAIL,
+  REGISTER_PROFILE_ID,
 } from "../constants/userConstants";
 
 export const authReducer = (state = { user: {} }, action) => {
@@ -110,6 +111,12 @@ export const authReducer = (state = { user: {} }, action) => {
       return {
         ...state,
         error: null,
+      };
+
+    case REGISTER_PROFILE_ID:
+      return {
+        ...state,
+        profile_id: action.payload,
       };
 
     default:
