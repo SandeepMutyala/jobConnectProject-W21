@@ -27,65 +27,60 @@ function Header() {
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 pr-5 text-right">
-          {
-            user ? (
-              <div className="ml-2 dropdown d-inline">
-                <Link
-                  to="#!"
-                  className="btn dropdown-toggle text-white mr-4"
-                  type="button"
-                  id="dropDownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <figure className="avatar avatar-nav">
-                    <img
-                      src="/images/default_avatar.jpg"
-                      alt="avatar"
-                      className="rounded-circle"
-                    />
-                  </figure>
-                  <span>{user && user.name}</span>
-                </Link>
+          {user ? (
+            <div className="ml-2 dropdown d-inline">
+              <Link
+                to="#!"
+                className="btn dropdown-toggle text-white mr-4"
+                type="button"
+                id="dropDownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <figure className="avatar avatar-nav">
+                  <img
+                    src="/images/default_avatar.jpg"
+                    alt="avatar"
+                    className="rounded-circle"
+                  />
+                </figure>
+                <span>{user && user.name}</span>
+              </Link>
 
-                <div
-                  className="dropdown-menu"
-                  aria-labelledby="dropDownMenuButton"
+              <div
+                className="dropdown-menu"
+                aria-labelledby="dropDownMenuButton"
+              >
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/dashboard">
+                    Dashboard
+                  </Link>
+                )}
+                {user && user.role === "employer" && (
+                  <Link className="dropdown-item" to="/jobposting">
+                    Post Job
+                  </Link>
+                )}
+                <Link className="dropdown-item" to="/profile">
+                  Profile
+                </Link>
+                <Link
+                  className="dropdown-item text-danger"
+                  to="/"
+                  onClick={logoutHandler}
                 >
-                  {user && user.role === "admin" && (
-                    <Link className="dropdown-item" to="/dashboard">
-                      Dashboard
-                    </Link>
-                  )}
-                  {user && user.role === "employer" && (
-                    <Link className="dropdown-item" to="/jobposting">
-                      Post Job
-                    </Link>
-                  )}
-                  <Link className="dropdown-item" to="/profile">
-                    Profile
-                  </Link>
-                  <Link
-                    className="dropdown-item text-danger"
-                    to="/"
-                    onClick={logoutHandler}
-                  >
-                    Logout
-                  </Link>
-                </div>
+                  Logout
+                </Link>
               </div>
-            ) : (
-              ""
+            </div>
+          ) : (
+            !loading && (
+              <Link to="/login" className="btn ml-4" id="login_btn">
+                Login
+              </Link>
             )
-            // (
-            //   !loading && (
-            //     <Link to="/login" className="btn ml-4" id="login_btn">
-            //       Login
-            //     </Link>
-            //   )
-            // )
-          }
+          )}
         </div>
       </nav>
     </Fragment>

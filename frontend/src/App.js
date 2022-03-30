@@ -27,7 +27,6 @@ function App() {
       <div className="App">
         <div className="container container-fluid">
           <Route path="/" component={Home} exact />
-          {/* <Route exact path="/" render={() => <Redirect to="/login" />} /> */}
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
           <Route path="/login" component={Login} />
