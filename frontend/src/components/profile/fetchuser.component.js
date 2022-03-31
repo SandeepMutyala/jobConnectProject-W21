@@ -88,12 +88,11 @@ class User extends Component {
     fetch("/profile/getprofileimage/" + this.state.email)
       .then((res) => res.json())
       .then((data) => {
-        
         var base64Flag = "data:image/jpeg;base64,";
-        if(Object.keys(data).length){
-        var imageStr = this.arrayBufferToBase64(data.data.data);
+        if (Object.keys(data).length) {
+          var imageStr = this.arrayBufferToBase64(data.data.data);
 
-        this.setState({ profileImg: base64Flag + imageStr });
+          this.setState({ profileImg: base64Flag + imageStr });
         }
       });
   }
@@ -106,7 +105,7 @@ class User extends Component {
       return (
         <Education
           education={current}
-          // history = {history}
+          
           id={key_id}
           key={current._id}
         />
@@ -122,7 +121,7 @@ class User extends Component {
       return (
         <Experience
           experience={current}
-          // history = {history}
+         
           id={key_id}
           key={current._id}
         />

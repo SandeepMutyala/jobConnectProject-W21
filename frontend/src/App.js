@@ -35,7 +35,7 @@ function App() {
           <Route path="/profile" exact component={Profile} />
           <Route path="/addEducation" exact component={AddEducation} />
           <Route
-            path="/updateEducation/:id"
+            path="/updateEducation"
             exact
             component={UpdateEducation}
           />
@@ -51,7 +51,7 @@ function App() {
           />
           <Route path="/addExperience" exact component={AddExperience} />
           <Route
-            path="/updateExperience/:id"
+            path="/updateExperience"
             exact
             component={Updateexperience}
           />

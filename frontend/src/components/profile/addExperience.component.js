@@ -44,10 +44,7 @@ export default class AddExperience extends Component {
   handleSubmit = (e) => {
     if (this.handlevalidation()) {
       axios
-        .post(
-          "/profile/experienceroute/add/" + this.state.id,
-          this.state
-        )
+        .post("/profile/experienceroute/add/" + this.state.id, this.state)
         .then((res) => {
           if (res.status === 200) {
             alert("Experience inserted successfully");
@@ -81,7 +78,7 @@ export default class AddExperience extends Component {
         <Form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <Form.Label>Role</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="role"
               type="text"
@@ -92,7 +89,7 @@ export default class AddExperience extends Component {
           </div>
           <div className="form-group">
             <Form.Label>Company Name</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="company"
               type="text"
@@ -103,7 +100,7 @@ export default class AddExperience extends Component {
           </div>
           <div className="form-group">
             <Form.Label>From Date</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="fromdate"
               type="date"
@@ -114,7 +111,7 @@ export default class AddExperience extends Component {
           </div>
           <div className="form-group">
             <Form.Label>To Date</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="todate"
               type="date"
@@ -122,6 +119,9 @@ export default class AddExperience extends Component {
               placeholder="To Date"
               required
             />
+            <Form.Text className="text-muted">
+              Kindly add anticipated date if currently working
+            </Form.Text>
           </div>
           <div className="form-group">
             <Form.Label>Description</Form.Label>

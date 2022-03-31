@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import moment from "moment";
 import { connect } from "react-redux";
-import SearchUser from "./searchuser";
-import { AiOutlineUpload } from "react-icons/ai";
-import FormCheck from "react-bootstrap/esm/FormCheck";
 import { MdUpload } from "react-icons/md";
 const Education = (props) => (
   <Card border="primary">
@@ -22,7 +19,7 @@ const Education = (props) => (
         <div>
           <Link
             to={{
-              pathname: "updateEducation/" + props.id,
+              pathname: "updateEducation",
               state: { id: props.id, education: props.education },
             }}
           >
@@ -42,7 +39,6 @@ const Education = (props) => (
       </Card.Text>
       <Card.Text>{props.education.description}</Card.Text>
     </Card.Body>
-    {/* <Card.Text>{props.education.todate}</Card.Text> */}
   </Card>
 );
 
@@ -56,7 +52,7 @@ const Experience = (props) => (
         <div>
           <Link
             to={{
-              pathname: "updateExperience/" + props.id,
+              pathname: "updateExperience",
               state: { id: props.id, experience: props.experience },
             }}
           >
@@ -76,7 +72,6 @@ const Experience = (props) => (
       </Card.Text>
       <Card.Text>{props.experience.description}</Card.Text>
     </Card.Body>
-    {/* <Card.Text>{props.experience.todate}</Card.Text> */}
   </Card>
 );
 class Profile extends Component {
@@ -102,8 +97,6 @@ class Profile extends Component {
     var mailid = this.state.email;
 
     if (mailid) {
-      //   loggedin = true
-
       axios
         .get("/profile/", { params: { email: mailid } })
         .then((res) => {
@@ -114,26 +107,19 @@ class Profile extends Component {
           this.setState({ experiences: objectValue["UserExperience"] });
           this.setState({ summary: objectValue["summary"] });
           this.setState({ id: objectValue["_id"] });
-
-          // this.setState({profileImg:objectValue["profileImg"]})
         })
         .catch((error) => {
           console.log("Error:" + error);
         });
 
-      // console.log("id",this.state.id)
-
       fetch("/profile/getprofileimage/" + this.state.email)
         .then((res) => res.json())
         .then((data) => {
           var base64Flag = "data:image/jpeg;base64,";
-          console.log(Object.keys(data).length !== 0)
-          if(Object.keys(data).length){
+          if (Object.keys(data).length) {
             var imageStr = this.arrayBufferToBase64(data.data.data);
-          this.setState({ profileImg: base64Flag + imageStr });
-
+            this.setState({ profileImg: base64Flag + imageStr });
           }
-
         });
     } else {
       alert("Please login");
@@ -149,7 +135,6 @@ class Profile extends Component {
       return (
         <Education
           education={current}
-          // history = {history}
           deleteEducation={this.deleteEducation}
           id={key_id}
           key={current._id}
@@ -207,33 +192,15 @@ class Profile extends Component {
         this.setState({ profileImg: base64Flag + imageStr });
       });
   };
-  // searchusers=(e)=>{
-  //   e.preventDefault();
-
-  //   this.props.history.push("/fetchuser");
-  // }
   searchusers = (e) => {
     console.log("I am inside serach");
     this.props.history.push("/searchuser", this.state);
     e.preventDefault();
   };
   render() {
-    // console.log("PROPS:",this.props)
-    // console.log("STATE:",this.props.state_Data)
-    // console.log("profileid:", this.props.state_Data.auth.auth.profile_id)
-    // console.log("username",this.props.state_Data.auth.user.name)
-    // console.log("email",this.props.state_Data.auth.user.email)
-
     return (
       <div className="container" style={{ width: "60%" }}>
-        <h3 style={{ margin: "0.2cm", textAlign: "center" }}>
-          My Profile Details
-        </h3>
-        {/* <SearchUser></SearchUser> */}
-        {/* <div>
-          <button onClick={this.searchusers}>View profiles</button>
-        </div> */}
-
+        <h3 style={{ margin: "0.2cm", textAlign: "center" }}>My Profile</h3>
         <Card border="primary" style={{ display: "flex" }}>
           <Form onSubmit={this.onImgSubmit.bind(this)}>
             <Card.Header style={{ display: "flex" }}>
@@ -241,35 +208,32 @@ class Profile extends Component {
                 <strong>{this.state.name}</strong>
               </Card.Title>
               <Button onClick={this.searchusers}>View profiles</Button>
-
             </Card.Header>
             <Card.Body style={{ display: "flex" }}>
               <Card.Img
                 src={this.state.profileImg}
                 style={{ marginRight: "auto", height: "4cm", width: "4cm" }}
               ></Card.Img>
-              <Form.Group
-                
-                controlId="formFileSm"
-                className="mb-3"
-              >
-                <div style={{ display: "flex",height:"max-content",marginBottom:"auto" }}>
-                <Form.Control 
-                  size="sm"
-                  type="file"
-                  name="pimg"
-                  onChange={this.onFileChange.bind(this)}
-                />
-                <Button variant="outline-dark" size="sm" type="submit">
-                  <MdUpload></MdUpload>
-                </Button>
+              <Form.Group controlId="formFileSm" className="mb-3">
+                <div
+                  style={{
+                    display: "flex",
+                    height: "max-content",
+                    marginBottom: "auto",
+                  }}
+                >
+                  <Form.Control
+                    size="sm"
+                    type="file"
+                    name="pimg"
+                    onChange={this.onFileChange.bind(this)}
+                  />
+                  <Button variant="outline-dark" size="sm" type="submit">
+                    <MdUpload></MdUpload>
+                  </Button>
                 </div>
-                <div>
-                {/* <Button onClick={this.searchusers}>View profiles</Button> */}
-
-                </div>
+                <div></div>
               </Form.Group>
-
             </Card.Body>
           </Form>
         </Card>
@@ -283,7 +247,7 @@ class Profile extends Component {
                 <div>
                   <Link
                     to={{
-                      pathname: "editSummary/",
+                      pathname: "editSummary",
                       state: { id: this.state.id },
                     }}
                   >
@@ -295,25 +259,7 @@ class Profile extends Component {
               </div>
             </Card.Title>
           </Card.Header>
-          {/* <Card.Header>
-            <Card.Title>
-              <div style={{ display: "flex" }}>
-                <div style={{ marginRight: "auto" }}>Summary</div>
-                <div>
-                  <Link
-                    to={{
-                      pathname: "editSummary/",
-                      state: { id: this.state.id },
-                    }}
-                  >
-                    <Button variant="outline-dark" size="sm">
-                      <MdModeEditOutline></MdModeEditOutline>
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </Card.Title>
-          </Card.Header> */}
+
           <Card.Body>
             <Card.Text>{this.state.summary}</Card.Text>
           </Card.Body>
