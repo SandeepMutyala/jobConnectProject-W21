@@ -64,8 +64,8 @@ export const register = (name, email, password, role) => async (dispatch) => {
       role,
     });
     var id;
-    axios
-      .post("http://localhost:4000/profile/userheader/update", data)
+      axios
+      .post("/profile/userheader/update",data)
       .then((res) => {
         var string = JSON.stringify(res.data.id);
         var objectValue = JSON.parse(string);

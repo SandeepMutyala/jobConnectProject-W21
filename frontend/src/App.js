@@ -15,7 +15,8 @@ import UpdateEducation from "./components/profile/updateEducation.component";
 import AddExperience from "./components/profile/addExperience.component";
 import Updateexperience from "./components/profile/updateExperience.component";
 import EditSummary from "./components/profile/editSummary.component";
-
+import User from "./components/profile/fetchuser.component";
+import SearchUser from "./components/profile/searchuser";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -37,6 +38,16 @@ function App() {
             path="/updateEducation/:id"
             exact
             component={UpdateEducation}
+          />
+          <Route
+            path="/fetchuser/:id"
+            exact
+            component={User}
+          />
+          <Route
+            path="/searchuser"
+            exact
+            component={SearchUser}
           />
           <Route path="/addExperience" exact component={AddExperience} />
           <Route
