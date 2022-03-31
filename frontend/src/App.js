@@ -17,6 +17,9 @@ import Updateexperience from "./components/profile/updateExperience.component";
 import EditSummary from "./components/profile/editSummary.component";
 import User from "./components/profile/fetchuser.component";
 import SearchUser from "./components/profile/searchuser";
+import PostFeed from './components/postFeed/PostFeed'
+import MyPosts from './components/postFeed/MyPosts'
+
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
