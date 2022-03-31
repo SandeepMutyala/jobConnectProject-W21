@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-// import { Button } from 'react-native';
 import { BsAsterisk } from "react-icons/bs";
 export default class AddEducation extends Component {
   state = {
@@ -45,10 +44,7 @@ export default class AddEducation extends Component {
   handleSubmit = (e) => {
     if (this.handlevalidation()) {
       axios
-        .post(
-          "profile/educationroute/add/" + this.state.id,
-          this.state
-        )
+        .post("profile/educationroute/add/" + this.state.id, this.state)
         .then((res) => {
           if (res.status === 200) {
             alert("Education inserted successfully");
@@ -81,7 +77,7 @@ export default class AddEducation extends Component {
         <Form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <Form.Label>Education Name</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="educationname"
               type="text"
@@ -89,11 +85,10 @@ export default class AddEducation extends Component {
               placeholder="Education Name"
               required
             />
-         
           </div>
           <div className="form-group">
             <Form.Label>University Name</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="universityname"
               type="text"
@@ -104,7 +99,7 @@ export default class AddEducation extends Component {
           </div>
           <div className="form-group">
             <Form.Label>From Date</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="fromdate"
               type="date"
@@ -115,7 +110,7 @@ export default class AddEducation extends Component {
           </div>
           <div className="form-group">
             <Form.Label>To Date</Form.Label>
-            <BsAsterisk size={10}  style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="todate"
               type="date"
@@ -123,6 +118,9 @@ export default class AddEducation extends Component {
               placeholder="To Date"
               required
             />
+            <Form.Text className="text-muted">
+              Kindly add anticipated date if currently pursuing
+            </Form.Text>
           </div>
           <div className="form-group">
             <Form.Label>Description</Form.Label>
