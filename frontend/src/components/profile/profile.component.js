@@ -3,10 +3,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import moment from "moment";
 import { connect } from "react-redux";
+import SearchUser from "./searchuser";
+import { AiOutlineUpload } from "react-icons/ai";
+import FormCheck from "react-bootstrap/esm/FormCheck";
+import { MdUpload } from "react-icons/md";
 const Education = (props) => (
   <Card border="primary">
     <Card.Body>
@@ -85,9 +90,8 @@ class Profile extends Component {
     user: {},
     profileImg: "",
     uploadImg: "",
-    
   };
-  
+
   arrayBufferToBase64(buffer) {
     var binary = "";
     var bytes = [].slice.call(new Uint8Array(buffer));
@@ -95,44 +99,46 @@ class Profile extends Component {
     return window.btoa(binary);
   }
   componentDidMount() {
-    
     var mailid = this.state.email;
-    console.log(mailid);
-    // if(mailid){
-    //   loggedin = true
 
-    // }else{
-    //   loggedin = false
-      
-    // }
-    axios
-      .get("/profile/", { params: { email: mailid } })
-      .then((res) => {
-        console.log(res);
-        var string = JSON.stringify(res.data.docs);
-        var objectValue = JSON.parse(string);
+    if (mailid) {
+      //   loggedin = true
 
-        this.setState({ educations: objectValue["UserEducation"] });
-        this.setState({ experiences: objectValue["UserExperience"] });
-        this.setState({ summary: objectValue["summary"] });
-        this.setState({ id: objectValue["_id"] });
+      axios
+        .get("/profile/", { params: { email: mailid } })
+        .then((res) => {
+          var string = JSON.stringify(res.data.docs);
+          var objectValue = JSON.parse(string);
 
-        // this.setState({profileImg:objectValue["profileImg"]})
-      })
-      .catch((error) => {
-        console.log("Error:" + error);
-      });
+          this.setState({ educations: objectValue["UserEducation"] });
+          this.setState({ experiences: objectValue["UserExperience"] });
+          this.setState({ summary: objectValue["summary"] });
+          this.setState({ id: objectValue["_id"] });
 
-    // console.log("id",this.state.id)
+          // this.setState({profileImg:objectValue["profileImg"]})
+        })
+        .catch((error) => {
+          console.log("Error:" + error);
+        });
 
-    fetch("/profile/getprofileimage/" + this.state.email)
-      .then((res) => res.json())
-      .then((data) => {
-        var base64Flag = "data:image/jpeg;base64,";
-        var imageStr = this.arrayBufferToBase64(data.data.data);
+      // console.log("id",this.state.id)
 
-        this.setState({ profileImg: base64Flag + imageStr });
-      });
+      fetch("/profile/getprofileimage/" + this.state.email)
+        .then((res) => res.json())
+        .then((data) => {
+          var base64Flag = "data:image/jpeg;base64,";
+          console.log(Object.keys(data).length !== 0)
+          if(Object.keys(data).length){
+            var imageStr = this.arrayBufferToBase64(data.data.data);
+          this.setState({ profileImg: base64Flag + imageStr });
+
+          }
+
+        });
+    } else {
+      alert("Please login");
+      this.props.history.push("/");
+    }
   }
 
   educationslist() {
@@ -160,7 +166,6 @@ class Profile extends Component {
       return (
         <Experience
           experience={current}
-          // history = {history}
           deleteExperience={this.deleteExperience}
           id={key_id}
           key={current._id}
@@ -202,64 +207,73 @@ class Profile extends Component {
         this.setState({ profileImg: base64Flag + imageStr });
       });
   };
+  // searchusers=(e)=>{
+  //   e.preventDefault();
+
+  //   this.props.history.push("/fetchuser");
+  // }
+  searchusers = (e) => {
+    console.log("I am inside serach");
+    this.props.history.push("/searchuser", this.state);
+    e.preventDefault();
+  };
   render() {
     // console.log("PROPS:",this.props)
     // console.log("STATE:",this.props.state_Data)
     // console.log("profileid:", this.props.state_Data.auth.auth.profile_id)
     // console.log("username",this.props.state_Data.auth.user.name)
     // console.log("email",this.props.state_Data.auth.user.email)
-    
+
     return (
       <div className="container" style={{ width: "60%" }}>
         <h3 style={{ margin: "0.2cm", textAlign: "center" }}>
           My Profile Details
         </h3>
         {/* <SearchUser></SearchUser> */}
+        {/* <div>
+          <button onClick={this.searchusers}>View profiles</button>
+        </div> */}
+
         <Card border="primary" style={{ display: "flex" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ marginRight: "auto" }}>
+          <Form onSubmit={this.onImgSubmit.bind(this)}>
+            <Card.Header style={{ display: "flex" }}>
+              <Card.Title style={{ marginRight: "auto" }}>
+                <strong>{this.state.name}</strong>
+              </Card.Title>
+              <Button onClick={this.searchusers}>View profiles</Button>
+
+            </Card.Header>
+            <Card.Body style={{ display: "flex" }}>
               <Card.Img
                 src={this.state.profileImg}
-                style={{ height: "4cm", width: "4cm" }}
+                style={{ marginRight: "auto", height: "4cm", width: "4cm" }}
               ></Card.Img>
-            </div>
-            <div>
-              <form onSubmit={this.onImgSubmit.bind(this)}>
-                <div className="form-group">
-                  <input
-                    type="file"
-                    name="pimg"
-                    onChange={this.onFileChange.bind(this)}
-                  />
+              <Form.Group
+                
+                controlId="formFileSm"
+                className="mb-3"
+              >
+                <div style={{ display: "flex",height:"max-content",marginBottom:"auto" }}>
+                <Form.Control 
+                  size="sm"
+                  type="file"
+                  name="pimg"
+                  onChange={this.onFileChange.bind(this)}
+                />
+                <Button variant="outline-dark" size="sm" type="submit">
+                  <MdUpload></MdUpload>
+                </Button>
                 </div>
-                <div className="form-group">
-                  <button className="btn btn-primary" type="submit">
-                    Upload
-                  </button>
+                <div>
+                {/* <Button onClick={this.searchusers}>View profiles</Button> */}
+
                 </div>
-              </form>
-            </div>
-          </div>
+              </Form.Group>
+
+            </Card.Body>
+          </Form>
         </Card>
         <br></br>
-        {/* <div style={{textAlign:"center"}}>
-        <Image src={this.state.profileImg} style={{ height: "4cm",width:"4cm" }}roundedCircle></Image>
-        </div> */}
-        {/* <form onSubmit={this.onImgSubmit.bind(this)}>
-          <div className="form-group">
-            <input
-              type="file"
-              name="pimg"
-              onChange={this.onFileChange.bind(this)}
-            />
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary" type="submit">
-              Upload
-            </button>
-          </div>
-        </form> */}
-
         <Card border="primary" className="bg">
           <div></div>
           <Card.Header>
@@ -267,22 +281,16 @@ class Profile extends Component {
               <div style={{ display: "flex" }}>
                 <div style={{ marginRight: "auto" }}>Summary</div>
                 <div>
-                  {/* {(() => {
-                    if (!this.state.id) { */}
-                      <Link
-                        to={{
-                          pathname: "editSummary/",
-                          state: { id: this.state.id },
-                        }}
-                      >
-                        <Button variant="outline-dark" size="sm">
-                          <MdModeEditOutline></MdModeEditOutline>
-                        </Button>
-                      </Link>
-                    {/* } else {
-                      <div>not logged in</div>;
-                    }
-                  })()} */}
+                  <Link
+                    to={{
+                      pathname: "editSummary/",
+                      state: { id: this.state.id },
+                    }}
+                  >
+                    <Button variant="outline-dark" size="sm">
+                      <MdModeEditOutline></MdModeEditOutline>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card.Title>
