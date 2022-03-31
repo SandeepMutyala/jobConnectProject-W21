@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import dateFormat from "dateformat";
-import { confirmAlert } from "react-confirm-alert"; 
+import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { BsAsterisk } from "react-icons/bs";
 export default class UpdateEducation extends Component {
@@ -32,10 +32,7 @@ export default class UpdateEducation extends Component {
   handleSubmit = (e) => {
     if (this.handlevalidation()) {
       axios
-        .post(
-          "/profile/educationroute/update/" + this.state.id,
-          this.state
-        )
+        .post("/profile/educationroute/update/" + this.state.id, this.state)
         .then((res) => {
           if (res.status === 200) {
             alert("Education updated successfully");
@@ -77,10 +74,10 @@ export default class UpdateEducation extends Component {
       buttons: [
         {
           label: "Yes",
-          onClick: () =>{
+          onClick: () => {
             alert("Deleted successfully");
-            this.confirmDelete()
-          } 
+            this.confirmDelete();
+          },
         },
         {
           label: "No",
@@ -93,10 +90,7 @@ export default class UpdateEducation extends Component {
   };
   confirmDelete = (e) => {
     axios
-      .delete(
-        "/profile/educationroute/delete/" + this.state.id,
-        this.state
-      )
+      .delete("/profile/educationroute/delete/" + this.state.id, this.state)
       .then((res) => {
         if (res.status === 200) {
           this.props.history.push("/profile");
@@ -104,7 +98,6 @@ export default class UpdateEducation extends Component {
           alert("Please verify the details");
         }
       });
-    // e.preventDefault();
   };
   handleCancel = (e) => {
     this.props.history.push("/profile");
@@ -117,7 +110,7 @@ export default class UpdateEducation extends Component {
         <Form>
           <div className="form-group">
             <Form.Label>Education Name</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="educationname"
               type="text"
@@ -128,7 +121,7 @@ export default class UpdateEducation extends Component {
           </div>
           <div className="form-group">
             <Form.Label>University Name</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="universityname"
               type="text"
@@ -139,7 +132,7 @@ export default class UpdateEducation extends Component {
           </div>
           <div className="form-group">
             <Form.Label>From Date</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="fromdate"
               type="date"
@@ -150,7 +143,7 @@ export default class UpdateEducation extends Component {
           </div>
           <div className="form-group">
             <Form.Label>To Date</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="todate"
               type="date"
@@ -158,6 +151,9 @@ export default class UpdateEducation extends Component {
               placeholder="To Date"
               value={this.state.todate}
             />
+            <Form.Text className="text-muted">
+              Kindly add anticipated date if currently pursuing
+            </Form.Text>
           </div>
           <div className="form-group">
             <Form.Label>Description</Form.Label>
@@ -170,7 +166,7 @@ export default class UpdateEducation extends Component {
             />
           </div>
           <div style={{ display: "flex" }}>
-            <div style={{  display: "flex",margin:"2px" }}>
+            <div style={{ display: "flex", margin: "2px" }}>
               <Button
                 variant="danger"
                 type="submit"
@@ -178,9 +174,8 @@ export default class UpdateEducation extends Component {
               >
                 Delete
               </Button>
-              
             </div>
-            <div style={{margin:"2px" ,marginRight: "auto"}}>
+            <div style={{ margin: "2px", marginRight: "auto" }}>
               <Button
                 variant="secondary"
                 type="submit"
@@ -189,7 +184,7 @@ export default class UpdateEducation extends Component {
                 Cancel
               </Button>
             </div>
-            <div style={{margin:"2px" }}>
+            <div style={{ margin: "2px" }}>
               <Button
                 variant="primary"
                 type="submit"

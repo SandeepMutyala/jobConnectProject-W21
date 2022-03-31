@@ -42,7 +42,7 @@ function App() {
           <Route path="/myposts" component={MyPosts}/>
           <Route path="/addEducation" exact component={AddEducation} />
           <Route
-            path="/updateEducation/:id"
+            path="/updateEducation"
             exact
             component={UpdateEducation}
           />
@@ -58,7 +58,7 @@ function App() {
           />
           <Route path="/addExperience" exact component={AddExperience} />
           <Route
-            path="/updateExperience/:id"
+            path="/updateExperience"
             exact
             component={Updateexperience}
           />

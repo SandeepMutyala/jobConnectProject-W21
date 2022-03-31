@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import dateFormat from "dateformat";
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { confirmAlert } from "react-confirm-alert"; 
+import "react-confirm-alert/src/react-confirm-alert.css"; 
 import { BsAsterisk } from "react-icons/bs";
 export default class Updateexperience extends Component {
   state = {
@@ -38,10 +38,7 @@ export default class Updateexperience extends Component {
   handleSubmit = (e) => {
     if (this.handlevalidation()) {
       axios
-        .post(
-          "/profile/experienceroute/update/" + this.state.id,
-          this.state
-        )
+        .post("/profile/experienceroute/update/" + this.state.id, this.state)
         .then((res) => {
           if (res.status === 200) {
             alert("experience updated successfully");
@@ -83,10 +80,10 @@ export default class Updateexperience extends Component {
       buttons: [
         {
           label: "Yes",
-          onClick: () =>{
+          onClick: () => {
             alert("Deleted successfully");
-            this.confirmDelete()
-          } 
+            this.confirmDelete();
+          },
         },
         {
           label: "No",
@@ -98,19 +95,16 @@ export default class Updateexperience extends Component {
     e.preventDefault();
   };
 
-  confirmDelete(){
+  confirmDelete() {
     axios
-    .delete(
-      "/profile/experienceroute/delete/" + this.state.id,
-      this.state
-    )
-    .then((res) => {
-      if (res.status === 200) {
-        this.props.history.push("/profile");
-      } else {
-        alert("Please verify the details");
-      }
-    });
+      .delete("/profile/experienceroute/delete/" + this.state.id, this.state)
+      .then((res) => {
+        if (res.status === 200) {
+          this.props.history.push("/profile");
+        } else {
+          alert("Please verify the details");
+        }
+      });
   }
   handleCancel = (e) => {
     this.props.history.push("/profile");
@@ -123,7 +117,7 @@ export default class Updateexperience extends Component {
         <Form>
           <div className="form-group">
             <Form.Label>Role</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="role"
               type="text"
@@ -134,7 +128,7 @@ export default class Updateexperience extends Component {
           </div>
           <div className="form-group">
             <Form.Label>Company Name</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="company"
               type="text"
@@ -145,7 +139,7 @@ export default class Updateexperience extends Component {
           </div>
           <div className="form-group">
             <Form.Label>From Date</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="fromdate"
               type="date"
@@ -156,7 +150,7 @@ export default class Updateexperience extends Component {
           </div>
           <div className="form-group">
             <Form.Label>To Date</Form.Label>
-            <BsAsterisk size={10} style={{ color: '#eb3440'}}></BsAsterisk>
+            <BsAsterisk size={10} style={{ color: "#eb3440" }}></BsAsterisk>
             <Form.Control
               name="todate"
               type="date"
@@ -164,6 +158,9 @@ export default class Updateexperience extends Component {
               placeholder="To Date"
               value={this.state.todate}
             />
+            <Form.Text className="text-muted">
+              Kindly add anticipated date if currently working
+            </Form.Text>
           </div>
           <div className="form-group">
             <Form.Label>Description</Form.Label>
@@ -176,7 +173,7 @@ export default class Updateexperience extends Component {
             />
           </div>
           <div style={{ display: "flex" }}>
-            <div style={{  display: "flex",margin:"2px" }}>
+            <div style={{ display: "flex", margin: "2px" }}>
               <Button
                 variant="danger"
                 type="submit"
@@ -184,9 +181,8 @@ export default class Updateexperience extends Component {
               >
                 Delete
               </Button>
-              
             </div>
-            <div style={{margin:"2px" ,marginRight: "auto"}}>
+            <div style={{ margin: "2px", marginRight: "auto" }}>
               <Button
                 variant="secondary"
                 type="submit"
@@ -195,7 +191,7 @@ export default class Updateexperience extends Component {
                 Cancel
               </Button>
             </div>
-            <div style={{margin:"2px" }}>
+            <div style={{ margin: "2px" }}>
               <Button
                 variant="primary"
                 type="submit"

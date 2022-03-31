@@ -4,6 +4,7 @@ const DIR = "./public/";
 const fs = require("fs");
 let multer = require("multer"),
   uuidv4 = require("uuid/v4");
+  
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);
@@ -32,19 +33,9 @@ exports.upload = multer({
 let mongoose = require("mongoose");
 exports.updateProfileImage = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
-
-  // const user = new UserModel.User({
-  //   _id: new mongoose.Types.ObjectId(),
-  //   name: req.body.name,
-  // profileImgf:
-  //   url + "/profile/profileimage/" + req.params.id + "/" +
-  //   req.file.filename,
-  // });
-  // console.log(req.file.path);
   var new_Img = {
     data: { data: Buffer, contentType: String },
   };
-  // console.log(new_Img);
   new_Img.data = fs.readFileSync(req.file.path);
   new_Img.contentType = "image/jpeg";
   UserModel.User.findByIdAndUpdate(
@@ -62,54 +53,23 @@ exports.updateProfileImage = (req, res, next) => {
       }
     }
   );
-  // .then((result) => {
-  //   res.status(200).json({
-  //     message: "User registered successfully!",
-  //     userCreated: {
-  //       _id: result._id,
-  //       profileImg: result.profileImg,
-  //     },
-  //   });
-  // })
-  // .catch((err) => {
-  //   console.log(err),
-  //     res.status(401).json({
-  //       error: err,
-  //     });
-  // });
 };
 
 exports.getProfileImage = (req, res, next) => {
-  // console.log(req)
-  UserModel.User.findOne({email:req.params.id}, function (err, docs) {
+  UserModel.User.findOne({ email: req.params.id }, function (err, docs) {
     if (err) {
       return res.status(400).json({
         error: err,
       });
     } else {
-      // var string = JSON.stringify(docs);
-      // var objectValue = JSON.parse(string);
-      // const profileImg = objectValue["profileImg"];
-      // return res.status(200).json({
-      //   // message: "Image successfully!",
-      //   docs,
-      // });
-      // console.log(docs);
       res.contentType("json");
       res.send(docs.profileImg);
     }
   });
-  // .then(data => {
-  //     res.status(200).json({
-  //         message: "Image successfully!",
-  //         profileImg: profileImg
-  //     });
-  // });
 };
 
 exports.profileDetails = (req, res) => {
-  // console.log(req.query.email)
-  UserModel.User.findOne({email:req.query.email}, function (err, docs) {
+  UserModel.User.findOne({ email: req.query.email }, function (err, docs) {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -122,20 +82,19 @@ exports.profileDetails = (req, res) => {
   });
 };
 
-exports.getAllUsers = (req,res)=>{
-  UserModel.User.find({},function (err, docs) {
+exports.getAllUsers = (req, res) => {
+  UserModel.User.find({}, function (err, docs) {
     if (err) {
       return res.status(400).json({
         error: err,
       });
     } else {
-      // console.log(docs)
       return res.status(200).json({
         docs,
       });
     }
   });
-}
+};
 
 exports.updateSummary = (req, res) => {
   const id = req.params.id;
@@ -158,14 +117,12 @@ exports.updateSummary = (req, res) => {
 };
 
 exports.defaultProfile = (req, res) => {
-  // console.log("request received when user created", req.body.user);
   const newheader = new UserModel.User({
     summary: " ",
     profileImg: "",
     name: req.body.user.name,
     email: req.body.user.email,
   });
-  // console.log("new header",newheader)
   newheader.save(function (err, docs) {
     if (err) {
       return res.status(400).json({
@@ -180,8 +137,6 @@ exports.defaultProfile = (req, res) => {
       });
     }
   });
-  // .then(() => res.json("Default profile created successfully",_id))
-  // .catch((err) => res.status(400).json("Error: " + err));
 };
 
 exports.getSummary = (req, res) => {
@@ -225,7 +180,6 @@ exports.updateEducation = (req, res) => {
   const todate = req.body.todate;
   const description = req.body.description;
   const eduid = req.params.educationid;
-  // console.log(req.params);
   UserModel.User.findOneAndUpdate(
     { UserEducation: { $elemMatch: { _id: eduid } } },
     {
@@ -273,7 +227,6 @@ exports.deleteEducation = (req, res) => {
 };
 
 exports.addEducation = (req, res) => {
-  // console.log(req.params);
   const educationname = req.body.educationname;
   const universityname = req.body.universityname;
   const fromdate = Date.parse(req.body.fromdate);
@@ -329,7 +282,6 @@ exports.updateExperience = (req, res) => {
   const todate = req.body.todate;
   const description = req.body.description;
   const eduid = req.params.experienceid;
-  // console.log(req.params);
   UserModel.User.findOneAndUpdate(
     { UserExperience: { $elemMatch: { _id: eduid } } },
     {
@@ -393,7 +345,6 @@ exports.updateExperience = (req, res) => {
   const todate = req.body.todate;
   const description = req.body.description;
   const eduid = req.params.experienceid;
-  // console.log(req.params);
   UserModel.User.findOneAndUpdate(
     { UserExperience: { $elemMatch: { _id: eduid } } },
     {

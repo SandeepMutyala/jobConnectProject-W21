@@ -32,10 +32,7 @@ export default class EditSummary extends Component {
   }
   handleSubmit = (e) => {
     axios
-      .post(
-        "/profile/userheader/update/" + this.state.id,
-        this.state
-      )
+      .post("/profile/userheader/update/" + this.state.id, this.state)
       .then((res) => {
         if (res.status === 200) {
           alert("Summary updated successfully");
