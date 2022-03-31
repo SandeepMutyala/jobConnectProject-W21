@@ -29,8 +29,8 @@ const userSchema = new Schema(
     email:{type: String},
     summary: { type: String },
     profileImg: {
-      data: Buffer,
-        contentType: String
+           data: Buffer,
+      contentType: String
     },
     UserEducation: [educationschema],
     UserExperience: [experienceschema],

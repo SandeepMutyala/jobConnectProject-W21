@@ -44,7 +44,6 @@ export default class SearchUser extends Component {
       .then((res) => {
         var string = JSON.stringify(res.data.docs);
         var objectValue = JSON.parse(string);
-        console.log("object value", objectValue);
         this.setState({ allusers: objectValue });
       })
       .catch((error) => {});
@@ -56,7 +55,6 @@ export default class SearchUser extends Component {
       var t3 = t1.toUpperCase();
       var t4 = t2.toUpperCase();
       if (t3.includes(t4)) {
-        console.log(current.name);
         return <EachUser userdetails={current} key={current._id} />;
       }
     });

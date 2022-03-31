@@ -53,7 +53,6 @@ export default class AddEducation extends Component {
             alert("Please verify the details");
           }
 
-          console.log(res);
         });
     }
     e.preventDefault();
