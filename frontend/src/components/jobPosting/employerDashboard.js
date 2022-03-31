@@ -34,7 +34,7 @@ const EmployerDashboard = () => {
                     { jobPost.map(fieldName => (
                         <div>
                             <div>
-                                <Card.Body onClick={() => showJobPost(fieldName._id)} className='card individualCard'>
+                                <Card.Body onClick={() => showJobPost(fieldName._id)} className='employercard individualCard'>
                                     <img className="logo" src={fieldName.companyLogoUrl} ></img>
                                     <div className='cardRow'>
                                         <p className='cardContent'><div className='cardColumn'>Job Title:</div> <div className='cardColumn'>{fieldName.jobTitle}</div> </p>
