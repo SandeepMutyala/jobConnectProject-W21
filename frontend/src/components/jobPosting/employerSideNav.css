@@ -1,0 +1,62 @@
+ /* Author Sai Sandeep Mutyala */
+@media screen and (max-width: 800px) {
+    .tab{
+        font-size: 80% !important;
+    }
+    .icon {
+        flex: 30% !important;
+        display: grid !important;
+        place-items: center !important;
+        transform: scale(0.7) !important;
+    }
+    .sidenavbar{
+        width: 110% !important;
+    }
+}
+
+.sideNavItems{
+    cursor: pointer;
+    flex: 60%;
+    place-items: left;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:200;
+    font-size: 110%;
+}
+
+.navbarLink {
+    text-decoration: none;
+    color: black;
+}
+
+.rows:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.sidenavbar{
+    height: auto;
+    width: 90%;
+}
+
+.icon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+    transform: scale(0.9);
+}
+
+.sidenavbar .rows {
+    /* width: 60%; */
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidenavbar .rows:hover {
+    cursor: pointer;
+    background-color: #2f95f5;
+}
+
