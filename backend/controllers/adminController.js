@@ -1,3 +1,4 @@
+/**Author: Raja Harshini Kasibhotla */
 const PostFeed = require("../models/postFeeds");
 const JobPosts = require("../models/jobPostings");
 const User = require("../models/user");

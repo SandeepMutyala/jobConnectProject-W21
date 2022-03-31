@@ -1,3 +1,4 @@
+/**Author: Raja Harshini Kasibhotla */
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
@@ -11,18 +12,22 @@ function PostFeed() {
     const fetchPosts = async () => {
       const result = await axios(
         "http://localhost:4000/api/v1/admin/displayPosts"
-      ).then((result) => { console.log(result.data.posts);
-      setPostFeed(result.data.posts);
-    console.log(postFeed)})
-     
-    }
+      ).then((result) => {
+        console.log(result.data.posts);
+        setPostFeed(result.data.posts);
+        console.log(postFeed);
+      });
+    };
     const fetchComments = async () => {
       const commentsData = await axios(
         "http://localhost:4000/api/v1/admin/displayComments"
-      ).then((commentsData)=> {console.log(commentsData.data.comments);
-        setPostComments(commentsData.data.comments);
-      }).catch((error) => console.log(error))    
-    }
+      )
+        .then((commentsData) => {
+          console.log(commentsData.data.comments);
+          setPostComments(commentsData.data.comments);
+        })
+        .catch((error) => console.log(error));
+    };
     fetchPosts();
     fetchComments();
   }, []);
@@ -75,7 +80,7 @@ function PostFeed() {
       </div>
       <div id="container" className="container-fluid d-flex">
         <ul>
-          {postFeed.length == 0? (
+          {postFeed.length == 0 ? (
             <h1>No Posts Found</h1>
           ) : (
             postFeed.map((post) => (
@@ -97,7 +102,11 @@ function PostFeed() {
                       <p className="card-text">{post.postMessage}</p>
                       <DeletePosts id={post._id} />
                       <br />
-                      <h6><b><pre>  Comments</pre></b></h6>
+                      <h6>
+                        <b>
+                          <pre> Comments</pre>
+                        </b>
+                      </h6>
                       <ul>
                         {postComments.length === 0 ? (
                           <h1>No Comments found for this post </h1>
