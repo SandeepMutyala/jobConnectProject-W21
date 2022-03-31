@@ -1,0 +1,114 @@
+ /* Author Sai Sandeep Mutyala */
+@media screen and (max-width: 1000px) {
+  .individualCard {
+      width: 40% !important;
+      height: 130px !important;
+  }
+  .dashboard-heading {
+      font-size:2rem !important;
+  }
+  .cardContent {
+    font-size: 30% !important;
+    display: block !important;
+  }
+   .logo {
+    height: 20px !important;
+    width: 40px !important;
+    align-items: center !important;
+  }
+  .dashboard-heading {
+    font-size:1.2rem !important;
+  }
+  .dashboardHomeHeading {
+    font-size: medium !important;
+    padding-left: 25% !important;
+  }
+}
+
+body{
+  width: 100%;
+}
+
+.dashboardHomeHeading{
+text-align: center;
+padding: 250px 0;
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-size: xx-large;
+padding-left: 20%;
+}
+
+.dashboard-heading {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:1.8rem;
+    text-align: center;
+    padding-right: 6%;
+    padding-top: 3%;
+}
+
+ .logo {
+  height: 60px;
+  width: 100px;
+  padding-bottom: 5%;
+ }
+
+ .cardContent {
+  font-size: 60%;
+  display: block;
+  font-weight:800;
+ }
+
+.cardRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cardColumn {
+  float: left;
+  width: 50%;
+}
+
+
+.rows:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left {
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+
+.completeCard {
+  padding-left: 6%;
+  float: left;
+  width: 70%;
+  background-color: none !important;
+  /* padding-bottom: 5%; */
+}
+
+.individualCard {
+  width:45%;
+  cursor: pointer;
+  box-shadow: -5px 2px #24253f;
+  border-radius: 9px;
+  height:220px;
+  background:#f2f5f8;
+  margin:10px;
+  margin-top: 30px;
+}
+
+.individualCard:hover{
+  transform: scale(0.9);
+}
+
+.card {
+  float:left ;
+}
+
+
+
+
+
