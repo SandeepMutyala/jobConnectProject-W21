@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BsAsterisk } from "react-icons/bs";
 export default class AddEducation extends Component {
+  
   state = {
     id: this.props.location.state.id,
     educationname: "",
