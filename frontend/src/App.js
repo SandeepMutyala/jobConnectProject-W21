@@ -31,7 +31,7 @@ function App() {
       <div className="App">  
       <Header />
       <div className="App">
-        <div className="container container-fluid">
+        <div>
           <Route path="/" component={Home} exact />
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />

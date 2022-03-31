@@ -1,5 +1,5 @@
 // Author: Akshit Jariwala, B00866255
-
+import React from 'react';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
 import { fetchUserPosts , userPostDelete ,  fetchPostComments } from "../../actions/service"
