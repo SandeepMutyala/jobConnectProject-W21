@@ -1,0 +1,134 @@
+/**Author: Raja Harshini Kasibhotla */
+nav {
+  width: 100%;
+  text-align: center;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+/* body{
+    background-image: url("assets/bg-logo2.jpeg"); 
+  } */
+
+#custom-cont {
+  padding-top: 50px;
+  padding-left: 10px;
+  padding-bottom: 0px;
+}
+.navbar-nav > li {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#container {
+  padding-top: 50px;
+  align-items: center;
+  padding-left: 350px;
+}
+
+#custom-card {
+  height: auto;
+  width: 750px;
+  background-color: aliceblue;
+  border-color: black;
+}
+
+.card-header,
+.card-footer {
+  opacity: 1;
+}
+
+#custom-inline-card {
+  size: flex;
+  background-color: aliceblue;
+}
+
+#post-image {
+  border: 1px solid #ddd;
+  float: left;
+  margin-top: 0px;
+  width: 55px;
+}
+
+h6 {
+  color: rgb(3, 3, 48);
+}
+
+h5 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(70, 37, 37);
+}
+
+h4 {
+  color: red;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+}
+.card-title {
+  padding-left: 50px;
+}
+
+#custom-h5 {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.padding-left-md {
+  padding-left: 1em;
+}
+
+#custom-card-header {
+  background-color: rgb(100, 138, 194);
+  padding: 0rem 0rem;
+}
+
+#custom-card-header-post {
+  background-color: rgb(213, 217, 223);
+  padding: 0rem 0rem;
+}
+
+#custom-inline-card-header {
+  background-color: rgb(185, 203, 230);
+  padding: 0rem 0rem;
+}
+
+.card {
+  background-color: #ccc;
+  opacity: initial;
+  size: flex;
+  border-color: black;
+}
+
+button {
+  height: auto;
+  width: 150px;
+  float: right;
+  text-align: center;
+}
+
+#custom-list {
+  list-style-type: none;
+}
+
+table {
+  align-self: center;
+  border: 1px solid black;
+}
+th,
+td {
+  border: 1px solid black;
+}
+
+#ul-table {
+  display: table-row;
+}
+
+.li-table {
+  display: table-cell;
+}
