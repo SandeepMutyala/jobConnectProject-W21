@@ -56,7 +56,6 @@ export default class UpdateEducation extends Component {
         this.state.educationname !== ""
       ) {
         if (this.state.fromdate < this.state.todate) {
-          console.log(this.state);
           return true;
         } else {
           alert("Please enter valid date");

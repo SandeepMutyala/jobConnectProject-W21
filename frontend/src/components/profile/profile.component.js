@@ -168,7 +168,6 @@ class Profile extends Component {
     e.preventDefault();
   };
   onFileChange = (e) => {
-    console.log(e.target.files[0]);
     this.setState({ uploadImg: e.target.files[0] });
   };
   onImgSubmit = (e) => {

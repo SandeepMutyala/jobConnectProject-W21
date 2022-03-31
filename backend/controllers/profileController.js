@@ -31,6 +31,7 @@ exports.upload = multer({
   },
 });
 let mongoose = require("mongoose");
+
 exports.updateProfileImage = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   var new_Img = {
@@ -38,6 +39,7 @@ exports.updateProfileImage = (req, res, next) => {
   };
   new_Img.data = fs.readFileSync(req.file.path);
   new_Img.contentType = "image/jpeg";
+
   UserModel.User.findByIdAndUpdate(
     req.params.id,
     { profileImg: new_Img },
@@ -119,7 +121,7 @@ exports.updateSummary = (req, res) => {
 exports.defaultProfile = (req, res) => {
   const newheader = new UserModel.User({
     summary: " ",
-    profileImg: "",
+    profileImg: {data: "", contentType: " "},
     name: req.body.user.name,
     email: req.body.user.email,
   });
