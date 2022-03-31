@@ -19,4 +19,8 @@ app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.use("/api/v1", auth);
 app.use("/profile",profile);
 
+const jobpostroutes = require("./routes/jobPost")
+
+app.use("/jobpost", jobpostroutes);
+
 module.exports = app;
