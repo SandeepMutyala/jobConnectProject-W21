@@ -1,0 +1,145 @@
+ /* Author Sai Sandeep Mutyala */
+@media screen and (max-width: 800px) {
+  .heading {
+    font-size:small !important;
+    padding-top:5%;
+  }
+  .main-heading{
+    font-size:90% !important;
+  }
+  .top-image{
+    height: 35% !important;
+    width: 50% !important;
+  }
+  .button {
+    font-size: 10% !important; 
+    text-align:left !important;
+  }
+  #place-holder {
+    color: #999999 !important;
+    font-size: 0.5em !important;
+    width: 170px !important;
+    height: 25px !important;
+    border-radius: 0.6rem !important;
+  }
+  #text-area-place-holder {
+    color: #999999;
+    font-size: 0.5rem !important;
+    width: 170px !important;
+    height: 35px !important;
+    border-radius: 0.6rem !important;
+    border-color: #8d8a8a;
+  }
+  #label {
+    color: #000000;
+    text-align: left !important;
+    font-size: 0.6rem !important;
+  }
+}
+
+.heading {
+  color: #635454;
+  font-family: arial, sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 0px;
+  padding-bottom: 1rem;
+}
+
+#label {
+  color: #666565;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+#place-holder {
+  color: #999999;
+  font-size: 0.8em;
+  width: 250px;
+  height: 30px;
+  border-radius: 1rem;
+  border-color: #8d8a8a;
+}
+    
+#text-area-place-holder {
+  color: #999999;
+  font-size: 1rem;
+  width: 250px;
+  height: 60px;
+  border-radius: 1rem;
+  border-color: #8d8a8a;
+}
+        
+.rows:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+    
+.uppercolumn-left{
+  float: left;
+  width: 25%;
+}
+
+.uppercolumn-right{
+  float: left;
+  width: 75%;
+}
+
+.column-left {
+  float: left;
+  width: 60%;
+}
+    
+.column-right {
+  float: left;
+  width: 40%;
+}
+    
+body {
+  /* background-image: url(../../assets/image4.png); */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+    
+.main-heading{
+  padding-left: 3%;
+  padding-top: 5%;
+  padding-bottom: 1%;
+  color: #635454;
+  font-family: arial, sans-serif;
+  font: size 28px;;
+  font-weight: bold;
+  font-style: italic;
+}
+.button{
+  text-align: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-top: 4%;
+  padding-right: 20%;
+  font-size: medium;
+}
+
+
+.top-image{
+  height: 30%;
+  width: 30%;
+  float: right;
+  padding-top: 8%;
+  /* margin-left: 35%; */
+}
+    
+.form-error{
+  font-size: 1rem;
+  color: red;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+    
+.form-checkbox{
+  color: #363636;
+  font-size: 1.2rem;
+}
+    

@@ -5,6 +5,7 @@ import { Route, Link } from "react-router-dom";
 import "../../App.css";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import { logout } from "../../actions/userActions";
 
 function Header() {
@@ -53,15 +54,15 @@ function Header() {
                 aria-labelledby="dropDownMenuButton"
               >
                 {user && user.role === "admin" && (
-                  <Link className="dropdown-item" to="/dashboard">
+                  <Link className="dropdown-item" to="/dashboard_home">
                     Dashboard
                   </Link>
                 )}
-                {user && user.role === "employer" && (
-                  <Link className="dropdown-item" to="/jobposting">
-                    Post Job
+                {/* {user && user.role === "employer" && ( */}
+                  <Link className="dropdown-item" to="/employerDashboardHome">
+                    Employer Dashboard
                   </Link>
-                )}
+                {/* )} */}
                 <Link className="dropdown-item" to="/profile">
                   Profile
                 </Link>
