@@ -13,8 +13,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 const auth = require("./routes/auth");
+const admin = require("./routes/admin");
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.use("/api/v1", auth);
-
+app.use("/api/v1", admin);
 module.exports = app;

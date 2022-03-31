@@ -13,3 +13,5 @@
 /frontend/.env.test.local
 /frontend/.env.production.local
 
+.DS_Store
+
