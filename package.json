@@ -1,0 +1,36 @@
+{
+  "name": "JobConnect",
+  "version": "1.0.0",
+  "description": "full stack job portal site using mern",
+  "main": "server.js",
+  "scripts": {
+    "start": "SET node backend/server.js",
+    "server": "nodemon backend/server",
+    "client": "cd frontend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "group 19",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.16",
+    "nodemailer": "^6.4.16",
+<<<<<<< HEAD
+    "react-router-dom": "^5.2.0",
+    "uuid": "^3.4.0",
+=======
+    "react-confirm-alert": "^2.8.0",
+>>>>>>> 6777568daa45f97552fffce666b4ddaa08f63af2
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.6"
+  }
+}
