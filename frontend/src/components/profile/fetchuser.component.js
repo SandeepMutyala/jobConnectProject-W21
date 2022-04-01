@@ -72,7 +72,6 @@ class User extends Component {
     axios
       .get("/profile/", { params: { email: mailid } })
       .then((res) => {
-        console.log(res);
         var string = JSON.stringify(res.data.docs);
         var objectValue = JSON.parse(string);
 

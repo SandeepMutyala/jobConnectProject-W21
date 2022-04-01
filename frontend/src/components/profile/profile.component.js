@@ -168,7 +168,6 @@ class Profile extends Component {
     e.preventDefault();
   };
   onFileChange = (e) => {
-    console.log(e.target.files[0]);
     this.setState({ uploadImg: e.target.files[0] });
   };
   onImgSubmit = (e) => {
@@ -211,8 +210,9 @@ class Profile extends Component {
             </Card.Header>
             <Card.Body style={{ display: "flex" }}>
               <Card.Img
-                src={this.state.profileImg}
+                src={this.state.profileImg ? this.state.profileImg:""}
                 style={{ marginRight: "auto", height: "4cm", width: "4cm" }}
+                alt = "Please upload your picture"
               ></Card.Img>
               <Form.Group controlId="formFileSm" className="mb-3">
                 <div
