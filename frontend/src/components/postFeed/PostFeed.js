@@ -21,6 +21,7 @@ const PostFeed = () => {
 
     useEffect(() => {
       fetchPosts();
+      fetchUserLike();
     },[])
 
     // fetch posts list from mongoDB database.
