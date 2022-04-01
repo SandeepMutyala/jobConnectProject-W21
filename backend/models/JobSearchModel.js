@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 var mongoose = require('mongoose');
 
 const JobSchema = new mongoose.Schema({

@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -62,7 +64,7 @@ const EducationTabb = (props)=> {
         
         Educationlistupdated[index][name] = value;
         Educationlistupdated[index]["Educationindex"] = index;
-        console.log(Educationlistupdated);
+        //console.log(Educationlistupdated);
         updateEducationList(Educationlistupdated);
     }
 
@@ -76,14 +78,14 @@ const EducationTabb = (props)=> {
     }
 
     const validationscheck = () => {
-        console.log(Educationlist);
+        //console.log(Educationlist);
         const errorlist = {};
         for(let i=0; i<Educationlist.length;i++ )
         {
-            console.log(Educationlist[i].InstituteName);
+            //console.log(Educationlist[i].InstituteName);
             if(Educationlist[i].InstituteName == "" || Educationlist[i].InstituteName == null)
             {
-                console.log("enetered in");
+               // console.log("enetered in");
                 errorlist.instituteName = "Please enter Institute Name correctly"
                 flag = "n";
             }
@@ -97,7 +99,7 @@ const EducationTabb = (props)=> {
                 errorlist.startingYear = "Please enter Starting Year"
                 flag = "n";
             }
-            console.log(errorlist);
+          //  console.log(errorlist);
             if(flag == "n")
                 return errorlist;
         }

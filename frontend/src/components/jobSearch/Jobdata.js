@@ -4,26 +4,19 @@ import Divider from '@mui/material/Divider';
 import React, { Component } from 'react' 
 
 const Jobdata = (props) => {
-
+/* author Arpreet*/
     const setJobData = (event) =>
     {
-        //console.log(event.target.value);
+
         const jobdata = event.target.value;
 
-        console.log("jobdata" + jobdata);
         props.jobdata(jobdata);
     }
-    console.log("jobid" + props.jobid);
-    //console.log(typeof(props.dateposted));
 
     let dateStr =new Date(props.dateposted)
 
     let dateposted = dateStr.toLocaleDateString()
-    //var date = props.dateposted.getDate();
-    //var month = props.dateposted.getMonth(); //Be careful! January is 0 not 1
-    //var year = props.dateposted.getFullYear();
 
-    //var dateString = date + "-" +(month + 1) + "-" + year;
 
     return (
 

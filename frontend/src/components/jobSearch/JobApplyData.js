@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 import '../../styles/Jobdata.css'
 import Button from 'react-bootstrap/Button'
 import Divider from '@mui/material/Divider';
@@ -6,7 +8,7 @@ import React, { Component } from 'react'
 const JobApplydata = (props) => {
 
 
-    console.log(typeof(props.dateposted));
+    //console.log(typeof(props.dateposted));
 
     let dateStr =new Date(props.dateposted)
 

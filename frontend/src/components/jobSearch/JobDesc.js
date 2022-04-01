@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 import Button from 'react-bootstrap/Button'
 import { useHistory } from "react-router-dom";
 import '../../styles/JobDesc.css'
@@ -8,7 +10,7 @@ const JobDesc = (props) => {
     const history = useHistory();
     const postvalue = props.postvalue;
     //console.log(props.post);
-    console.log("postvalue" + postvalue);
+    //console.log("postvalue" + postvalue);
     let jobpost = {};
 
     for(let i=0;i<props.post.length;i++)

@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 import Jobdata from './Jobdata';
 import React, { Component } from 'react'
 
@@ -8,12 +10,12 @@ const Jobpost = (props) =>{
     const title = props.title.toLowerCase();
     
         const filteredjobpost = props.posts.filter((jobpost) => {
-                console.log("enteredfunc");
+               // console.log("enteredfunc");
                 const companylocation = jobpost.addLocation.toLowerCase();
                 const jobtitle = jobpost.jobTitle.toLowerCase();
                 if(location == "" && title == "")
                 {
-                    console.log(jobpost);
+                   // console.log(jobpost);
                     return jobpost;
                 }
                 else if(location != "" && title == "")
@@ -33,10 +35,6 @@ const Jobpost = (props) =>{
                 }
         } );
 
-        const jobClickEventHandler = (event) => {
-
-            console.log(event.target);
-        }
 
 
         return (
@@ -51,7 +49,7 @@ const Jobpost = (props) =>{
                             companyname={job.companyName}
                             dateposted={job.jobPostDate}
                             jobdesc={job.jobShortDescription}
-                            companylocation={job.addLocation} clickFunction={jobClickEventHandler} jobdata={props.jobdata}></Jobdata>)
+                            companylocation={job.addLocation}  jobdata={props.jobdata}></Jobdata>)
                     )}   
             </div>
             

@@ -1,3 +1,4 @@
+/* author Arpreet*/
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -34,11 +35,11 @@ const PersonalTabb = (props) => {
     
     const handlePersonalDetailsUpdate = (e) => {
 
-        console.log("entered");
+
         const {name, value} = e.target;
         const PersonalList = {...PersonalDetailsList};
         PersonalList[name] = value;
-        console.log(PersonalList);
+
         UpdatePersonalDetailsList(PersonalList);
     }
 
@@ -54,7 +55,6 @@ const PersonalTabb = (props) => {
 
     const validationscheck = () => {
 
-        console.log(PersonalDetailsList);
         const errorlist = {};
         if(!emailpattern.test(PersonalDetailsList.Email))
         {
@@ -81,7 +81,7 @@ const PersonalTabb = (props) => {
             errorlist.DOB = "Please enter Date Of Birth"
             flag = "n";
         }
-        console.log(errorlist);
+
         if(flag = "n")
             return errorlist;
         else

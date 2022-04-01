@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Navbar from './Navbar';
 import 'react-tabs/style/react-tabs.css';
@@ -21,9 +23,9 @@ const JobApply = (props,{route}) => {
     const key1 = 1, key2 = 2, key3 = 3;
 
     const location = useLocation();
-    console.log("state");
-    console.log(location.state);
-    console.log(location.state.jobID);
+   // console.log("state");
+   // console.log(location.state);
+    //console.log(location.state.jobID);
     const jobID = location.state.jobID;
 
    

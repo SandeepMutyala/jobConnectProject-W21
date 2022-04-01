@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -67,7 +69,7 @@ const ExperienceTabb = (props)=> {
         
         Experiencelistupdated[index][name] = value;
         Experiencelistupdated[index]["Experienceindex"] = index;
-        console.log(Experiencelistupdated);
+       // console.log(Experiencelistupdated);
         updateExperienceList(Experiencelistupdated);
     }
 
@@ -80,7 +82,7 @@ const ExperienceTabb = (props)=> {
     }
 
     const validationscheck = () => {
-        console.log(Experiencelist);
+        //console.log(Experiencelist);
         const errorlist = {};
         for(let i=0; i<Experiencelist.length;i++ )
         {
@@ -88,7 +90,7 @@ const ExperienceTabb = (props)=> {
             {
                 if(Experiencelist[i].CompanyLocation == "" || Experiencelist[i].CompanyLocation == null)
                 {
-                    console.log("enetered in");
+                    //console.log("enetered in");
                     errorlist.companyLocation = "Please enter Company Location correctly"
                     flag = "n";
                 }
@@ -117,7 +119,7 @@ const ExperienceTabb = (props)=> {
                     errorlist.experienceDetails = "Please enter Details of your Experience"
                     flag = "n";
                 }
-                console.log(errorlist);
+                //console.log(errorlist);
                 if(flag == "n")
                     return errorlist;
             }

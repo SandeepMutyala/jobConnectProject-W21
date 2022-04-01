@@ -1,3 +1,5 @@
+/* author Arpreet*/
+
 var mongoose = require('mongoose');
 
 const EDSchema = new mongoose.Schema({
@@ -10,7 +12,8 @@ const EDSchema = new mongoose.Schema({
     CompletionYear : String,
     PercentageAchieved : Number,
     Educationid : Number,
-    Educationindex : Number
+    Educationindex : Number,
+    jobID : String
 })
 
 const EducationDetails = mongoose.model('JobEducationDetails', EDSchema);
