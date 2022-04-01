@@ -105,7 +105,7 @@ exports.isAuthenticatedUser = async (req, res, next) => {
   next();
 };
 
-// Forgot Password   =>  /api/v1/password/forgot
+//Forgot Password   =>  /api/v1/password/forgot
 exports.forgotPassword = async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 

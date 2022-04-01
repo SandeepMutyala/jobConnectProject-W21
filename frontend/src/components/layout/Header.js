@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <Fragment>
-      <nav className="navbar row">
+      <nav className="navbar row fixed-top">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <Link className="nav-bar-link" to="/">
@@ -58,11 +58,21 @@ function Header() {
                     Dashboard
                   </Link>
                 )}
-                {/* {user && user.role === "employer" && ( */}
+                { /* {user && user.role === "employer" && ( */
                   <Link className="dropdown-item" to="/employerDashboardHome">
                     Employer Dashboard
                   </Link>
-                {/* )} */}
+                }
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/homepage">
+                    Post Feed
+                  </Link>
+                )}
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/myposts">
+                    My Posts
+                  </Link>
+                )}
                 <Link className="dropdown-item" to="/profile">
                   Profile
                 </Link>

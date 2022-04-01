@@ -22,6 +22,9 @@ import Updateexperience from "./components/profile/updateExperience.component";
 import EditSummary from "./components/profile/editSummary.component";
 import User from "./components/profile/fetchuser.component";
 import SearchUser from "./components/profile/searchuser";
+import PostFeed from './components/postFeed/PostFeed'
+import MyPosts from './components/postFeed/MyPosts'
+
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -29,15 +32,19 @@ function App() {
 
   return (
     <Router>
+      <Header/>
+      <div className="App">  
       <Header />
       <div className="App">
-        <div className="container container-fluid">
+        <div>
           <Route path="/" component={Home} exact />
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/profile" exact component={Profile} />
+          <Route path="/homepage" component={PostFeed}/>
+          <Route path="/myposts" component={MyPosts}/>
           <Route path="/addEducation" exact component={AddEducation} />
           <Route
             path="/updateEducation"
@@ -67,6 +74,7 @@ function App() {
           <Route path="/JobPostForm" component={JobPostForm} />
           <Route path="/EditJobPost" component={EditJobPost} />       
         </div>
+      </div>
       </div>
     </Router>
   );
