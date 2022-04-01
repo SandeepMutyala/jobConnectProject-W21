@@ -225,10 +225,6 @@ const ExperienceTabb = (props)=> {
         ))}
         <br></br>
         <br></br>
-        <div>
-        <input type="file" name="fileupload" />
-        <br></br>
-        </div>
         <button
                         type="button"
                         class="btn btn-primary , buttonStyle"
