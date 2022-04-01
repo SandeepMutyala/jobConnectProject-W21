@@ -69,6 +69,11 @@ function Header() {
                   </Link>
                 )}
                 {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/JobSearch">
+                    Job Search
+                  </Link>
+                )}
+                {user && user.role === "employee" && (
                   <Link className="dropdown-item" to="/myposts">
                     My Posts
                   </Link>

@@ -24,6 +24,8 @@ import User from "./components/profile/fetchuser.component";
 import SearchUser from "./components/profile/searchuser";
 import PostFeed from './components/postFeed/PostFeed'
 import MyPosts from './components/postFeed/MyPosts'
+import JobSearch from "./components/jobSearch/JobSearch";
+import JobApply from "./components/jobSearch/JobApply";
 
 function App() {
   useEffect(() => {
@@ -72,7 +74,9 @@ function App() {
           <Route path="/employerDashboardHome" component={employerDashboardHome} />
           <Route path="/employerDashboard" component={EmployerDashboard} />
           <Route path="/JobPostForm" component={JobPostForm} />
-          <Route path="/EditJobPost" component={EditJobPost} />       
+          <Route path="/EditJobPost" component={EditJobPost} /> 
+          <Route path="/JobSearch" component={JobSearch} />
+          <Route path="/JobApply" component={JobApply} />      
         </div>
       </div>
       </div>
