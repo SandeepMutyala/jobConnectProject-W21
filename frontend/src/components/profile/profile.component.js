@@ -112,15 +112,15 @@ class Profile extends Component {
           console.log("Error:" + error);
         });
 
-      fetch("/profile/getprofileimage/" + this.state.email)
-        .then((res) => res.json())
-        .then((data) => {
-          var base64Flag = "data:image/jpeg;base64,";
-          if (Object.keys(data).length) {
-            var imageStr = this.arrayBufferToBase64(data.data.data);
-            this.setState({ profileImg: base64Flag + imageStr });
-          }
-        });
+      // fetch("/profile/getprofileimage/" + this.state.email)
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     var base64Flag = "data:image/jpeg;base64,";
+      //     if (Object.keys(data).length) {
+      //       var imageStr = this.arrayBufferToBase64(data.data.data);
+      //       this.setState({ profileImg: base64Flag + imageStr });
+      //     }
+      //   });
     } else {
       alert("Please login");
       this.props.history.push("/");
@@ -182,14 +182,14 @@ class Profile extends Component {
       });
 
     alert("Profile picture is updated");
-    fetch("/profile/getprofileimage/" + this.state.email)
-      .then((res) => res.json())
-      .then((data) => {
-        var base64Flag = "data:image/jpeg;base64,";
-        var imageStr = this.arrayBufferToBase64(data.data.data);
+    // fetch("/profile/getprofileimage/" + this.state.email)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     var base64Flag = "data:image/jpeg;base64,";
+    //     var imageStr = this.arrayBufferToBase64(data.data.data);
 
-        this.setState({ profileImg: base64Flag + imageStr });
-      });
+    //     this.setState({ profileImg: base64Flag + imageStr });
+    //   });
   };
   searchusers = (e) => {
     console.log("I am inside serach");
@@ -208,7 +208,7 @@ class Profile extends Component {
               </Card.Title>
               <Button onClick={this.searchusers}>View profiles</Button>
             </Card.Header>
-            <Card.Body style={{ display: "flex" }}>
+            {/* <Card.Body style={{ display: "flex" }}>
               <Card.Img
                 src={this.state.profileImg ? this.state.profileImg:""}
                 style={{ marginRight: "auto", height: "4cm", width: "4cm" }}
@@ -234,7 +234,7 @@ class Profile extends Component {
                 </div>
                 <div></div>
               </Form.Group>
-            </Card.Body>
+            </Card.Body> */}
           </Form>
         </Card>
         <br></br>

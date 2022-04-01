@@ -84,16 +84,16 @@ class User extends Component {
         console.log("Error:" + error);
       });
 
-    fetch("/profile/getprofileimage/" + this.state.email)
-      .then((res) => res.json())
-      .then((data) => {
-        var base64Flag = "data:image/jpeg;base64,";
-        if (Object.keys(data).length) {
-          var imageStr = this.arrayBufferToBase64(data.data.data);
+    // fetch("/profile/getprofileimage/" + this.state.email)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     var base64Flag = "data:image/jpeg;base64,";
+    //     if (Object.keys(data).length) {
+    //       var imageStr = this.arrayBufferToBase64(data.data.data);
 
-          this.setState({ profileImg: base64Flag + imageStr });
-        }
-      });
+    //       this.setState({ profileImg: base64Flag + imageStr });
+    //     }
+    //   });
   }
 
   educationslist() {
@@ -134,7 +134,7 @@ class User extends Component {
         <h3 style={{ margin: "0.2cm", textAlign: "center" }}>
           {this.state.name}
         </h3>
-        <Card border="primary" style={{ display: "flex" }}>
+        {/* <Card border="primary" style={{ display: "flex" }}>
           <div style={{ display: "flex" }}>
             <div style={{ marginRight: "auto" }}>
               <Card.Img
@@ -143,7 +143,7 @@ class User extends Component {
               ></Card.Img>
             </div>
           </div>
-        </Card>
+        </Card> */}
         <br></br>
 
         <Card border="primary" className="bg">
