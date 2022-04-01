@@ -184,7 +184,9 @@ app.post("/likePost", async (req,res) => {
 })
 
 const jobpostroutes = require("./routes/jobPost")
+var JobSearchRouter = require("./routes/JobSearchRouter.js")
 
 app.use("/jobpost", jobpostroutes);
+app.use("/JobSearch",JobSearchRouter);
 
 module.exports = app;
