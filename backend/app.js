@@ -1,11 +1,11 @@
 // Co - Author: Akshit Jariwala, B00866255
-
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
+
 const Post = require("./models/post");
 const Comment = require("./models/comment");
 const Like = require("./models/like");
@@ -18,9 +18,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 const auth = require("./routes/auth");
+const profile = require("./routes/profile.route")
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.use("/api/v1", auth);
+app.use("/profile",profile);
 
 // fetching all the posts from database
 app.get("/fetchAllPosts", async (req,res) => {
