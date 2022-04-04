@@ -6,7 +6,7 @@ import Header from "./components/layout/Header";
 import Register from "./components/user/Register";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import EmployerSideNav from "./components/jobPosting/employerSideNav";
-import employerDashboardHome from "./components/jobPosting/employerDashboardHome"
+import employerDashboardHome from "./components/jobPosting/employerDashboardHome";
 import EmployerDashboard from "./components/jobPosting/employerDashboard";
 import JobPostForm from "./components/jobPosting/jobPostForm";
 import EditJobPost from "./components/jobPosting/editJobPost";
@@ -22,10 +22,14 @@ import Updateexperience from "./components/profile/updateExperience.component";
 import EditSummary from "./components/profile/editSummary.component";
 import User from "./components/profile/fetchuser.component";
 import SearchUser from "./components/profile/searchuser";
-import PostFeed from './components/postFeed/PostFeed'
-import MyPosts from './components/postFeed/MyPosts'
+import PostFeed from "./components/postFeed/PostFeed";
+import MyPosts from "./components/postFeed/MyPosts";
 import JobSearch from "./components/jobSearch/JobSearch";
 import JobApply from "./components/jobSearch/JobApply";
+import PostFeeds from "./components/admin/PostFeeds";
+import JobPostings from "./components/admin/JobPostings";
+import Approvals from "./components/admin/Approvals";
+import GetExpiredJobPostings from "./components/admin/GetExpiredJobPostings";
 
 function App() {
   useEffect(() => {
@@ -34,51 +38,53 @@ function App() {
 
   return (
     <Router>
-      <Header/>
-      <div className="App">  
       <Header />
       <div className="App">
-        <div>
-          <Route path="/" component={Home} exact />
-          <Route path="/password/forgot" component={ForgotPassword} exact />
-          <Route path="/password/reset/:token" component={NewPassword} exact />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/homepage" component={PostFeed}/>
-          <Route path="/myposts" component={MyPosts}/>
-          <Route path="/addEducation" exact component={AddEducation} />
-          <Route
-            path="/updateEducation"
-            exact
-            component={UpdateEducation}
-          />
-          <Route
-            path="/fetchuser/:id"
-            exact
-            component={User}
-          />
-          <Route
-            path="/searchuser"
-            exact
-            component={SearchUser}
-          />
-          <Route path="/addExperience" exact component={AddExperience} />
-          <Route
-            path="/updateExperience"
-            exact
-            component={Updateexperience}
-          />
-          <Route path="/editSummary" exact component={EditSummary} />
-          <Route path="/EmployerSideNav" component={EmployerSideNav} />
-          <Route path="/employerDashboardHome" component={employerDashboardHome} />
-          <Route path="/employerDashboard" component={EmployerDashboard} />
-          <Route path="/JobPostForm" component={JobPostForm} />
-          <Route path="/EditJobPost" component={EditJobPost} /> 
-          <Route path="/JobSearch" component={JobSearch} />
-          <Route path="/JobApply" component={JobApply} />      
+        <Header />
+        <div className="App">
+          <div>
+            <Route path="/" component={Home} exact />
+            <Route path="/password/forgot" component={ForgotPassword} exact />
+            <Route
+              path="/password/reset/:token"
+              component={NewPassword}
+              exact
+            />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/homepage" component={PostFeed} />
+            <Route path="/myposts" component={MyPosts} />
+            <Route path="/addEducation" exact component={AddEducation} />
+            <Route path="/updateEducation" exact component={UpdateEducation} />
+            <Route path="/fetchuser/:id" exact component={User} />
+            <Route path="/searchuser" exact component={SearchUser} />
+            <Route path="/addExperience" exact component={AddExperience} />
+            <Route
+              path="/updateExperience"
+              exact
+              component={Updateexperience}
+            />
+            <Route path="/editSummary" exact component={EditSummary} />
+            <Route path="/EmployerSideNav" component={EmployerSideNav} />
+            <Route
+              path="/employerDashboardHome"
+              component={employerDashboardHome}
+            />
+            <Route path="/employerDashboard" component={EmployerDashboard} />
+            <Route path="/JobPostForm" component={JobPostForm} />
+            <Route path="/EditJobPost" component={EditJobPost} />
+            <Route path="/JobSearch" component={JobSearch} />
+            <Route path="/JobApply" component={JobApply} />
+            <Route path="/admin/postfeed" component={PostFeeds} />
+            <Route path="/admin/jobpostings" component={JobPostings} />
+            <Route path="/admin/approvals" component={Approvals} />
+            <Route
+              path="/admin/expiredJobPostings"
+              component={GetExpiredJobPostings}
+            />ß
+          </div>
         </div>
-      </div>
       </div>
     </Router>
   );

@@ -18,7 +18,11 @@ const Login = ({ history, location }) => {
   const alert = useAlert();
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/homepage");
+      if (email === "admin@mail.com") {
+        history.push("/admin/postFeed");
+      } else {
+        history.push("/homepage");
+      }
     }
 
     if (error) {
