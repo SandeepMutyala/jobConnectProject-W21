@@ -12,7 +12,7 @@ function Approvals() {
   useEffect(() => {
     const fetchEmployers = async () => {
       const result = await axios(
-        "http://localhost:4000/api/v1/admin/listEmployers"
+        "api/v1/admin/listEmployers"
       );
 
       setEmployersList(result.data);
@@ -21,7 +21,7 @@ function Approvals() {
 
     const fetchApprovedEmployers = async () => {
       const result = await axios(
-        "http://localhost:4000/api/v1/admin/listApprovedEmployers"
+        "api/v1/admin/listApprovedEmployers"
       );
 
       setApprovedList(result.data);
