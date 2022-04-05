@@ -12,7 +12,7 @@ function PostFeed() {
   useEffect(() => {
     const fetchPosts = async () => {
       const result = await axios(
-        "http://localhost:4000/api/v1/admin/displayPosts"
+        "/api/v1/admin/displayPosts"
       ).then((result) => {
         console.log(result.data.posts);
         setPostFeed(result.data.posts);
@@ -21,7 +21,7 @@ function PostFeed() {
     };
     const fetchComments = async () => {
       const commentsData = await axios(
-        "http://localhost:4000/api/v1/admin/displayComments"
+        "/api/v1/admin/displayComments"
       )
         .then((commentsData) => {
           console.log(commentsData.data.comments);
