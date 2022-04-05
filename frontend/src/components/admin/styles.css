@@ -32,6 +32,7 @@ nav {
     width: 750px;
     background-color: aliceblue;
     border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(203, 189, 246, 0.2), 0 6px 20px 0 rgba(196, 153, 239, 0.19);
   }
   
   .card-header,
@@ -103,6 +104,7 @@ nav {
     opacity: initial;
     size: flex;
     border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(203, 189, 246, 0.2), 0 6px 20px 0 rgba(196, 153, 239, 0.19);
   }
   
   button {
@@ -127,6 +129,14 @@ nav {
   
   #ul-table {
     display: table-row;
+  }
+  
+  .li-table {
+    display: table-cell;
+  }
+
+  .row > * {
+    width: auto;
   }
   
   .li-table {

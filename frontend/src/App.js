@@ -74,13 +74,15 @@ function App() {
             <Route path="/employerDashboard" component={EmployerDashboard} />
             <Route path="/JobPostForm" component={JobPostForm} />
             <Route path="/EditJobPost" component={EditJobPost} />
-            <Route path="/admin/postfeed" component={PostFeedAdmin} />
+            <Route path="/JobSearch" component={JobSearch} />
+            <Route path="/JobApply" component={JobApply} />
+            <Route path="/admin/postfeed" component={PostFeeds} />
             <Route path="/admin/jobpostings" component={JobPostings} />
             <Route path="/admin/approvals" component={Approvals} />
             <Route
               path="/admin/expiredJobPostings"
               component={GetExpiredJobPostings}
-            />
+            />ß
           </div>
         </div>
       </div>

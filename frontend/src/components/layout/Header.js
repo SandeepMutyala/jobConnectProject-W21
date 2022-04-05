@@ -5,7 +5,6 @@ import { Route, Link } from "react-router-dom";
 import "../../App.css";
 import { useDispatch, useSelector } from "react-redux";
 
-
 import { logout } from "../../actions/userActions";
 
 function Header() {
@@ -53,16 +52,33 @@ function Header() {
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
-                {user && user.role === "admin" && (
+                {/* {user && user.role === "admin" && (
                   <Link className="dropdown-item" to="/dashboard_home">
                     Dashboard
                   </Link>
+                )} */}
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/postFeed">
+                    PostFeed
+                  </Link>
                 )}
-                { /* {user && user.role === "employer" && ( */
+
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/jobPostings">
+                    Job Postings
+                  </Link>
+                )}
+
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/approvals">
+                    Approvals
+                  </Link>
+                )}
+                {user && user.role === "employer" && (
                   <Link className="dropdown-item" to="/employerDashboardHome">
                     Employer Dashboard
                   </Link>
-                }
+                )}
                 {user && user.role === "employee" && (
                   <Link className="dropdown-item" to="/homepage">
                     Post Feed
@@ -78,9 +94,11 @@ function Header() {
                     My Posts
                   </Link>
                 )}
-                <Link className="dropdown-item" to="/profile">
-                  Profile
-                </Link>
+                {user && user.role !== "admin" && (
+                  <Link className="dropdown-item" to="/profile">
+                    Profile
+                  </Link>
+                )}
                 <Link
                   className="dropdown-item text-danger"
                   to="/"

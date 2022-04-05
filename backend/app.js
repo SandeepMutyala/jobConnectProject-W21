@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 const auth = require("./routes/auth");
 const profile = require("./routes/profile.route")
+const admin = require("./routes/admin");
 
 const admin = require("./routes/admin");
 app.use("/api/v1", admin);
@@ -26,9 +27,7 @@ app.use("/api/v1", admin);
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.use("/api/v1", auth);
 app.use("/profile",profile);
-
-
-
+app.use("/api/v1", admin);
 // fetching all the posts from database
 app.get("/fetchAllPosts", async (req,res) => {
   
