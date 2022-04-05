@@ -44,7 +44,6 @@ const MyPosts = () => {
         var commentData = commentlist.data;
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
-        
       }
     } catch(error){
       console.log(error)

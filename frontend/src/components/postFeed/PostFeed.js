@@ -19,8 +19,8 @@ const PostFeed = () => {
     );
 
     useEffect(() => {
-      fetchPosts();
       fetchUserLike();
+      fetchPosts();
     },[])
 
     // fetch posts list from mongoDB database.
@@ -56,8 +56,7 @@ const PostFeed = () => {
     // Validating user inputs 
     const validateInput = (e) => {
         if(postContent === ""){
-            setError("missing");
-            alert("Post details must not be empty. Please try again.");
+            showAlert("Failure! Post details cannot be empty. Please try again.");
             return false;
         } else {
             return true;
@@ -82,6 +81,10 @@ const PostFeed = () => {
       
     }
 
+    function showAlert(message) {
+      alert(message);
+    }
+
     // Conneting with backend api to upload post
     const postUpload = async (e) => {
         e.preventDefault();
@@ -89,8 +92,6 @@ const PostFeed = () => {
         try{
         
         if(validateInput(e)){
-            setError("success");
-
             // Store to mongoDB
             const postObject = {
               userId : user.email, //current user id
@@ -101,7 +102,10 @@ const PostFeed = () => {
 
             if(post.status === 200){
               setPostContent("");
+              showAlert("Success! Post upload successful.");
               fetchPosts();
+            } else {
+              showAlert("Failure! Post upload failed.");
             }
         }
       } catch(error){
@@ -123,7 +127,7 @@ const PostFeed = () => {
       }
 
       if(comment === ""){
-        setError("missingcomment");
+        showAlert("Failure!! Comment cannot be empty.");
       } else {
         var commentData = await addComment(commentObject);
         let commentlist = await fetchPostComments(postID);
@@ -157,9 +161,7 @@ const PostFeed = () => {
 
     // Conneting with backend api to fetch post comments
     const fetchComments = async (postID) => {
-
       try{
-
         var postComment = await fetchPostComments(postID);
         return postComment.data;
       } catch(error){
@@ -167,7 +169,7 @@ const PostFeed = () => {
       }
     }
 
-    function Message(){
+    /*function Message(){
         return(
             <p>
             {(() => {
@@ -190,13 +192,13 @@ const PostFeed = () => {
     </p>
     )
     setError("");
-    }
+    }*/
 
   return (
     <div style={{marginLeft:"25%"}}>
       <div className="row" style={{marginTop:80}}>
         <div className="col-3">
-            <Message />
+           {/* <Message />*/}
         </div>
         <div className="col-5"style={{width:"55%",marginLeft:50,border:"1px solid #cecece",backgroundColor:'white',borderRadius:20,height:100.833}}>
         <div className="model-body" style={{marginTop:27}}>
