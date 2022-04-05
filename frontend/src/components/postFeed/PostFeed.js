@@ -12,7 +12,6 @@ const PostFeed = () => {
     const [postList, setPostList] = useState("")
     const [commentList, setCommentList] = useState("")
     const [currentCommentPostID, setCurrentCommentPostID] = useState("")
-    const [currentPostID, setCurrentPostID] = useState("")
     const [userLikeList, setUserLikeList] = useState("")
 
     const { user } = useSelector(

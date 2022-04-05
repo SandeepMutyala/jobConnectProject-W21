@@ -26,7 +26,7 @@ import JobSearch from "./components/jobSearch/JobSearch";
 import JobApply from "./components/jobSearch/JobApply";
 import PostFeed from "./components/postFeed/PostFeed";
 import MyPosts from "./components/postFeed/MyPosts";
-import PostFeed from "./components/admin/PostFeed";
+import PostFeedAdmin from "./components/admin/PostFeed";
 import JobPostings from "./components/admin/JobPostings";
 import Approvals from "./components/admin/Approvals";
 import GetExpiredJobPostings from "./components/admin/GetExpiredJobPostings";
@@ -74,7 +74,7 @@ function App() {
             <Route path="/employerDashboard" component={EmployerDashboard} />
             <Route path="/JobPostForm" component={JobPostForm} />
             <Route path="/EditJobPost" component={EditJobPost} />
-            <Route path="/admin/postfeed" component={PostFeed} />
+            <Route path="/admin/postfeed" component={PostFeedAdmin} />
             <Route path="/admin/jobpostings" component={JobPostings} />
             <Route path="/admin/approvals" component={Approvals} />
             <Route
