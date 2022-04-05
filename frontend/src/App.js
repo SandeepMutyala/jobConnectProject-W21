@@ -26,7 +26,7 @@ import JobSearch from "./components/jobSearch/JobSearch";
 import JobApply from "./components/jobSearch/JobApply";
 import PostFeed from "./components/postFeed/PostFeed";
 import MyPosts from "./components/postFeed/MyPosts";
-import PostFeedAdmin from "./components/admin/PostFeed";
+import PostFeeds from "./components/admin/PostFeed";
 import JobPostings from "./components/admin/JobPostings";
 import Approvals from "./components/admin/Approvals";
 import GetExpiredJobPostings from "./components/admin/GetExpiredJobPostings";
@@ -82,7 +82,7 @@ function App() {
             <Route
               path="/admin/expiredJobPostings"
               component={GetExpiredJobPostings}
-            />ß
+            />
           </div>
         </div>
       </div>
