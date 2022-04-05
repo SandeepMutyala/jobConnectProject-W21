@@ -11,6 +11,12 @@ exports.registerUser = async (req, res, next) => {
   const { name, email, password, role } = req.body;
   const existingUser = await User.findOne({ email });
 
+  if (password.length <= 6) {
+    return res.status(422).json({
+      success: false,
+      message: `Password cannot be less than 6 characters`,
+    });
+  }
   if (existingUser) {
     return res.status(422).json({
       success: false,

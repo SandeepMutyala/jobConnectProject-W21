@@ -2,9 +2,9 @@
 const UserModel = require("../models/profile.model");
 const DIR = "./public/";
 const fs = require("fs");
-let multer = require("multer"),
-  uuidv4 = require("uuid/v4");
-  
+let multer = require("multer");
+uuidv4 = require("uuid");
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);
@@ -121,7 +121,7 @@ exports.updateSummary = (req, res) => {
 exports.defaultProfile = (req, res) => {
   const newheader = new UserModel.User({
     summary: " ",
-    profileImg: {data: "", contentType: " "},
+    profileImg: { data: "", contentType: " " },
     name: req.body.user.name,
     email: req.body.user.email,
   });

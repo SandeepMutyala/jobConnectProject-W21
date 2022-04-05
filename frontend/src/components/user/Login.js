@@ -43,7 +43,10 @@ const Login = ({ history, location }) => {
       ) : (
         <Fragment>
           <div className="row wrapper">
-            <div className="col-10 col-lg-5">
+            <div
+              className="col-10 col-lg-5"
+              style={{ marginTop: "100px", maxWidth: "500px" }}
+            >
               <form className="shadow-lg" onSubmit={submitHandler}>
                 <h1 className="mb-3">Login</h1>
                 <div className="form-group">

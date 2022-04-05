@@ -4,15 +4,20 @@ import React, { Fragment } from "react";
 import { Route, Link } from "react-router-dom";
 import "../../App.css";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
 function Header() {
   const dispatch = useDispatch();
 
+  let history = useHistory();
+
   const { user, loading } = useSelector((state) => state.auth);
   const logoutHandler = () => {
     dispatch(logout());
+    setTimeout(() => {
+      history.replace("/login");
+    }, 200);
   };
 
   return (
@@ -109,11 +114,7 @@ function Header() {
               </div>
             </div>
           ) : (
-            !loading && (
-              <Link to="/login" className="btn ml-4" id="login_btn">
-                Login
-              </Link>
-            )
+            ""
           )}
         </div>
       </nav>
