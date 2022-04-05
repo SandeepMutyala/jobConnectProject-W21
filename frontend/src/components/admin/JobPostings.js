@@ -10,7 +10,7 @@ function JobPostings() {
   useEffect(() => {
     const fetchPosts = async () => {
       const result = await axios(
-        "http://localhost:4000/api/v1/admin/listPosts"
+        "/api/v1/admin/listPosts"
       );
 
       setJobPost(result.data);
