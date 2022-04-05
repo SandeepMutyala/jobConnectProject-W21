@@ -10,7 +10,7 @@ function GetExpiredJobPostings() {
   useEffect(() => {
     const fetchPosts = async () => {
       const result = await axios(
-        "http://localhost:4000/api/v1/admin/listExpiredPostings"
+        "/api/v1/admin/listExpiredPostings"
       );
 
       setFilteredPosts(result.data.expiredPosts);
