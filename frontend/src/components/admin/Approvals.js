@@ -21,7 +21,7 @@ function Approvals() {
 
     const fetchApprovedEmployers = async () => {
       const result = await axios(
-        "api/v1/admin/listApprovedEmployers"
+        "/api/v1/admin/listApprovedEmployers"
       );
 
       setApprovedList(result.data);
