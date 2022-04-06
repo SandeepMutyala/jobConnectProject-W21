@@ -8,7 +8,7 @@ function DeleteComments(props) {
   function deleteComment() {
     setCommentId(props.id);
     console.log(commentId);
-    axios.delete("http://localhost:4000/api/v1/admin/deleteComments", {
+    axios.delete("/api/v1/admin/deleteComments", {
       data: {
         id: commentId,
       },

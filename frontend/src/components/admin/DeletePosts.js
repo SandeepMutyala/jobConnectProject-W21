@@ -8,7 +8,7 @@ function DeletePosts(props) {
   function deletePost() {
     setuserId(props.id);
     console.log(userId);
-    axios.delete("http://localhost:4000/api/v1/admin/deletePosts", {
+    axios.delete("/api/v1/admin/deletePosts", {
       data: {
         id: userId,
       },

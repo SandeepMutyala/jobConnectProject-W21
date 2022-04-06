@@ -9,7 +9,7 @@ function UpdateEmployerStatus(props) {
     setuserId(props.id);
     console.log(userId);
     axios.post(
-      "http://localhost:4000/api/v1/admin/updateEmployerVerificationStatus",
+      "/api/v1/admin/updateEmployerVerificationStatus",
       {
         id: userId,
       }

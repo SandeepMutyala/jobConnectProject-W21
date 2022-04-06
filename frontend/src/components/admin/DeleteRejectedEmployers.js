@@ -8,7 +8,7 @@ function DeleteRejectedEmployers(props) {
   function deleteEmployers() {
     setuserId(props.id);
     console.log(userId);
-    axios.delete("http://localhost:4000/api/v1/admin/deleteRejectedEmployers", {
+    axios.delete("/api/v1/admin/deleteRejectedEmployers", {
       data: {
         id: userId,
       },

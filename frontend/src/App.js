@@ -40,51 +40,38 @@ function App() {
     <Router>
       <Header />
       <div className="App">
-        <Header />
-        <div className="App">
-          <div>
-            <Route path="/" component={Home} exact />
-            <Route path="/password/forgot" component={ForgotPassword} exact />
-            <Route
-              path="/password/reset/:token"
-              component={NewPassword}
-              exact
-            />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/homepage" component={PostFeed} />
-            <Route path="/myposts" component={MyPosts} />
-            <Route path="/addEducation" exact component={AddEducation} />
-            <Route path="/updateEducation" exact component={UpdateEducation} />
-            <Route path="/fetchuser/:id" exact component={User} />
-            <Route path="/searchuser" exact component={SearchUser} />
-            <Route path="/addExperience" exact component={AddExperience} />
-            <Route
-              path="/updateExperience"
-              exact
-              component={Updateexperience}
-            />
-            <Route path="/editSummary" exact component={EditSummary} />
-            <Route path="/EmployerSideNav" component={EmployerSideNav} />
-            <Route
-              path="/employerDashboardHome"
-              component={employerDashboardHome}
-            />
-            <Route path="/employerDashboard" component={EmployerDashboard} />
-            <Route path="/JobPostForm" component={JobPostForm} />
-            <Route path="/EditJobPost" component={EditJobPost} />
-            <Route path="/JobSearch" component={JobSearch} />
-            <Route path="/JobApply" component={JobApply} />
-            <Route path="/admin/postfeed" component={PostFeeds} />
-            <Route path="/admin/jobpostings" component={JobPostings} />
-            <Route path="/admin/approvals" component={Approvals} />
-            <Route
-              path="/admin/expiredJobPostings"
-              component={GetExpiredJobPostings}
-            />
-          </div>
-        </div>
+        <Route path="/" render={() => <Redirect to="/login" />} exact />
+        <Route path="/password/forgot" component={ForgotPassword} exact />
+        <Route path="/password/reset/:token" component={NewPassword} exact />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/homepage" component={PostFeed} />
+        <Route path="/myposts" component={MyPosts} />
+        <Route path="/addEducation" exact component={AddEducation} />
+        <Route path="/updateEducation" exact component={UpdateEducation} />
+        <Route path="/fetchuser/:id" exact component={User} />
+        <Route path="/searchuser" exact component={SearchUser} />
+        <Route path="/addExperience" exact component={AddExperience} />
+        <Route path="/updateExperience" exact component={Updateexperience} />
+        <Route path="/editSummary" exact component={EditSummary} />
+        <Route path="/EmployerSideNav" component={EmployerSideNav} />
+        <Route
+          path="/employerDashboardHome"
+          component={employerDashboardHome}
+        />
+        <Route path="/employerDashboard" component={EmployerDashboard} />
+        <Route path="/JobPostForm" component={JobPostForm} />
+        <Route path="/EditJobPost" component={EditJobPost} />
+        <Route path="/JobSearch" component={JobSearch} />
+        <Route path="/JobApply" component={JobApply} />
+        <Route path="/admin/postfeed" component={PostFeeds} />
+        <Route path="/admin/jobpostings" component={JobPostings} />
+        <Route path="/admin/approvals" component={Approvals} />
+        <Route
+          path="/admin/expiredJobPostings"
+          component={GetExpiredJobPostings}
+        />
       </div>
     </Router>
   );
