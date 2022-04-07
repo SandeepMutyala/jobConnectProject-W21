@@ -47,7 +47,7 @@ function PostFeed() {
     paddingTop: "20px",
   };
   var customInlineCardHeader = {
-    backgroundColor: "rgb(185, 250, 230)",
+    backgroundColor: "rgb(185, 203, 230)",
     padding: " 0rem 0rem",
   };
   useEffect(() => {
