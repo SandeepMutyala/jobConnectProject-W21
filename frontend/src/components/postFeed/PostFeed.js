@@ -119,6 +119,7 @@ const PostFeed = () => {
       // code to comment on post
       try{
       setComment("")
+      
       let commentObject = {
         postID : postID,
         respondedUserID : user.email, // current user id
@@ -129,6 +130,7 @@ const PostFeed = () => {
       if(comment === ""){
         showAlert("Failure!! Comment cannot be empty.");
       } else {
+        console.timeLog("Inside comment upload.")
         var commentData = await addComment(commentObject);
         let commentlist = await fetchPostComments(postID);
         var commentData = commentlist.data; 
