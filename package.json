@@ -4,7 +4,7 @@
   "description": "full stack job portal site using mern",
   "main": "server.js",
   "scripts": {
-    "start": "SET node backend/server.js",
+    "start": "node backend/server.js",
     "server": "nodemon backend/server",
     "client": "cd frontend && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
