@@ -31,6 +31,7 @@ import JobPostings from "./components/admin/JobPostings";
 import Approvals from "./components/admin/Approvals";
 import GetExpiredJobPostings from "./components/admin/GetExpiredJobPostings";
 import JobApplications from "./components/jobApplications/jobApplication"
+import ApplicationSubmit from "./components/jobSearch/ApplicationSubmit";
 
 function App() {
   useEffect(() => {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/updateExperience" exact component={Updateexperience} />
         <Route path="/editSummary" exact component={EditSummary} />
         <Route path="/EmployerSideNav" component={EmployerSideNav} />
+        <Route path="/ApplicationSubmit" component={ApplicationSubmit} />
         <Route
           path="/employerDashboardHome"
           component={employerDashboardHome}
