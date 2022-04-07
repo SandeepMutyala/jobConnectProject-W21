@@ -4,21 +4,25 @@ import React, { Fragment } from "react";
 import { Route, Link } from "react-router-dom";
 import "../../App.css";
 import { useDispatch, useSelector } from "react-redux";
-
-
+import { useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
 function Header() {
   const dispatch = useDispatch();
 
+  let history = useHistory();
+
   const { user, loading } = useSelector((state) => state.auth);
   const logoutHandler = () => {
     dispatch(logout());
+    setTimeout(() => {
+      history.replace("/login");
+    }, 200);
   };
 
   return (
     <Fragment>
-      <nav className="navbar row">
+      <nav className="navbar row fixed-top">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <Link className="nav-bar-link" to="/">
@@ -53,19 +57,53 @@ function Header() {
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
-                {user && user.role === "admin" && (
+                {/* {user && user.role === "admin" && (
                   <Link className="dropdown-item" to="/dashboard_home">
                     Dashboard
                   </Link>
+                )} */}
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/postFeed">
+                    PostFeed
+                  </Link>
                 )}
-                {/* {user && user.role === "employer" && ( */}
+
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/jobPostings">
+                    Job Postings
+                  </Link>
+                )}
+
+                {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/approvals">
+                    Approvals
+                  </Link>
+                )}
+                {user && user.role === "employer" && (
                   <Link className="dropdown-item" to="/employerDashboardHome">
                     Employer Dashboard
                   </Link>
-                {/* )} */}
-                <Link className="dropdown-item" to="/profile">
-                  Profile
-                </Link>
+                )}
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/homepage">
+                    Post Feed
+                  </Link>
+                )}
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/JobSearch">
+                    Job Search
+                  </Link>
+                )}
+                {user && user.role === "employee" && (
+                  <Link className="dropdown-item" to="/myposts">
+                    My Posts
+                  </Link>
+                )}
+                {user && user.role !== "admin" && (
+                  <Link className="dropdown-item" to="/profile">
+                    Profile
+                  </Link>
+                )}
                 <Link
                   className="dropdown-item text-danger"
                   to="/"
@@ -76,11 +114,7 @@ function Header() {
               </div>
             </div>
           ) : (
-            !loading && (
-              <Link to="/login" className="btn ml-4" id="login_btn">
-                Login
-              </Link>
-            )
+            ""
           )}
         </div>
       </nav>

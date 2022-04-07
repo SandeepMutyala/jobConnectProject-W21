@@ -5,6 +5,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword, clearErrors } from "../../actions/userActions";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -36,8 +37,15 @@ const ForgotPassword = () => {
   return (
     <Fragment>
       <div className="row wrapper">
-        <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler}>
+        <div
+          className="col-10 col-lg-5"
+          style={{ marginTop: "100px", maxWidth: "500px" }}
+        >
+          <form
+            className="shadow-lg"
+            style={{ height: "476px, !important" }}
+            onSubmit={submitHandler}
+          >
             <h1 className="mb-3">Forgot Password</h1>
             <div className="form-group">
               <label htmlFor="email_field">Enter Email</label>
@@ -49,6 +57,10 @@ const ForgotPassword = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+
+            <Link to="/login" className="float-right mt-3">
+              Back to Login
+            </Link>
 
             <button
               id="forgot_password_button"

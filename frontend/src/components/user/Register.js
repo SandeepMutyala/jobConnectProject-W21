@@ -4,6 +4,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register, clearErrors } from "../../actions/userActions";
 import { useAlert } from "react-alert";
+import { Link } from "react-router-dom";
 
 const Register = ({ history }) => {
   const [name, setName] = useState("");
@@ -19,12 +20,12 @@ const Register = ({ history }) => {
   const alert = useAlert();
   useEffect(() => {
     if (isAuthenticated) {
-      history.replace("/");
+      history.replace("/homepage");
     }
 
     if (message) {
       alert.success(message);
-      history.replace("/");
+      history.replace("/login");
     }
 
     if (error) {
@@ -40,7 +41,10 @@ const Register = ({ history }) => {
   return (
     <Fragment>
       <div className="row wrapper">
-        <div className="col-10 col-lg-5">
+        <div
+          className="col-10 col-lg-5"
+          style={{ marginTop: "100px", maxWidth: "500px" }}
+        >
           <form
             className="shadow-lg"
             onSubmit={submitHandler}
@@ -101,6 +105,10 @@ const Register = ({ history }) => {
                 <option value="employee">Employee</option>
               </select>
             </div>
+
+            <Link to="/login" className="float-right mt-3">
+              Back to Login
+            </Link>
 
             <button
               id="register_button"
