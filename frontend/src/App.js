@@ -30,6 +30,7 @@ import PostFeeds from "./components/admin/PostFeed";
 import JobPostings from "./components/admin/JobPostings";
 import Approvals from "./components/admin/Approvals";
 import GetExpiredJobPostings from "./components/admin/GetExpiredJobPostings";
+import JobApplications from "./components/jobApplications/jobApplication"
 
 function App() {
   useEffect(() => {
@@ -72,6 +73,7 @@ function App() {
           path="/admin/expiredJobPostings"
           component={GetExpiredJobPostings}
         />
+        <Route path="/JobApplications" component={JobApplications} />
       </div>
     </Router>
   );

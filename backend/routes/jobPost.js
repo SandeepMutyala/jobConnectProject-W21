@@ -8,7 +8,7 @@ const {editedJobPost} = require("../controllers/jobPostController");
 const {deleteJobPost} = require("../controllers/jobPostController");
 
 router.route("/createpost").post(createJobPost);
-router.route("/displayjobpost").get(viewAllJobPost);
+router.route("/displayjobposts/:id").get(viewAllJobPost);
 router.route("/displayjobpost/:id").get(viewSpecificJobPost);
 router.route("/updatejobpost/:id").put(editedJobPost);
 router.route("/deletejobpost/:id").delete(deleteJobPost);

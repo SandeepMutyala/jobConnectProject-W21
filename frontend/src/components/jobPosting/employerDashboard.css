@@ -1,19 +1,25 @@
  /* Author Sai Sandeep Mutyala */
+
 @media screen and (max-width: 1000px) {
   .individualCard {
-      width: 40% !important;
-      height: 130px !important;
+      width: 90% !important;
+      height: 170px !important;
+  }
+  .singleCard {
+    width: 90% !important;
+    height: 170px !important;
   }
   .dashboard-heading {
       font-size:2rem !important;
+      padding-top: 15% !important;
   }
   .cardContent {
-    font-size: 30% !important;
+    font-size: 50% !important;
     display: block !important;
   }
-   .logo {
-    height: 20px !important;
-    width: 40px !important;
+  .logo {
+    height: 40px !important;
+    width: 60px !important;
     align-items: center !important;
   }
   .dashboard-heading {
@@ -23,10 +29,18 @@
     font-size: medium !important;
     padding-left: 25% !important;
   }
+  .rows {
+    margin-top: 25% !important;
+  }
 }
+
 
 body{
   width: 100%;
+}
+
+.rows {
+  margin-top: 5%;
 }
 
 .dashboardHomeHeading{
@@ -34,28 +48,39 @@ text-align: center;
 padding: 250px 0;
 font-family: Georgia, 'Times New Roman', Times, serif;
 font-size: xx-large;
-padding-left: 20%;
+padding-left: 10%;
+}
+
+.heading {
+  color: #635454;
+  font-family: arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 0px;
+  padding-top: 2%;
 }
 
 .dashboard-heading {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size:1.8rem;
-    text-align: center;
-    padding-right: 6%;
-    padding-top: 3%;
+  font-family: arial, sans-serif;
+  font-size:1.6rem;
+  text-align: center;
+  padding-right: 6%;
+  padding-top: 3%;
+  font-style: italic;
 }
 
- .logo {
-  height: 60px;
-  width: 100px;
-  padding-bottom: 5%;
- }
+.logo {
+height: 60px;
+width: 100px;
+padding-bottom: 5%;
+}
 
- .cardContent {
-  font-size: 60%;
-  display: block;
-  font-weight:800;
- }
+.cardContent {
+font-size: 60%;
+display: block;
+font-weight:800;
+}
 
 .cardRow:after {
   content: "";
@@ -92,12 +117,27 @@ padding-left: 20%;
 .individualCard {
   width:45%;
   cursor: pointer;
-  box-shadow: -5px 2px #24253f;
+  box-shadow: -3px 2px #24253f;
   border-radius: 9px;
   height:220px;
-  background:#f2f5f8;
+  background:white;
   margin:10px;
   margin-top: 30px;
+}
+
+.singleCard {
+  width:45%;
+  cursor: pointer;
+  box-shadow: -3px 2px #24253f;
+  border-radius: 9px;
+  height:220px;
+  background:white;
+  margin:10px;
+  margin-top: 30px;
+}
+
+.singleCard:hover{
+  background-color: #e5e7e8;
 }
 
 .individualCard:hover{
@@ -108,7 +148,53 @@ padding-left: 20%;
   float:left ;
 }
 
+.deletebutton {
+  padding-top: 4%;
+  padding-right: 30%;
+  margin-right: 3%;
+}
 
+.deletebutton:hover{
+  transform: scale(0.9);
+}
+
+.resubmitbutton:hover{
+  transform: scale(0.9);
+}
+
+.resubmitbutton {
+  padding-top: 4%;
+}
+
+.buttonsection {
+  text-align: center;
+  padding-right: 8%;
+
+}
+
+.approvebutton {
+  padding-top: 4%;
+  padding-right: 30%;
+  margin-right: 3%;
+}
+
+.approvebutton:hover{
+  transform: scale(0.9);
+}
+
+.rejectbutton:hover{
+  transform: scale(0.9);
+}
+
+.rejectbutton {
+  padding-top: 4%;
+}
+
+.buttontab {
+  text-align: center;
+  padding-left: 2%;
+
+}
 
 
 
