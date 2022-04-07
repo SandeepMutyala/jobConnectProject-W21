@@ -1,7 +1,6 @@
 /**Author: Raja Harshini Kasibhotla */
 import React, { useState } from "react";
 import axios from "axios";
-import "./styles.css";
 
 function DeleteComments(props) {
   const [commentId, setCommentId] = useState(props.id);

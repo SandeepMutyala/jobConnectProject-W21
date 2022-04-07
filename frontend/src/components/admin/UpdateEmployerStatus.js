@@ -1,7 +1,6 @@
 /**Author: Raja Harshini Kasibhotla */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./styles.css";
 
 function UpdateEmployerStatus(props) {
   const [userId, setuserId] = useState(props.id);

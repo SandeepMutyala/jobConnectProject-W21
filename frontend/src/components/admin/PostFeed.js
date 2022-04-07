@@ -1,6 +1,5 @@
 /**Author: Raja Harshini Kasibhotla */
 import React, { useEffect, useState } from "react";
-import "./styles.css";
 import axios from "axios";
 import DeletePosts from "./DeletePosts";
 import DeleteComments from "./DeleteComments";
