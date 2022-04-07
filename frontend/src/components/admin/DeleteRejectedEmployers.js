@@ -3,8 +3,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
 function DeleteRejectedEmployers(props) {
+  var styleButton = {
+    height: "auto",
+    width: "150px",
+    float: "right",
+    textAlign: "center",
+  };
   const [userId, setuserId] = useState(props.id);
   function deleteEmployers() {
     setuserId(props.id);
@@ -18,6 +23,7 @@ function DeleteRejectedEmployers(props) {
   }
   return (
     <button
+      style={styleButton}
       type="button"
       className="btn btn-primary btn-sm"
       onClick={deleteEmployers}

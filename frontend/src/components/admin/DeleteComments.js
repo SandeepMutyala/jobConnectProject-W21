@@ -4,6 +4,12 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function DeleteComments(props) {
+  var styleButton = {
+    height: "auto",
+    width: "150px",
+    float: "right",
+    textAlign: "center",
+  };
   const [commentId, setCommentId] = useState(props.id);
   function deleteComment() {
     setCommentId(props.id);
@@ -17,6 +23,7 @@ function DeleteComments(props) {
   }
   return (
     <button
+      style={styleButton}
       type="button"
       className="btn btn-primary btn-small"
       onClick={() => {
