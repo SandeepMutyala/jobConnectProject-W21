@@ -4,8 +4,14 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import React , { Component, useState, useEffect } from 'react';
 import axios from 'axios';
+import {useSelector} from "react-redux";
 
 const PersonalTabb = (props) => {
+	
+	const {user} = useSelector(
+        (state) => state.auth
+      );
+      console.log(user);
 
     let flag = "y";
 
@@ -30,7 +36,8 @@ const PersonalTabb = (props) => {
         Email : "",
         PhoneNumber : "",
         Address : "",
-        jobID : props.jobID
+        jobID : props.jobID,
+		userID: user._id
     });
     
     const handlePersonalDetailsUpdate = (e) => {
@@ -48,7 +55,7 @@ const PersonalTabb = (props) => {
         
         const result = validationscheck();
         if(result == "noerror")
-            axios.post("http://localhost:5000/JobSearch/PersonalDetails", PersonalDetailsList);
+            axios.post("JobSearch/PersonalDetails", PersonalDetailsList);
         else
             updateErrorMessage(result);
     }
