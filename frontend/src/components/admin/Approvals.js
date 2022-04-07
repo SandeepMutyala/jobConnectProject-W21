@@ -1,7 +1,6 @@
 /**Author: Raja Harshini Kasibhotla */
 
 import React, { useEffect, useState } from "react";
-import "./styles.css";
 import axios from "axios";
 import DeleteRejectedEmployers from "./DeleteRejectedEmployers";
 import UpdateEmployerStatus from "./UpdateEmployerStatus";
