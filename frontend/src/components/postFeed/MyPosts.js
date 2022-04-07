@@ -44,7 +44,6 @@ const MyPosts = () => {
         var commentData = commentlist.data;
         setCurrentCommentPostID(postID);
         setCommentList(commentData);
-        
       }
     } catch(error){
       console.log(error)
@@ -84,12 +83,12 @@ const MyPosts = () => {
       <div className="col-5" style={{marginTop:10,padding:0,marginLeft:50}}>
             {   //iterating over post list to display individual post
                 postList && postList.map((post,i) => 
-                <div className="card" style={{borderRadius:7,marginTop:5}}>
+                <div className="card" style={{borderRadius:7,marginTop:5,backgroundColor:"white",borderColor:"#cecece"}}>
                     <div key={i}>
                     <div className="container" style={{marginTop:10,paddingLeft:15}}> 
                     <div className="modal-body" style={{border:"1 solid black"}}>
                         <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50,marginTop:5,verticalAlign:"top"}}/>
-                        <table style={{display:"inline-block"}}>
+                        <table style={{display:"inline-block",borderColor:"#ffffff"}}>
                           <tr><span style={{marginLeft:20}}>{post.userName}</span></tr>
                           <tr><span style={{marginLeft:20}}>{post.date.substring(0,10)}</span></tr>
                         </table>
@@ -135,10 +134,10 @@ const MyPosts = () => {
                     <div className="modal-footer" style={{marginRight:17,paddingLeft:0}}>
                           {
                             commentList && commentList.map((comment,i) => 
-                            <div className="card" style={{borderRadius:7,marginTop:5,marginLeft:15,width:980}}>
+                            <div className="card" style={{borderRadius:7,marginTop:5,marginLeft:15,width:980,backgroundColor:"white",width:"95%",borderColor:"#cecece"}}>
                             <div className="modal-body" style={{border:"1 solid black"}}>
                               <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50,marginTop:5,verticalAlign:"top"}}/>
-                              <table style={{display:"inline-block"}}>
+                              <table style={{display:"inline-block",borderColor:"#ffffff"}}>
                                 <tr><span style={{marginLeft:20}}>{comment.respondedUserName}</span></tr>
                                 <tr><span style={{marginLeft:20}}>{comment.date.substring(0,10)}</span></tr>
                               </table>

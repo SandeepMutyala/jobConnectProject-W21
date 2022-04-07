@@ -1,5 +1,4 @@
 /**Author: Raja Harshini Kasibhotla */
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DeletePosts from "./DeletePosts";
@@ -8,59 +7,20 @@ import DeleteComments from "./DeleteComments";
 function PostFeed() {
   const [postFeed, setPostFeed] = useState([]);
   const [postComments, setPostComments] = useState([]);
-  var listStyle = { listStyleType: "none" };
-  var containerstyle = {
-    paddinTop: "100px",
-    alignItems: "center",
-    paddingLeft: "350px",
-  };
-  var customCard = {
-    height: "auto",
-    width: "750px",
-    backgroundColor: "aliceblue",
-    borderColor: "black",
-    //"box-shadow": '0 4px 8px 0 rgba(203, 189, 246, 0.2)', '0 6px 20px 0 rgba(196, 153, 239, 0.19)'
-  };
-  var customcardheader = {
-    backgroundColor: "rgb(100, 138, 194)",
-    padding: "0rem 0rem",
-    opacity: 1,
-  };
-  var postImage = {
-    border: "1px solid #ddd",
-    float: "left",
-    marginTop: "0px",
-    width: " 55px",
-  };
-  var customInlineCard = {
-    size: "flex",
-    backgroundColor: "aliceblue",
-  };
-  var customh5 = {
-    fontFamily: '"Times New Roman", Times, serif',
-    fontSize: "20px",
-    fontStyle: "italic",
-    fontWeight: "bold",
-    color: "rgb(70, 37, 37)",
-    paddingLeft: "20px",
-    paddingTop: "20px",
-  };
-  var customInlineCardHeader = {
-    backgroundColor: "rgb(185, 203, 230)",
-    padding: " 0rem 0rem",
-  };
   useEffect(() => {
     const fetchPosts = async () => {
-      const result = await axios("/api/v1/admin/displayPosts").then(
-        (result) => {
-          console.log(result.data.posts);
-          setPostFeed(result.data.posts);
-          console.log(postFeed);
-        }
-      );
+      const result = await axios(
+        "http://localhost:4000/api/v1/admin/displayPosts"
+      ).then((result) => {
+        console.log(result.data.posts);
+        setPostFeed(result.data.posts);
+        console.log(postFeed);
+      });
     };
     const fetchComments = async () => {
-      const commentsData = await axios("/api/v1/admin/displayComments")
+      const commentsData = await axios(
+        "http://localhost:4000/api/v1/admin/displayComments"
+      )
         .then((commentsData) => {
           console.log(commentsData.data.comments);
           setPostComments(commentsData.data.comments);
@@ -73,27 +33,67 @@ function PostFeed() {
 
   return (
     <React.Fragment>
-      <br />
-      <br />
-      <br />
-      <br />
-      <div style={containerstyle} className="container-fluid d-flex">
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+          <a className="navbar-brand" href="#">
+            &nbsp; &nbsp; JobConnect
+          </a>
+          <div className="navbar-header">
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <a className="nav-link" href="/admin/postFeed">
+                  Home <span className="sr-only"></span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/admin/approvals">
+                  Approvals
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Job Postings
+                </a>
+              </li>
+            </ul>
+            <ul className="navbar-nav navbar-right">
+              <a className="btn btn-danger btn-xsmall" href="/login">
+                Logout
+              </a>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div id="container" className="container-fluid d-flex">
         <ul>
           {postFeed.length == 0 ? (
             <h1>No Posts Found</h1>
           ) : (
             postFeed.map((post) => (
-              <li style={listStyle} key={post._id}>
-                <div className="col-md-12 col-lg-4 col-sm-3">
-                  <div className="card" style={customCard}>
-                    <div className="card-header" style={customcardheader}>
+              <li id="custom-list" key={post._id}>
+                <div class="col-md-12 col-lg-4 col-sm-3">
+                  <div className="card" id="custom-card">
+                    <div className="card-header" id="custom-card-header">
                       <img
-                        style={postImage}
+                        id="post-image"
                         src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
                         className="card-img-top"
                         alt="..."
                       ></img>
-                      <h5 className="card-title" style={customh5}>
+                      <h5 className="card-title" id="custom-h5">
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{post.userName}
                       </h5>
                     </div>
@@ -115,22 +115,22 @@ function PostFeed() {
                               comment.postID.includes(post._id)
                             )
                             .map((comment) => (
-                              <li style={listStyle} key={comment._id}>
+                              <li id="custom-list" key={comment._id}>
                                 <div
                                   className="card inline-card"
-                                  style={customInlineCard}
+                                  id="custom-inline-card"
                                 >
                                   <div
                                     className="card-header"
-                                    style={customInlineCardHeader}
+                                    id="custom-inline-card-header"
                                   >
                                     <img
-                                      style={postImage}
+                                      id="post-image"
                                       src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
                                       className="card-img-top"
                                       alt="..."
                                     ></img>
-                                    <h5 className="card-title" style={customh5}>
+                                    <h5 className="card-title" id="custom-h5">
                                       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                       {comment.respondedUserName}
                                     </h5>
@@ -143,7 +143,6 @@ function PostFeed() {
                                     <br />
                                   </div>
                                 </div>
-                                <br />
                               </li>
                             ))
                         )}
