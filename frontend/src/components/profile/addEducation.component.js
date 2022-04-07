@@ -72,7 +72,7 @@ export default class AddEducation extends Component {
       );
 
     return (
-      <div className="container" style={{ width: "60%" }}>
+      <div className="container" style={{ width: "60%",marginTop:"2cm" }}>
         <p>Youre in create education page</p>
         <Form onSubmit={this.handleSubmit}>
           <div className="form-group">

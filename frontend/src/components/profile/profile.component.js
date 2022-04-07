@@ -122,7 +122,7 @@ class Profile extends Component {
       //     }
       //   });
     } else {
-      alert("Please login");
+      // alert("Please login");
       this.props.history.push("/");
     }
   }
@@ -198,7 +198,7 @@ class Profile extends Component {
   };
   render() {
     return (
-      <div className="container" style={{ width: "60%" }}>
+      <div className="container" style={{ marginTop:"2cm",width: "60%" }}>
         <h3 style={{ margin: "0.2cm", textAlign: "center" }}>My Profile</h3>
         <Card border="primary" style={{ display: "flex" }}>
           <Form onSubmit={this.onImgSubmit.bind(this)}>

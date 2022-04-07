@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
 const EachUser = (props) => (
-  <Card border="primary">
+  <div>
+  <Card border="primary" >
     <Card.Header style={{ display: "flex" }}>
       <Card.Title style={{ marginRight: "auto" }}>
         {props.userdetails.name}
@@ -27,6 +28,8 @@ const EachUser = (props) => (
       <Card.Text>{props.userdetails.summary}</Card.Text>
     </Card.Body>
   </Card>
+  <br></br>
+  </div>
 );
 
 export default class SearchUser extends Component {
@@ -62,7 +65,7 @@ export default class SearchUser extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container" style={{width:"60%",marginTop:"2cm"}}>
         <Form.Group className="mb-3">
           <Form.Label>Profile Search</Form.Label>
           <Form.Control placeholder="Enter user name"

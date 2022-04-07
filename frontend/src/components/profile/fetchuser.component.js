@@ -29,7 +29,8 @@ const Education = (props) => (
 );
 
 const Experience = (props) => (
-  <Card border="primary">
+  <div>
+  <Card border="primary" >
     <Card.Body>
       <div style={{ display: "flex" }}>
         <div style={{ marginRight: "auto" }}>
@@ -48,6 +49,8 @@ const Experience = (props) => (
     </Card.Body>
     {/* <Card.Text>{props.experience.todate}</Card.Text> */}
   </Card>
+  <br></br>
+  </div>
 );
 class User extends Component {
   state = {
@@ -130,7 +133,7 @@ class User extends Component {
 
   render() {
     return (
-      <div className="container" style={{ width: "60%" }}>
+      <div className="container" style={{ width: "60%",marginTop:"2cm" }}>
         <h3 style={{ margin: "0.2cm", textAlign: "center" }}>
           {this.state.name}
         </h3>
