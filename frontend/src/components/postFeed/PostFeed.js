@@ -197,16 +197,16 @@ const PostFeed = () => {
     }*/
 
   return (
-    <div style={{marginLeft:"25%"}}>
+    <div>
       <div className="row" style={{marginTop:80}}>
         <div className="col-3">
            {/* <Message />*/}
         </div>
-        <div className="col-5"style={{width:"55%",marginLeft:50,border:"1px solid #cecece",backgroundColor:'white',borderRadius:20,height:100.833}}>
+        <div className="col-5"style={{width:"41.8%",marginLeft:50,border:"1px solid #cecece",backgroundColor:'white',borderRadius:20,height:100.833}}>
         <div className="model-body" style={{marginTop:27}}>
           <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50,marginLeft:20}}/>
           <button type="button" className="button-hover btn btn-outline-info btn-block" 
-              style={{borderRadius:20,width:"85%",border:"0.5px solid #b3b3b3",color:'#595959',marginRight:7, display:"inline-block",height:45}}
+              style={{marginLeft:15,borderRadius:20,width:"85%",border:"0.5px solid #b3b3b3",color:'#595959',marginRight:7, display:"inline-block",height:45}}
               data-toggle="modal" data-target="#addPostToggle"><span style={{fontWeight:510}}>Create Post</span>
           </button>
         </div>
@@ -256,7 +256,7 @@ const PostFeed = () => {
                 postList && postList.map((post,i) => 
                 <div className="card" style={{borderRadius:7,marginTop:5,backgroundColor:"white",borderColor:"#cecece"}}>
                     <div key={i}>
-                    <div className="container" style={{marginTop:10,paddingLeft:15}}> 
+                    <div className="container" style={{marginTop:10,paddingLeft:19.5,paddingRight:19.5}}> 
                     <div className="modal-body" style={{border:"1 solid black"}}>
                         <img src="https://picsum.photos/200" alt="Profile Picture" style={{width:40,height:40,borderRadius:50,marginTop:5,verticalAlign:"top"}}/>
                         <table style={{display:"inline-block",borderColor:"#ffffff"}}>
