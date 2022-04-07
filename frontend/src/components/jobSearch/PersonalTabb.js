@@ -23,7 +23,7 @@ const PersonalTabb = (props) => {
         DOB: ""
     });
 
-    const emailpattern = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9+.][A-Za-z]+$/;
+    const emailpattern = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9+.]+[A-Za-z]+$/;
     const phonepattern = /^[0-9]{10}$/;
     const namepattern = /^[a-z]+$/i;
 
