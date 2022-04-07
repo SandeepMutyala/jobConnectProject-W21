@@ -44,7 +44,7 @@ const Jobpost = (props) =>{
                         <Jobdata 
                             key = {job._id}
                             jobid = {job._id}
-                            compimage={job.companyImage} 
+                            compimage={job.companyLogoUrl} 
                             jobtitle={job.jobTitle}
                             companyname={job.companyName}
                             dateposted={job.jobPostDate}

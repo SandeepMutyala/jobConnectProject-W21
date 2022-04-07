@@ -18,7 +18,7 @@ const JobDesc = (props) => {
         if(props.post[i]._id == postvalue)
         {
             jobpost = {
-                compimage: props.post[i].companyImage,
+                compimage: props.post[i].companyLogoUrl,
                 jobtitle: props.post[i].jobTitle,
                 companyname: props.post[i].companyName,
                 companylocation: props.post[i].addLocation,
