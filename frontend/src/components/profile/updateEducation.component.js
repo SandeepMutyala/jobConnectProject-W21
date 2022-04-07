@@ -104,7 +104,7 @@ export default class UpdateEducation extends Component {
   };
   render() {
     return (
-      <div className="container" style={{ width: "60%" }}>
+      <div className="container" style={{ width: "60%",marginTop:"2cm" }}>
         <p>Please edit education details</p>
         <Form>
           <div className="form-group">
