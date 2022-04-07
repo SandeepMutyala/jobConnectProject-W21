@@ -27,9 +27,11 @@ app.use("/post",postroute);
 
 const jobpostroutes = require("./routes/jobPost");
 var JobSearchRouter = require("./routes/JobSearchRouter.js");
+const jobapplicationroutes = require("./routes/jobApplication");
 
 app.use("/jobpost", jobpostroutes);
 app.use("/JobSearch", JobSearchRouter);
+app.use("/jobapplication", jobapplicationroutes);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 

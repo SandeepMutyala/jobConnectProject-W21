@@ -3,7 +3,7 @@ const { response } = require("../app");
 const JobPost = require("../models/jobPost");
 
 exports.createJobPost = async(req, res) => {
-    const { country, language, companyName, jobTitle, jobShortDescription, workLocation, addLocation, hiringCount, lastDateToApply, jobType1, jobType2, schedule, payType, pay, jobDescription, companyLogoUrl} = req.body;
+    const { country, language, companyName, jobTitle, jobShortDescription, workLocation, addLocation, hiringCount, lastDateToApply, jobType1, jobType2, schedule, payType, pay, jobDescription, companyLogoUrl, employer_id} = req.body;
     await JobPost.create({
         country, 
         language, 
@@ -21,6 +21,7 @@ exports.createJobPost = async(req, res) => {
         pay, 
         jobDescription,
         companyLogoUrl,
+        employer_id
       })
         .then(jobposting => {
         res.status(200).json({'jobposting': 'jobposting added successfully'});
@@ -32,7 +33,7 @@ exports.createJobPost = async(req, res) => {
 
   exports.viewAllJobPost = async (req, res, next) => {
     try{
-        const posts = await JobPost.find({});
+        const posts = await JobPost.find({employer_id : req.params.id});
         res.status(200).json({
           success: true,
           jobList: posts

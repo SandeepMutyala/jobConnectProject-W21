@@ -11,9 +11,16 @@
     height: 35% !important;
     width: 50% !important;
   }
-  .button {
-    font-size: 10% !important; 
-    text-align:left !important;
+  .submitbutton {
+    font-size: 2% !important; 
+    text-align:center !important;
+    padding-right: 50% !important;
+    font-size: small !important;
+    size: 10% !important;
+    width: 15% !important;
+  }
+  .uppercolumn-right {
+    margin-top: 0% !important;
   }
   #place-holder {
     color: #999999 !important;
@@ -105,7 +112,7 @@ body {
     
 .main-heading{
   padding-left: 3%;
-  padding-top: 5%;
+  /* padding-top: 5%; */
   padding-bottom: 1%;
   color: #635454;
   font-family: arial, sans-serif;
@@ -113,13 +120,29 @@ body {
   font-weight: bold;
   font-style: italic;
 }
-.button{
+.submitbutton{
   text-align: center;
+  justify-content: center;
   margin-left: 3%;
   margin-right: 3%;
   padding-top: 4%;
-  padding-right: 20%;
+  padding-right: 30%;
   font-size: medium;
+}
+
+.deletebutton {
+  padding-top: 4%;
+  padding-right: 30%;
+  margin-right: 3%;
+}
+
+.resubmitbutton {
+  padding-top: 4%;
+}
+
+.buttonsection {
+  text-align: center;
+  padding-right: 30%;
 }
 
 
@@ -127,8 +150,8 @@ body {
   height: 30%;
   width: 30%;
   float: right;
-  padding-top: 8%;
-  /* margin-left: 35%; */
+  padding-top: 1%;
+  padding-right: 5%;
 }
     
 .form-error{

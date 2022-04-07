@@ -54,6 +54,9 @@ const jobPost = new mongoose.Schema({
   companyLogoUrl: {
     type: String,
   },
+  employer_id: {
+    type:  mongoose.Schema.ObjectId
+  }
 });
 
 module.exports = mongoose.model("JobPost", jobPost);

@@ -2,19 +2,24 @@
 import React, { useState } from 'react';
 import axios from "axios";
 // REACT BOOTSTRAP COMPONENTS
-import {Row, Col, Form, Container, Button} from 'react-bootstrap';
+import {Row, Col, Form, Container} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 // BOOTSTRAP LIBRARY
 import 'bootstrap/dist/css/bootstrap.css';
 // ASSETS
 import image6 from '../../assets/image6.jpg';
 import './jobPostForm.css';
 import EmployerSideNav from './employerSideNav';
+import {useSelector} from "react-redux";
 
 const JobPostForm= () => {
 
   const [ jobPostForm, setJobPostForm ] = useState({})
   const [ formErrors, setFormErrors ] = useState({})
-
+  const {user} = useSelector(
+    (state) => state.auth
+  );
+  console.log(user);
   const setFormField = (field, value) => {
     setJobPostForm({
       ...jobPostForm,
@@ -33,6 +38,8 @@ const JobPostForm= () => {
     if ( Object.keys(newFormErrors).length > 0 ) {
       setFormErrors(newFormErrors)
     } else {
+      let employObj = jobPostForm
+      employObj['employer_id'] = user._id; //to post job post specific to that employer
       axios.post("/jobpost/createpost",jobPostForm )
       .then(res=>console.log(res))
       alert('Your job post got created.')
@@ -51,9 +58,9 @@ const JobPostForm= () => {
     else if ( jobTitle.length > 30 ) newFormErrors.jobTitle = 'Job title is too long!'
     if ( !jobShortDescription || jobShortDescription === '' ) newFormErrors.jobShortDescription = 'Job title cannot be blank!'
     else if ( jobShortDescription.length > 60 ) newFormErrors.jobShortDescription = 'Job short description is too long!'
-     if ( !workLocation || workLocation === '' ) newFormErrors.workLocation = 'Please select the workLocation!'
-     if ( !addLocation || addLocation === '' ) newFormErrors.addLocation = 'Add location cannot be blank!'
-     else if ( addLocation.length > 30 ) newFormErrors.addLocation = 'add location is too long!'
+    if ( !workLocation || workLocation === '' ) newFormErrors.workLocation = 'Please select the workLocation!'
+    if ( !addLocation || addLocation === '' ) newFormErrors.addLocation = 'Add location cannot be blank!'
+    else if ( addLocation.length > 30 ) newFormErrors.addLocation = 'add location is too long!'
     if ( !hiringCount || hiringCount > 501 || hiringCount < 1 ) newFormErrors.hiringCount = 'Hiring count must be assigned between 1 and 500!'
     if ( !lastDateToApply || lastDateToApply === '' ) newFormErrors.lastDateToApply = 'Please select the last date to apply!'
     if ( !jobType1 || jobType1 === '' ) newFormErrors.jobType1 = 'Is it a part-time or full-time or Internship!'
@@ -178,8 +185,7 @@ const JobPostForm= () => {
                   id='place-holder'
                   as='select' 
                   onChange={ e => setFormField('workLocation', e.target.value) }
-                  isInvalid={ !!formErrors.workLocation }
-                >
+                  isInvalid={ !!formErrors.workLocation }>
                   <option value=''>Select the work location:</option>
                   <option value='Office'>Office</option>
                   <option value='Remote'>Remote</option>
@@ -196,8 +202,7 @@ const JobPostForm= () => {
                   placeholder='Add Location'
                   type='text' 
                   onChange={ e => setFormField('addLocation', e.target.value) }
-                  isInvalid={ !!formErrors.addLocation }
-                />
+                  isInvalid={ !!formErrors.addLocation }/>
               </Col>
               <Form.Control.Feedback className='form-error' type='invalid'>{ formErrors.addLocation }</Form.Control.Feedback>
             </Form.Group>
@@ -210,8 +215,7 @@ const JobPostForm= () => {
                   placeholder='Hiring count'
                   type='number' 
                   onChange={ e => setFormField('hiringCount', e.target.value) }
-                  isInvalid={ !!formErrors.hiringCount }
-                  />
+                  isInvalid={ !!formErrors.hiringCount }/>
               </Col>
               <Form.Control.Feedback className='form-error' type='invalid'>{ formErrors.hiringCount }</Form.Control.Feedback>
             </Form.Group>
@@ -237,8 +241,7 @@ const JobPostForm= () => {
                   id='place-holder'
                   as='select' 
                   onChange={ e => setFormField('jobType1', e.target.value) }
-                  isInvalid={ !!formErrors.jobType1 }
-                >
+                  isInvalid={ !!formErrors.jobType1 }>
                   <option value=''>Select the job type:</option>
                   <option value='Full-time'>Full-time</option>
                   <option value='Part-time'>Part-time</option>
@@ -255,8 +258,7 @@ const JobPostForm= () => {
                   id='place-holder'
                   as='select' 
                   onChange={ e => setFormField('jobType2', e.target.value) }
-                  isInvalid={ !!formErrors.jobType2 }
-                >
+                  isInvalid={ !!formErrors.jobType2 }>
                   <option value=''>Select the job type</option>
                   <option value='Permenant'>Permenant</option>
                   <option value='Temperory'>Temperory</option>
@@ -273,8 +275,7 @@ const JobPostForm= () => {
                   id='place-holder'
                   as='select' 
                   onChange={ e => setFormField('schedule', e.target.value) }
-                  isInvalid={ !!formErrors.schedule }
-                >
+                  isInvalid={ !!formErrors.schedule }>
                   <option value=''>Select the job schedule</option>
                   <option value='Three days a week'>Three days a week</option>
                   <option value='Four days a weeks'>Four days a weeks</option>
@@ -293,8 +294,7 @@ const JobPostForm= () => {
                   id='place-holder'
                   as='select' 
                   onChange={ e => setFormField('payType', e.target.value) }
-                  isInvalid={ !!formErrors.payType }
-                >
+                  isInvalid={ !!formErrors.payType }>
                   <option value=''>Select the pay type</option>
                   <option value='Weekly'>Weekly</option>
                   <option value='Bi-weekly'>Bi-weekly</option>
@@ -314,8 +314,7 @@ const JobPostForm= () => {
                   placeholder='Pay'
                   type='number' 
                   onChange={ e => setFormField('pay', e.target.value) }
-                  isInvalid={ !!formErrors.pay }
-                  />
+                  isInvalid={ !!formErrors.pay }/>
               </Col>
               <Form.Control.Feedback className='form-error' type='invalid'>{ formErrors.pay }</Form.Control.Feedback>
             </Form.Group>
@@ -328,8 +327,7 @@ const JobPostForm= () => {
                   placeholder='Job Description'
                   as='textarea' 
                   onChange={ e => setFormField('jobDescription', e.target.value) }
-                  isInvalid={ !!formErrors.jobDescription }
-                />
+                  isInvalid={ !!formErrors.jobDescription }/>
               </Col>
               <Form.Control.Feedback className='form-error' type='invalid'>{ formErrors.jobDescription }</Form.Control.Feedback>
             </Form.Group>
@@ -342,8 +340,7 @@ const JobPostForm= () => {
                   placeholder='Company logo URL'
                   type='text' 
                   onChange={ e => setFormField('companyLogoUrl', e.target.value) }
-                  isInvalid={ !!formErrors.companyLogoUrl }
-                />
+                  isInvalid={ !!formErrors.companyLogoUrl }/>
               </Col>
               <Form.Control.Feedback className='form-error' type='invalid'>{ formErrors.companyLogoUrl }</Form.Control.Feedback>
             </Form.Group>
@@ -351,18 +348,17 @@ const JobPostForm= () => {
 
             <div>
               <Form.Check className='form-checkbox'
-                label={'Please tick the checkbox before submitting the job post.'}
-              />
+                label={'Please tick the checkbox before submitting the job post.'}/>
             </div>
     
-            <div className='button'>
-            <Button  type='submit' onClick={ handleSubmitJobPost }>Submit</Button>
+            <div className='submitbutton'>
+            <Button  type='submit' variant="primary" size="md" onClick={ handleSubmitJobPost }>Submit</Button>
             </div>
           </Form>
           <br/>
       </Container>
       </div>
-    </div>
+      </div>
   </div>
   )
 }
