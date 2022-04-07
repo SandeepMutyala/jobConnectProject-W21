@@ -4,10 +4,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import React , { Component, useState, useEffect } from 'react';
 import axios from 'axios';
-
+import {useSelector} from "react-redux";
 
 const PersonalTabb = (props) => {
-
+    const {user} = useSelector(
+        (state) => state.auth
+      );
+      console.log(user);
     
     let flag = "y";
 
@@ -33,7 +36,7 @@ const PersonalTabb = (props) => {
         PhoneNumber : "",
         Address : "",
         jobID : props.jobID,
-        userID : ""
+        userID : user._id
     });
     
     const handlePersonalDetailsUpdate = (e) => {

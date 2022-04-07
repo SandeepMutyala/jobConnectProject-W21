@@ -28,7 +28,7 @@ let postPersonalDetails = async (req,res) => {
     console.log(PersonalDetails);
     //const result = await PDmodel.create(PersonalDetails);
 
-    const result =  await PDmodel.findOneAndUpdate({jobID: ExperienceDetails[i].jobID, userID: ExperienceDetails[i].userID },PersonalDetails );
+    const result =  await PDmodel.findOneAndUpdate({jobID: PersonalDetails.jobID, userID: PersonalDetails.userID },PersonalDetails );
         if(result)
             console.log("updated")
         else
