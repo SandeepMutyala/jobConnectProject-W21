@@ -15,7 +15,7 @@ function EmployerSideNav() {
                 <img src={application} alt="dashboard" />
             </div>
             <div  className="sideNavItems">
-            <Link className='navbarLink' to="/JobApplications">
+            <Link className='navbarLink' to="/ViewJobPosts">
                 Application Managment
             </Link>
             </div>

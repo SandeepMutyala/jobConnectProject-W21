@@ -34,6 +34,7 @@ import JobApplications from "./components/jobApplications/jobApplication"
 import ViewCourses from "./components/courseRating/viewcourses";
 import viewRatings from "./components/courseRating/viewratings";
 import WriteReview from "./components/courseRating/writereview";
+import ViewJobPosts from "./components/jobApplications/viewJobPosts";
 
 function App() {
   useEffect(() => {
@@ -80,6 +81,7 @@ function App() {
           component={GetExpiredJobPostings}
         />
         <Route path="/JobApplications" component={JobApplications} />
+        <Route path="/ViewJobPosts" component={ViewJobPosts} />
       </div>
     </Router>
   );
