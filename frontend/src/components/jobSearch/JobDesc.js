@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { useHistory } from "react-router-dom";
 import '../../styles/JobDesc.css'
 import React, { Component } from 'react'
+import {useSelector} from "react-redux";
 
 const JobDesc = (props) => {
 

@@ -6,12 +6,19 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "../jobPosting/employerDashboard.css"
 import EmployerSideNav from './employerSideNav';
+import {useSelector} from "react-redux";
 
 const EmployerDashboard = () => {
+
+    const {user} = useSelector(
+        (state) => state.auth
+      );
+      console.log(user);
     const history = useHistory();
     const [jobPost, setJobPost] = useState([]);
         useEffect(() => {
-        axios.get("/jobpost/displayjobpost")
+        // to fetch all the job posts posted by that particular employer
+        axios.get("/jobpost/displayjobposts/" + user._id)
         .then((response) => {
             setJobPost(response.data.jobList);
         })
@@ -29,8 +36,9 @@ const EmployerDashboard = () => {
         <div className='right'>
             <card className="completeCard" style={{backgroundColor: "none"}}>
                 <div className='container-fluid'>
-                    <h3 className='dashboard-heading'>Job Listings</h3>
+                    <h5 className='dashboard-heading'>Job Listings</h5>
                     <div>
+                    <h6 className='heading'>Click on any of the job posting to edit or delete.</h6>    
                     { jobPost.map(fieldName => (
                         <div>
                             <div>

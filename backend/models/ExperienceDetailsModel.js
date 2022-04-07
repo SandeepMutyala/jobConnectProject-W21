@@ -14,7 +14,8 @@ const ExDSchema = new mongoose.Schema({
             ExpereinceDetails : String,
             Experienceid : Number,
             Experienceindex : Number,
-            jobID : String
+            jobID : String,
+            userID : String
 })
 
 const ExperienceDetails = mongoose.model('JobExperienceDetails', ExDSchema);

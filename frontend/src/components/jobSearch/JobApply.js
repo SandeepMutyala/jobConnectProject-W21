@@ -18,6 +18,7 @@ import JobData from './Jobdata.js'
 import Divider from '@mui/material/Divider';
 import JobApplydata from './JobApplyData.js'
 
+
 const JobApply = (props,{route}) => {
 
     const key1 = 1, key2 = 2, key3 = 3;
@@ -27,6 +28,8 @@ const JobApply = (props,{route}) => {
    // console.log(location.state);
     //console.log(location.state.jobID);
     const jobID = location.state.jobID;
+
+    
 
    
 

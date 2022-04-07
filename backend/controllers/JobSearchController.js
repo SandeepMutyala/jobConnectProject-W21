@@ -26,7 +26,15 @@ let postPersonalDetails = async (req,res) => {
 
     const PersonalDetails = JSON.parse(JSON.stringify(req.body));
     console.log(PersonalDetails);
-    const result = PDmodel.create(PersonalDetails);
+    //const result = await PDmodel.create(PersonalDetails);
+
+    const result =  await PDmodel.findOneAndUpdate({jobID: ExperienceDetails[i].jobID, userID: ExperienceDetails[i].userID },PersonalDetails );
+        if(result)
+            console.log("updated")
+        else
+        {
+            await PDmodel.create(PersonalDetails);
+        }
 
 }
 
@@ -38,7 +46,7 @@ let postEducationDetails = async (req,res) => {
 
     for(let i=0; i<EducationDetails.length;i++ )
     {
-        const result =  await EDmodel.findOneAndUpdate({ Educationindex: EducationDetails[i].Educationindex },EducationDetails[i] );
+        const result =  await EDmodel.findOneAndUpdate({ Educationindex: EducationDetails[i].Educationindex, jobID: EducationDetails[i].jobID, userID: EducationDetails[i].userID },EducationDetails[i] );
         if(result)
             console.log("updated")
         else
@@ -57,7 +65,7 @@ let postExperienceDetails = async (req,res) => {
 
     for(let i=0; i<ExperienceDetails.length;i++ )
     {
-        const result =  await ExDmodel.findOneAndUpdate({ Experienceindex: ExperienceDetails[i].Experienceindex },ExperienceDetails[i] );
+        const result =  await ExDmodel.findOneAndUpdate({ Experienceindex: ExperienceDetails[i].Experienceindex, jobID: ExperienceDetails[i].jobID, userID: ExperienceDetails[i].userID },ExperienceDetails[i] );
         if(result)
             console.log("updated")
         else

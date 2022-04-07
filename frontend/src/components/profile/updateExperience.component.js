@@ -111,7 +111,7 @@ export default class Updateexperience extends Component {
   };
   render() {
     return (
-      <div className="container" style={{ width: "60%" }}>
+      <div className="container" style={{ width: "60%",marginTop:"2cm" }}>
         <p>Please edit experience details</p>
         <Form>
           <div className="form-group">

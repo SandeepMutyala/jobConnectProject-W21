@@ -7,11 +7,17 @@ import React, { Component , useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import '../../styles/ExperienceTabb.css'
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const ExperienceTabb = (props)=> {
 
+    const {user} = useSelector(
+        (state) => state.auth
+      );
+      console.log(user);
     let flag = "y";
-
+    const history = useHistory();
     const [errorMessage,updateErrorMessage] = useState({
         companyLocation: "",
         dateOfJoining: "",
@@ -35,7 +41,8 @@ const ExperienceTabb = (props)=> {
         ExpereinceDetails : "",
         Experienceid : Math.random(),
         Experienceindex : "",
-        jobID : props.jobID
+        jobID : props.jobID,
+        userID : user._id
     }])
     
 
@@ -58,7 +65,8 @@ const ExperienceTabb = (props)=> {
             ExpereinceDetails : "",
             Experienceid : Math.random(),
             Experienceindex : "",
-            jobID : props.jobID
+            jobID : props.jobID,
+            userID : user._id
         }]);
       };
 
@@ -74,9 +82,11 @@ const ExperienceTabb = (props)=> {
     }
 
     const handleExperienceSave = () => {
+        console.log("enetered save");
         const result = validationscheck();
+        console.log(result);
         if(result == "noerror")
-            axios.post("http://localhost:5000/JobSearch/ExperienceDetails", Experiencelist);
+            axios.post("JobSearch/ExperienceDetails", Experiencelist);
         else
             updateErrorMessage(result);
     }
@@ -99,12 +109,12 @@ const ExperienceTabb = (props)=> {
                     errorlist.dateOfJoining = "Please enter Date of Joining"
                     flag = "n";
                 }
-                if((Experiencelist[i].DateofLeaving == "" || Experiencelist[i].DateofLeaving == null) && (Experiencelist[i].DateofJoining != "" || Experiencelist[i].DateofJoining != null))
+                if((Experiencelist[i].DateofLeaving == "" || Experiencelist[i].DateofLeaving == null) && (Experiencelist[i].DateofJoining == "" || Experiencelist[i].DateofJoining == null))
                 {
                     errorlist.dateOfLeaving = "Please enter Date of Leaving"
                     flag = "n";
                 }
-                if((Experiencelist[i].DateofLeaving != "" || Experiencelist[i].DateofLeaving != null) && (Experiencelist[i].LeavingReason != "" || Experiencelist[i].LeavingReason != null))
+                if((Experiencelist[i].DateofLeaving != "" || Experiencelist[i].DateofLeaving != null) && (Experiencelist[i].LeavingReason == "" || Experiencelist[i].LeavingReason == null))
                 {
                     errorlist.LeavingReason = "Please enter Reason of Leaving"
                     flag = "n";
@@ -127,7 +137,10 @@ const ExperienceTabb = (props)=> {
             return "noerror";
     }
 
+    const handleApplicationSubmit = () => {
 
+        history.push({pathname: '/ApplicationSubmit'} );
+    }
     return (
         <div>
         {Experiencelist.map((Experience, index) => (
@@ -231,6 +244,13 @@ const ExperienceTabb = (props)=> {
                         onClick={handleExperienceSave}
                         >
                         <span>Click to save data</span>
+        </button>
+        <button
+                        type="button"
+                        class="btn btn-primary , buttonStyle"
+                        onClick={handleApplicationSubmit}
+                        >
+                        <span>Click to Submit Job Application</span>
         </button>
         </div>
     )

@@ -337,13 +337,13 @@ const EditJobPost= () => {
                 <div key={`default-${type}`} className="mb-3">
                   <Form.Check className='form-checkbox'
                     type={type}
-                    label={`Please check the checkbox before submitting the job post.`}
+                    label={'Please check the checkbox before modifying the job post.'}
                   />
                 </div>
                 ))}
-                <div className='button'>
-                <Button type='submit' onClick={ handleDelete }>Delete-post</Button>
-                <Button  type='submit' onClick={ handleReSubmit }>Re-Submit</Button>
+                <div className="buttonsection">
+                <Button className='deletebutton' type='submit'  variant="primary" size="md" onClick={ handleDelete }>Delete-post</Button>
+                <Button className='resubmitbutton' type='submit'  variant="primary" size="md" onClick={ handleReSubmit }>Re-Submit</Button>
                 </div>
               </Form>
               <br/>

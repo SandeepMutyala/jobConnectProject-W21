@@ -11,7 +11,8 @@ const PDSchema = new mongoose.Schema({
     Email : String,
     PhoneNumber : String,
     Address : String,
-    jobID : String
+    jobID : String,
+    userID : String
 })
 
 const PersonalDetails = mongoose.model('JobPersonalDetails', PDSchema);

@@ -5,8 +5,10 @@ import Col from 'react-bootstrap/Col'
 import React , { Component, useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const PersonalTabb = (props) => {
 
+    
     let flag = "y";
 
     const [errorMessage,updateErrorMessage] = useState({
@@ -17,7 +19,7 @@ const PersonalTabb = (props) => {
         DOB: ""
     });
 
-    const emailpattern = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9+.][A-Za-z]+$/;
+    const emailpattern = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9+.]+[A-Za-z]+$/;
     const phonepattern = /^[0-9]{10}$/;
     const namepattern = /^[a-z]+$/i;
 
@@ -30,7 +32,8 @@ const PersonalTabb = (props) => {
         Email : "",
         PhoneNumber : "",
         Address : "",
-        jobID : props.jobID
+        jobID : props.jobID,
+        userID : ""
     });
     
     const handlePersonalDetailsUpdate = (e) => {
@@ -45,17 +48,19 @@ const PersonalTabb = (props) => {
 
     const handlePersonalDetailsSave = () => {
 
-        
+        console.log("enetered save");
         const result = validationscheck();
+        console.log(result);
         if(result == "noerror")
-            axios.post("http://localhost:5000/JobSearch/PersonalDetails", PersonalDetailsList);
+            axios.post("JobSearch/PersonalDetails", PersonalDetailsList);
         else
             updateErrorMessage(result);
     }
 
     const validationscheck = () => {
-
+        
         const errorlist = {};
+        flag = "y";
         if(!emailpattern.test(PersonalDetailsList.Email))
         {
             errorlist.email = "Incorrect Email entered"
@@ -81,8 +86,9 @@ const PersonalTabb = (props) => {
             errorlist.DOB = "Please enter Date Of Birth"
             flag = "n";
         }
-
-        if(flag = "n")
+        console.log(errorlist);
+        console.log(flag);
+        if(flag == "n")
             return errorlist;
         else
             return "noerror";

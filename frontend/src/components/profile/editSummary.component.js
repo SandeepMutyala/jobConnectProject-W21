@@ -45,7 +45,7 @@ export default class EditSummary extends Component {
   };
   render() {
     return (
-      <div className="container" style={{ width: "60%" }}>
+      <div className="container" style={{ width: "60%" ,marginTop:"2cm"}}>
         <Form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <Form.Label>Summary</Form.Label>

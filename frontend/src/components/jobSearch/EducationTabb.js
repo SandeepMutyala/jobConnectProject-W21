@@ -6,10 +6,15 @@ import Col from 'react-bootstrap/Col'
 import React, { Component , useState } from 'react';
 import '../../styles/EducationTabb.css'
 import axios from 'axios';
+import {useSelector} from "react-redux";
 
 
 const EducationTabb = (props)=> {
 
+    const {user} = useSelector(
+        (state) => state.auth
+      );
+      console.log(user);
     let flag = "y";
 
     const [errorMessage,updateErrorMessage] = useState({
@@ -31,7 +36,8 @@ const EducationTabb = (props)=> {
         PercentageAchieved : 0,
         Educationid : Math.random(),
         Educationindex : "",
-        jobID : props.jobID
+        jobID : props.jobID,
+        userID : user._id
     }])
     
 
@@ -53,7 +59,8 @@ const EducationTabb = (props)=> {
             PercentageAchieved : 0,
             Educationid : Math.random(),
             Educationindex : 0,
-            jobID : props.jobID
+            jobID : props.jobID,
+            userID : user._id
         }]);
       };
 
@@ -72,7 +79,7 @@ const EducationTabb = (props)=> {
 
         const result = validationscheck();
         if(result == "noerror")
-            axios.post("http://localhost:5000/JobSearch/EducationDetails", Educationlist);
+            axios.post("/JobSearch/EducationDetails", Educationlist);
         else
             updateErrorMessage(result);
     }

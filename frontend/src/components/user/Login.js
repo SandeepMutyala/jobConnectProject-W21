@@ -18,7 +18,11 @@ const Login = ({ history, location }) => {
   const alert = useAlert();
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/homepage");
+      if (email === "admin@mail.com") {
+        history.push("/admin/postFeed");
+      } else {
+        history.push("/homepage");
+      }
     }
 
     if (error) {
@@ -39,7 +43,10 @@ const Login = ({ history, location }) => {
       ) : (
         <Fragment>
           <div className="row wrapper">
-            <div className="col-10 col-lg-5">
+            <div
+              className="col-10 col-lg-5"
+              style={{ marginTop: "100px", maxWidth: "500px" }}
+            >
               <form className="shadow-lg" onSubmit={submitHandler}>
                 <h1 className="mb-3">Login</h1>
                 <div className="form-group">
