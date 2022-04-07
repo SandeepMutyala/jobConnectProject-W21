@@ -9,18 +9,16 @@ function PostFeed() {
   const [postComments, setPostComments] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const result = await axios(
-        "http://localhost:4000/api/v1/admin/displayPosts"
-      ).then((result) => {
-        console.log(result.data.posts);
-        setPostFeed(result.data.posts);
-        console.log(postFeed);
-      });
+      const result = await axios("/api/v1/admin/displayPosts").then(
+        (result) => {
+          console.log(result.data.posts);
+          setPostFeed(result.data.posts);
+          console.log(postFeed);
+        }
+      );
     };
     const fetchComments = async () => {
-      const commentsData = await axios(
-        "http://localhost:4000/api/v1/admin/displayComments"
-      )
+      const commentsData = await axios("/api/v1/admin/displayComments")
         .then((commentsData) => {
           console.log(commentsData.data.comments);
           setPostComments(commentsData.data.comments);
