@@ -104,6 +104,11 @@ function Header() {
                     Profile
                   </Link>
                 )}
+                {user && user.role !== "admin" && (
+                  <Link className="dropdown-item" to="/viewcourses">
+                  Courses
+                </Link>
+                )}
                 <Link
                   className="dropdown-item text-danger"
                   to="/"
