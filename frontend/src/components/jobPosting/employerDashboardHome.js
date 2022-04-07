@@ -2,9 +2,13 @@
 import React from 'react'
 import "../jobPosting/employerDashboard.css"
 import EmployerSideNav from './employerSideNav';
+import {useSelector} from "react-redux";
 
 const employerDashboardHome = () => {
-    
+  const {user} = useSelector(
+    (state) => state.auth
+  );
+  console.log(user);
   return (
     <div className='rows'>
         <div className='left'>
