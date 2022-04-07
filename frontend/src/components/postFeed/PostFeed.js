@@ -212,7 +212,7 @@ const PostFeed = () => {
         </div>
         </div> 
 
-        <div className="modal" id="addPostToggle" style={{marginLeft:"33%"}}>
+        <div className="modal" id="addPostToggle">
         
         <div className="modal-dialog" >
           <div className="modal-content" style={{borderRadius:10,height:350}}>
