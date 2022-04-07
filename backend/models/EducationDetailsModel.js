@@ -13,7 +13,8 @@ const EDSchema = new mongoose.Schema({
     PercentageAchieved : Number,
     Educationid : Number,
     Educationindex : Number,
-    jobID : String
+    jobID : String,
+    userID: String
 })
 
 const EducationDetails = mongoose.model('JobEducationDetails', EDSchema);

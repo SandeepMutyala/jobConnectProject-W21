@@ -8,9 +8,14 @@ import Button from 'react-bootstrap/Button'
 import '../../styles/ExperienceTabb.css'
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const ExperienceTabb = (props)=> {
 
+    const {user} = useSelector(
+        (state) => state.auth
+      );
+      console.log(user);
     let flag = "y";
     const history = useHistory();
     const [errorMessage,updateErrorMessage] = useState({
@@ -36,7 +41,8 @@ const ExperienceTabb = (props)=> {
         ExpereinceDetails : "",
         Experienceid : Math.random(),
         Experienceindex : "",
-        jobID : props.jobID
+        jobID : props.jobID,
+        userID: user._id
     }])
     
 
@@ -59,7 +65,8 @@ const ExperienceTabb = (props)=> {
             ExpereinceDetails : "",
             Experienceid : Math.random(),
             Experienceindex : "",
-            jobID : props.jobID
+            jobID : props.jobID,
+            userID: user._id
         }]);
       };
 
@@ -77,7 +84,7 @@ const ExperienceTabb = (props)=> {
     const handleExperienceSave = () => {
         const result = validationscheck();
         if(result == "noerror")
-            axios.post("http://localhost:5000/JobSearch/ExperienceDetails", Experiencelist);
+            axios.post("JobSearch/ExperienceDetails", Experiencelist);
         else
             updateErrorMessage(result);
     }
