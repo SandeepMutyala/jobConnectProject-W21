@@ -35,6 +35,7 @@ import ViewCourses from "./components/courseRating/viewcourses";
 import viewRatings from "./components/courseRating/viewratings";
 import WriteReview from "./components/courseRating/writereview";
 import ViewJobPosts from "./components/jobApplications/viewJobPosts";
+import ApplicationSubmit from "./components/jobSearch/ApplicationSubmit";
 
 function App() {
   useEffect(() => {
@@ -64,6 +65,7 @@ function App() {
         <Route path="/viewratings" component={viewRatings} />
         <Route path="/writereview" exact component={WriteReview} />
         <Route path="/viewCourses" exact component={ViewCourses} />
+        <Route path="/ApplicationSubmit" component={ApplicationSubmit} />
         <Route
           path="/employerDashboardHome"
           component={employerDashboardHome}
