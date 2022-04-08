@@ -26,11 +26,11 @@ import JobSearch from "./components/jobSearch/JobSearch";
 import JobApply from "./components/jobSearch/JobApply";
 import PostFeed from "./components/postFeed/PostFeed";
 import MyPosts from "./components/postFeed/MyPosts";
-import PostFeeds from "./components/admin/PostFeed";
+import PostFeeds from "./components/admin/PostFeeds";
 import JobPostings from "./components/admin/JobPostings";
 import Approvals from "./components/admin/Approvals";
 import GetExpiredJobPostings from "./components/admin/GetExpiredJobPostings";
-import JobApplications from "./components/jobApplications/jobApplication"
+import JobApplications from "./components/jobApplications/jobApplication";
 import ViewCourses from "./components/courseRating/viewcourses";
 import viewRatings from "./components/courseRating/viewratings";
 import WriteReview from "./components/courseRating/writereview";
