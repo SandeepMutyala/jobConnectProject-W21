@@ -3,7 +3,7 @@
  import {Button, Card} from 'react-bootstrap';
  import { useEffect, useState } from 'react';
  import axios from "axios";
- import { useHistory } from "react-router-dom";
+ import { useHistory, useLocation } from "react-router-dom";
  import "../jobPosting/employerDashboard.css"
  import EmployerSideNav from '../jobPosting/employerSideNav';
  import {useSelector} from "react-redux";
@@ -13,11 +13,14 @@
         (state) => state.auth
       );
       console.log(user);
+
+      const location = useLocation();
+      const jobID = location.state;
     const history = useHistory();
     const [jobApplication, setJobApplication] = useState([]);
         useEffect(() => {
         // to fetch all the job posts posted by that particular employer
-        axios.get("/jobapplication/displayjobapplications")
+        axios.get("/jobapplication/displayjobapplications/" + jobID)
         .then((response) => {
             console.log(response)
             setJobApplication(response.data.userDetails);
@@ -32,6 +35,10 @@
     alert('Sent notification to user regarding rejection.')
     }
 
+    const handleMoreData = (userID) => {
+
+        history.push({pathname: "/userJobDetails", state: {userID : userID, jobID : jobID}})
+    }
       
     
 
@@ -66,6 +73,7 @@
                                     <div className="buttontab">
                                         <Button className='approvebutton' type='submit'  variant="primary" size="sm" onClick={ handleApprove }>Approve</Button>
                                         <Button className='rejectbutton' type='submit'  variant="primary" size="sm" onClick={ handleReject }>Reject</Button>
+                                        <Button className='databutton' type='submit'  variant="primary" size="sm" onClick={() => handleMoreData(fieldName.userID)}>View more Data</Button>
                                     </div>
                                 </Card.Body>
                             </div> 

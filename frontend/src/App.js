@@ -36,6 +36,7 @@ import viewRatings from "./components/courseRating/viewratings";
 import WriteReview from "./components/courseRating/writereview";
 import ViewJobPosts from "./components/jobApplications/viewJobPosts";
 import ApplicationSubmit from "./components/jobSearch/ApplicationSubmit";
+import UserApplication from "./components/jobApplications/userJobDetails";
 
 function App() {
   useEffect(() => {
@@ -84,6 +85,7 @@ function App() {
         />
         <Route path="/JobApplications" component={JobApplications} />
         <Route path="/ViewJobPosts" component={ViewJobPosts} />
+        <Route path="/userJobDetails" component={UserApplication} />
       </div>
     </Router>
   );
