@@ -13,6 +13,7 @@ const courseSchema = new Schema(
         coursename: { type: String },
         description: { type: String },
         price: { type: Number },
+        instructor : { type: String },
         Ratings: [ratingschema],
 
     },

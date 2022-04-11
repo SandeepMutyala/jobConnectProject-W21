@@ -19,6 +19,24 @@ function Approvals() {
     align: "center",
   };
 
+  var h4style = {
+    fontFamily: '"Times New Roman", Times, serif',
+    fontSize: "25px",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    alignItems: "center",
+    color: "red"
+  };
+
+  var h4Successstyle = {
+    fontFamily: '"Times New Roman", Times, serif',
+    fontSize: "25px",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    alignItems: "center",
+    color: "green"
+  };
+
   const [employersList, setEmployersList] = useState({ employers: [] });
   const [approvedList, setApprovedList] = useState({ employers: [] });
   useEffect(() => {
@@ -45,9 +63,10 @@ function Approvals() {
       <br />
       <br />
       <br />
-      <div>
+      <div align="center">
         <div style={rowStyling} className="justify-content-center">
-          <br />
+        <br />
+          <h4 style={h4style}>Pending Approvals</h4>
           <ul style={ulTable}>
             <table
               style={tableStyle}
@@ -79,6 +98,7 @@ function Approvals() {
 
         <div style={rowStyling} className="justify-content-center">
           <br />
+          <h4 style={h4Successstyle}>Approved Employers</h4>
           <ul style={ulTable}>
             <table
               style={tableStyle}

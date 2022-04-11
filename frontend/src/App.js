@@ -37,6 +37,7 @@ import WriteReview from "./components/courseRating/writereview";
 import ViewJobPosts from "./components/jobApplications/viewJobPosts";
 import ApplicationSubmit from "./components/jobSearch/ApplicationSubmit";
 import UserApplication from "./components/jobApplications/userJobDetails";
+import AddCourses from "./components/admin/AddCourses";
 
 function App() {
   useEffect(() => {
@@ -83,6 +84,7 @@ function App() {
           path="/admin/expiredJobPostings"
           component={GetExpiredJobPostings}
         />
+        <Route path="/admin/addCourse" exact component={AddCourses}/>
         <Route path="/JobApplications" component={JobApplications} />
         <Route path="/ViewJobPosts" component={ViewJobPosts} />
         <Route path="/userJobDetails" component={UserApplication} />

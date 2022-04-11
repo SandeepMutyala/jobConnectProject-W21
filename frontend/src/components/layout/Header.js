@@ -109,6 +109,11 @@ function Header() {
                   Courses
                 </Link>
                 )}
+                 {user && user.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/addCourse">
+                  Add Courses
+                </Link>
+                )}
                 <Link
                   className="dropdown-item text-danger"
                   to="/"

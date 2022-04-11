@@ -1,4 +1,4 @@
-/**Author: Geetanjali Bommera */
+/**Author: Geetanjali Bommera */ /* Co-Author : Raja Harshini Kasibhotla (Adding the course) */
 const CourseModel = require("../models/courses.model");
 
 exports.getAllCourses = (req, res) => {
@@ -17,12 +17,19 @@ exports.getAllCourses = (req, res) => {
 
   
   exports.saveCourse = (req, res) => {
-    const newheader = new CourseModel.Course({
-      coursename: "Big Data",
-      description:"Prof. Mattew teaching Reducer",
-      price: 800
+    console.log("inside save course");
+    console.log(req.body);
+    const coursename = req.body.coursename;
+    const description = req.body.description;
+    const instructor = req.body.instructor;
+    const price = req.body.price;
+    const newCourse = new CourseModel.Course({
+     coursename,
+     description,
+     instructor,
+     price
     });
-    newheader.save(function (err, docs) {
+    newCourse.save(function (err, docs) {
       if (err) {
         return res.status(400).json({
           error: err,
