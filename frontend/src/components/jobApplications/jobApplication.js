@@ -1,4 +1,4 @@
- /* Author Sai Sandeep Mutyala */
+ /* Author Sai Sandeep Mutyala, Arpreet Singh Arora */
  import React from 'react'
  import {Button, Card} from 'react-bootstrap';
  import { useEffect, useState } from 'react';
