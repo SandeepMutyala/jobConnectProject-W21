@@ -86,7 +86,7 @@ function AddCourses() {
       } 
     else {
       axios
-        .post("http://localhost:4000/courses/savecourse/", requestBody)
+        .post("/courses/savecourse/", requestBody)
         .then((res) => {
           if (res.status === 200) {
             alert("Course added successfully");
